@@ -1,0 +1,51 @@
+package BPMModuleExt;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  bfwCore,
+  bfwInterfaces,
+  bfwUI,
+  bfwEntityCatalogInterface,
+  bfwGadgetCatalogInterface,
+  BPMLibrary;
+
+contains
+  BPMConstExt in 'BPMConstExt.pas',
+  BPMControllerExt in 'BPMControllerExt.pas',
+  BPMModuleExtInit in 'BPMModuleExtInit.pas',
+  SalTaskBulkItemPresenter in 'SalTaskBulkItemPresenter.pas',
+  SalTaskBulkItemView in 'SalTaskBulkItemView.pas' {frTaskBulkItemView},
+  SalTaskDeskPresenterWh in 'SalTaskDeskPresenterWh.pas',
+  SalTaskDeskViewWh in 'SalTaskDeskViewWh.pas' {frSalTaskDeskViewWh},
+  SalTaskItemPresenterCert in 'SalTaskItemPresenterCert.pas',
+  SalTaskItemPresenterDlv in 'SalTaskItemPresenterDlv.pas',
+  SalTaskItemPresenterWh in 'SalTaskItemPresenterWh.pas',
+  SalTaskListPresenterCert in 'SalTaskListPresenterCert.pas',
+  SalTaskListPresenterDlv in 'SalTaskListPresenterDlv.pas',
+  SalTaskListPresenterWh in 'SalTaskListPresenterWh.pas';
+
+end.

@@ -1,0 +1,324 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{23818001-52B0-411C-8E70-07464FA8C7FD}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="..\External\Booster Framework\Utility\ConfigTool\BoosterConfigTool.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Utility\StorageTool\BoosterStorageTool.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Hermes.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\bfwCore.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\bfwInterfaces.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\bfwShell.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\bfwUI.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\bfwUITemplates.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwShellLayout.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwSecurityBaseControllerModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwStorageConnIBXModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwStorageNotifier.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwSecurityManagerModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwSettingManagerModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwEntityCatalogInterface.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwEntityCatalogModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwGadgetCatalogInterface.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwGadgetCatalogModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwReportManagerModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwReportEngineXLModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\Modules\bfwReportEngineFRModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Modules\BDS\BDSModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Modules\BPM\BPMLibrary\BPMLibrary.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Modules\BPM\BPMModule\BPMModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="BoosterConfigTool">
+			<MSBuild Projects="..\External\Booster Framework\Utility\ConfigTool\BoosterConfigTool.dproj"/>
+		</Target>
+		<Target Name="BoosterConfigTool:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Utility\ConfigTool\BoosterConfigTool.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BoosterConfigTool:Make">
+			<MSBuild Projects="..\External\Booster Framework\Utility\ConfigTool\BoosterConfigTool.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BoosterStorageTool">
+			<MSBuild Projects="..\External\Booster Framework\Utility\StorageTool\BoosterStorageTool.dproj"/>
+		</Target>
+		<Target Name="BoosterStorageTool:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Utility\StorageTool\BoosterStorageTool.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BoosterStorageTool:Make">
+			<MSBuild Projects="..\External\Booster Framework\Utility\StorageTool\BoosterStorageTool.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Hermes">
+			<MSBuild Projects="Hermes.dproj"/>
+		</Target>
+		<Target Name="Hermes:Clean">
+			<MSBuild Projects="Hermes.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="Hermes:Make">
+			<MSBuild Projects="Hermes.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwCore">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwCore.dproj"/>
+		</Target>
+		<Target Name="bfwCore:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwCore.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwCore:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwCore.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwInterfaces">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwInterfaces.dproj"/>
+		</Target>
+		<Target Name="bfwInterfaces:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwInterfaces.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwInterfaces:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwInterfaces.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwShell">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwShell.dproj"/>
+		</Target>
+		<Target Name="bfwShell:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwShell.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwShell:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwShell.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwUI">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUI.dproj"/>
+		</Target>
+		<Target Name="bfwUI:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUI.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwUI:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUI.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwUITemplates">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUITemplates.dproj"/>
+		</Target>
+		<Target Name="bfwUITemplates:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUITemplates.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwUITemplates:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUITemplates.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwShellLayout">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwShellLayout.dproj"/>
+		</Target>
+		<Target Name="bfwShellLayout:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwShellLayout.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwShellLayout:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwShellLayout.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwSecurityBaseControllerModule">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwSecurityBaseControllerModule.dproj"/>
+		</Target>
+		<Target Name="bfwSecurityBaseControllerModule:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwSecurityBaseControllerModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwSecurityBaseControllerModule:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwSecurityBaseControllerModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwStorageConnIBXModule">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwStorageConnIBXModule.dproj"/>
+		</Target>
+		<Target Name="bfwStorageConnIBXModule:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwStorageConnIBXModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwStorageConnIBXModule:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwStorageConnIBXModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwStorageNotifier">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwStorageNotifier.dproj"/>
+		</Target>
+		<Target Name="bfwStorageNotifier:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwStorageNotifier.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwStorageNotifier:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwStorageNotifier.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwSecurityManagerModule">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwSecurityManagerModule.dproj"/>
+		</Target>
+		<Target Name="bfwSecurityManagerModule:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwSecurityManagerModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwSecurityManagerModule:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwSecurityManagerModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwSettingManagerModule">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwSettingManagerModule.dproj"/>
+		</Target>
+		<Target Name="bfwSettingManagerModule:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwSettingManagerModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwSettingManagerModule:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwSettingManagerModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwEntityCatalogInterface">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwEntityCatalogInterface.dproj"/>
+		</Target>
+		<Target Name="bfwEntityCatalogInterface:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwEntityCatalogInterface.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwEntityCatalogInterface:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwEntityCatalogInterface.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwEntityCatalogModule">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwEntityCatalogModule.dproj"/>
+		</Target>
+		<Target Name="bfwEntityCatalogModule:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwEntityCatalogModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwEntityCatalogModule:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwEntityCatalogModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwGadgetCatalogInterface">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwGadgetCatalogInterface.dproj"/>
+		</Target>
+		<Target Name="bfwGadgetCatalogInterface:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwGadgetCatalogInterface.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwGadgetCatalogInterface:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwGadgetCatalogInterface.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwGadgetCatalogModule">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwGadgetCatalogModule.dproj"/>
+		</Target>
+		<Target Name="bfwGadgetCatalogModule:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwGadgetCatalogModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwGadgetCatalogModule:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwGadgetCatalogModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwReportManagerModule">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwReportManagerModule.dproj"/>
+		</Target>
+		<Target Name="bfwReportManagerModule:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwReportManagerModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwReportManagerModule:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwReportManagerModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwReportEngineXLModule">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwReportEngineXLModule.dproj"/>
+		</Target>
+		<Target Name="bfwReportEngineXLModule:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwReportEngineXLModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwReportEngineXLModule:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwReportEngineXLModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwReportEngineFRModule">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwReportEngineFRModule.dproj"/>
+		</Target>
+		<Target Name="bfwReportEngineFRModule:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwReportEngineFRModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwReportEngineFRModule:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\Modules\bfwReportEngineFRModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BDSModule">
+			<MSBuild Projects="Modules\BDS\BDSModule.dproj"/>
+		</Target>
+		<Target Name="BDSModule:Clean">
+			<MSBuild Projects="Modules\BDS\BDSModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BDSModule:Make">
+			<MSBuild Projects="Modules\BDS\BDSModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BPMLibrary">
+			<MSBuild Projects="Modules\BPM\BPMLibrary\BPMLibrary.dproj"/>
+		</Target>
+		<Target Name="BPMLibrary:Clean">
+			<MSBuild Projects="Modules\BPM\BPMLibrary\BPMLibrary.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BPMLibrary:Make">
+			<MSBuild Projects="Modules\BPM\BPMLibrary\BPMLibrary.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BPMModule">
+			<MSBuild Projects="Modules\BPM\BPMModule\BPMModule.dproj"/>
+		</Target>
+		<Target Name="BPMModule:Clean">
+			<MSBuild Projects="Modules\BPM\BPMModule\BPMModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BPMModule:Make">
+			<MSBuild Projects="Modules\BPM\BPMModule\BPMModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BPMModuleExt">
+			<MSBuild Projects="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj"/>
+		</Target>
+		<Target Name="BPMModuleExt:Clean">
+			<MSBuild Projects="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BPMModuleExt:Make">
+			<MSBuild Projects="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="BoosterConfigTool;BoosterStorageTool;Hermes;bfwCore;bfwInterfaces;bfwShell;bfwUI;bfwUITemplates;bfwShellLayout;bfwSecurityBaseControllerModule;bfwStorageConnIBXModule;bfwStorageNotifier;bfwSecurityManagerModule;bfwSettingManagerModule;bfwEntityCatalogInterface;bfwEntityCatalogModule;bfwGadgetCatalogInterface;bfwGadgetCatalogModule;bfwReportManagerModule;bfwReportEngineXLModule;bfwReportEngineFRModule;BDSModule;BPMLibrary;BPMModule;BPMModuleExt"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="BoosterConfigTool:Clean;BoosterStorageTool:Clean;Hermes:Clean;bfwCore:Clean;bfwInterfaces:Clean;bfwShell:Clean;bfwUI:Clean;bfwUITemplates:Clean;bfwShellLayout:Clean;bfwSecurityBaseControllerModule:Clean;bfwStorageConnIBXModule:Clean;bfwStorageNotifier:Clean;bfwSecurityManagerModule:Clean;bfwSettingManagerModule:Clean;bfwEntityCatalogInterface:Clean;bfwEntityCatalogModule:Clean;bfwGadgetCatalogInterface:Clean;bfwGadgetCatalogModule:Clean;bfwReportManagerModule:Clean;bfwReportEngineXLModule:Clean;bfwReportEngineFRModule:Clean;BDSModule:Clean;BPMLibrary:Clean;BPMModule:Clean;BPMModuleExt:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="BoosterConfigTool:Make;BoosterStorageTool:Make;Hermes:Make;bfwCore:Make;bfwInterfaces:Make;bfwShell:Make;bfwUI:Make;bfwUITemplates:Make;bfwShellLayout:Make;bfwSecurityBaseControllerModule:Make;bfwStorageConnIBXModule:Make;bfwStorageNotifier:Make;bfwSecurityManagerModule:Make;bfwSettingManagerModule:Make;bfwEntityCatalogInterface:Make;bfwEntityCatalogModule:Make;bfwGadgetCatalogInterface:Make;bfwGadgetCatalogModule:Make;bfwReportManagerModule:Make;bfwReportEngineXLModule:Make;bfwReportEngineFRModule:Make;BDSModule:Make;BPMLibrary:Make;BPMModule:Make;BPMModuleExt:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

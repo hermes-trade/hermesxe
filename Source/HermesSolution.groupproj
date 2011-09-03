@@ -1,0 +1,60 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{23818001-52B0-411C-8E70-07464FA8C7FD}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="Hermes.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\bfwUI.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\External\Booster Framework\Packages\bfwUITemplates.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="Hermes">
+			<MSBuild Projects="Hermes.dproj"/>
+		</Target>
+		<Target Name="Hermes:Clean">
+			<MSBuild Projects="Hermes.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="Hermes:Make">
+			<MSBuild Projects="Hermes.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwUI">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUI.dproj"/>
+		</Target>
+		<Target Name="bfwUI:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUI.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwUI:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUI.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwUITemplates">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUITemplates.dproj"/>
+		</Target>
+		<Target Name="bfwUITemplates:Clean">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUITemplates.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwUITemplates:Make">
+			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUITemplates.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="Hermes;bfwUI;bfwUITemplates"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="Hermes:Clean;bfwUI:Clean;bfwUITemplates:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="Hermes:Make;bfwUI:Make;bfwUITemplates:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>
