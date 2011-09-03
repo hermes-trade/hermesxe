@@ -1,0 +1,10 @@
+
+/Output
+/Source/Modules/BDS/Debug
+/Source/Modules/BPM/BPMLibrary/Debug
+/Source/Debug
+/Source/Modules/BPM/BPMModuleExt/Debug
+/Source/Modules/BPM/BPMModule/Debug
+*.local
+*.identcache
+*.dsk
