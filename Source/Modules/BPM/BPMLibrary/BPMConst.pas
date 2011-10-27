@@ -13,6 +13,9 @@ const
 //  ACT_CTG_BPM_CAPTION = 'Бизнес-процессы';
 
   ACT_GROUP_BPM_TASKS = 'Задачи';
+  ACT_GROUP_BPM_TASKS_WH = 'Склад';
+  ACT_GROUP_BPM_TASKS_DLV = 'Доставка';
+  ACT_GROUP_BPM_TASKS_SAL = 'Продажи';
 
   ACT_BPM_EXECUTOR_SELECT = 'views.BPM_EXECUTORS.PickList'; //'activities.bpm.executor.select';
   ACT_BPM_TASK_ITEM_OPEN = 'activities.bpm.task.item.open.';

@@ -24,12 +24,19 @@ implementation
 { TBDSController }
 
 procedure TBDSController.OnInitialize;
+var
+  svc: IActivityService;
 begin
-  //TopView
-  WorkItem.Root.Actions[VIEW_ACNT_JRN + '.NavBar'].SetHandler(ActionAcntJrn);
-  RegisterView(VIEW_ACNT_JRN, TAcntJournalPresenter, TfrAcntJournalView);
+  svc := WorkItem.Services[IActivityService] as IActivityService;
 
-  RegisterView(VIEW_SALRET_DESK, TSalRetDeskPresenter, TfrSalRetDeskView);
+  WorkItem.Root.Actions[VIEW_ACNT_JRN + '.NavBar'].SetHandler(ActionAcntJrn);
+
+  svc.RegisterActivityInfo(VIEW_ACNT_JRN);
+  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
+    VIEW_ACNT_JRN, TAcntJournalPresenter, TfrAcntJournalView));
+
+  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
+     'views.BDS_SALRET.Desk', TSalRetDeskPresenter, TfrSalRetDeskView));
 end;
 
 

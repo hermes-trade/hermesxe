@@ -17,7 +17,7 @@ const
   BPM_ACTIVITY_CODE_SAL_CERT = 'Sal.Cert';
 
   ACT_BPM_TASK_LIST_SAL_CERT = 'activities.bpm.task.list.sal.cert';
-  ACT_BPM_TASK_LIST_SAL_CERT_CAPTION = 'Продажа [сертификаты]';
+  ACT_BPM_TASK_LIST_SAL_CERT_CAPTION = 'Задачи [сертификаты]';
   ACT_BPM_TASK_OPEN_SAL_CERT = 'activities.bpm.task.item.sal.cert';
   VIEW_BPM_TASK_LIST_SAL_CERT = 'views.bpm.task.list.sal.cert';
   VIEW_BPM_TASK_ITEM_SAL_CERT = 'views.bpm.task.item.sal.cert';
@@ -27,7 +27,7 @@ const
   BPM_ACTIVITY_CODE_SAL_DLV = 'Sal.DLV';
 
   ACT_BPM_TASK_LIST_SAL_DLV = 'activities.bpm.task.list.sal.dlv';
-  ACT_BPM_TASK_LIST_SAL_DLV_CAPTION = 'Продажа [доставка]';
+  ACT_BPM_TASK_LIST_SAL_DLV_CAPTION = 'Задачи [доставка]';
   ACT_BPM_TASK_OPEN_SAL_DLV = 'activities.bpm.task.item.sal.dlv';
   VIEW_BPM_TASK_LIST_SAL_DLV = 'views.bpm.task.list.sal.dlv';
   VIEW_BPM_TASK_ITEM_SAL_DLV = 'views.bpm.task.item.sal.dlv';
@@ -50,7 +50,7 @@ const
   VIEW_BPM_TASK_BULK_SALE_COLLECT_ITEM = 'views.BPM_TASKBULK.sale.collect.item';
 
   ACT_BPM_TASK_LIST_SAL_WH = 'activities.bpm.task.list.sal.wh';
-  ACT_BPM_TASK_LIST_SAL_WH_CAPTION = 'Продажа [комплектация]';
+  ACT_BPM_TASK_LIST_SAL_WH_CAPTION = 'Задачи [комплектация]';
   ACT_BPM_TASK_OPEN_SAL_WH = 'activities.bpm.task.item.sal.wh';
   VIEW_BPM_TASK_LIST_SAL_WH = 'views.bpm.task.list.sal.wh';
   VIEW_BPM_TASK_ITEM_SAL_WH = 'views.bpm.task.item.sal.wh';

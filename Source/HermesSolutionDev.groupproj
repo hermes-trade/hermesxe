@@ -36,7 +36,7 @@
 			<Projects Include="..\External\Boosterfw\Packages\Modules\bfwStorageConnIBXModule.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\External\Boosterfw\Packages\Modules\bfwStorageNotifier.dproj">
+			<Projects Include="..\External\Boosterfw\Packages\Modules\bfwStorageNotifierModule.dproj">
 				<Dependencies/>
 			</Projects>
 			<Projects Include="..\External\Boosterfw\Packages\Modules\bfwSecurityManagerModule.dproj">
@@ -185,14 +185,14 @@
 		<Target Name="bfwStorageConnIBXModule:Make">
 			<MSBuild Projects="..\External\Boosterfw\Packages\Modules\bfwStorageConnIBXModule.dproj" Targets="Make"/>
 		</Target>
-		<Target Name="bfwStorageNotifier">
-			<MSBuild Projects="..\External\Boosterfw\Packages\Modules\bfwStorageNotifier.dproj"/>
+		<Target Name="bfwStorageNotifierModule">
+			<MSBuild Projects="..\External\Boosterfw\Packages\Modules\bfwStorageNotifierModule.dproj"/>
 		</Target>
-		<Target Name="bfwStorageNotifier:Clean">
-			<MSBuild Projects="..\External\Boosterfw\Packages\Modules\bfwStorageNotifier.dproj" Targets="Clean"/>
+		<Target Name="bfwStorageNotifierModule:Clean">
+			<MSBuild Projects="..\External\Boosterfw\Packages\Modules\bfwStorageNotifierModule.dproj" Targets="Clean"/>
 		</Target>
-		<Target Name="bfwStorageNotifier:Make">
-			<MSBuild Projects="..\External\Boosterfw\Packages\Modules\bfwStorageNotifier.dproj" Targets="Make"/>
+		<Target Name="bfwStorageNotifierModule:Make">
+			<MSBuild Projects="..\External\Boosterfw\Packages\Modules\bfwStorageNotifierModule.dproj" Targets="Make"/>
 		</Target>
 		<Target Name="bfwSecurityManagerModule">
 			<MSBuild Projects="..\External\Boosterfw\Packages\Modules\bfwSecurityManagerModule.dproj"/>
@@ -312,13 +312,13 @@
 			<MSBuild Projects="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj" Targets="Make"/>
 		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="BoosterConfigTool;BoosterStorageTool;Hermes;bfwCore;bfwInterfaces;bfwShell;bfwUI;bfwUITemplates;bfwShellLayout;bfwSecurityBaseControllerModule;bfwStorageConnIBXModule;bfwStorageNotifier;bfwSecurityManagerModule;bfwSettingManagerModule;bfwEntityCatalogInterface;bfwEntityCatalogModule;bfwGadgetCatalogInterface;bfwGadgetCatalogModule;bfwReportManagerModule;bfwReportEngineXLModule;bfwReportEngineFRModule;BDSModule;BPMLibrary;BPMModule;BPMModuleExt"/>
+			<CallTarget Targets="BoosterConfigTool;BoosterStorageTool;Hermes;bfwCore;bfwInterfaces;bfwShell;bfwUI;bfwUITemplates;bfwShellLayout;bfwSecurityBaseControllerModule;bfwStorageConnIBXModule;bfwStorageNotifierModule;bfwSecurityManagerModule;bfwSettingManagerModule;bfwEntityCatalogInterface;bfwEntityCatalogModule;bfwGadgetCatalogInterface;bfwGadgetCatalogModule;bfwReportManagerModule;bfwReportEngineXLModule;bfwReportEngineFRModule;BDSModule;BPMLibrary;BPMModule;BPMModuleExt"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="BoosterConfigTool:Clean;BoosterStorageTool:Clean;Hermes:Clean;bfwCore:Clean;bfwInterfaces:Clean;bfwShell:Clean;bfwUI:Clean;bfwUITemplates:Clean;bfwShellLayout:Clean;bfwSecurityBaseControllerModule:Clean;bfwStorageConnIBXModule:Clean;bfwStorageNotifier:Clean;bfwSecurityManagerModule:Clean;bfwSettingManagerModule:Clean;bfwEntityCatalogInterface:Clean;bfwEntityCatalogModule:Clean;bfwGadgetCatalogInterface:Clean;bfwGadgetCatalogModule:Clean;bfwReportManagerModule:Clean;bfwReportEngineXLModule:Clean;bfwReportEngineFRModule:Clean;BDSModule:Clean;BPMLibrary:Clean;BPMModule:Clean;BPMModuleExt:Clean"/>
+			<CallTarget Targets="BoosterConfigTool:Clean;BoosterStorageTool:Clean;Hermes:Clean;bfwCore:Clean;bfwInterfaces:Clean;bfwShell:Clean;bfwUI:Clean;bfwUITemplates:Clean;bfwShellLayout:Clean;bfwSecurityBaseControllerModule:Clean;bfwStorageConnIBXModule:Clean;bfwStorageNotifierModule:Clean;bfwSecurityManagerModule:Clean;bfwSettingManagerModule:Clean;bfwEntityCatalogInterface:Clean;bfwEntityCatalogModule:Clean;bfwGadgetCatalogInterface:Clean;bfwGadgetCatalogModule:Clean;bfwReportManagerModule:Clean;bfwReportEngineXLModule:Clean;bfwReportEngineFRModule:Clean;BDSModule:Clean;BPMLibrary:Clean;BPMModule:Clean;BPMModuleExt:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="BoosterConfigTool:Make;BoosterStorageTool:Make;Hermes:Make;bfwCore:Make;bfwInterfaces:Make;bfwShell:Make;bfwUI:Make;bfwUITemplates:Make;bfwShellLayout:Make;bfwSecurityBaseControllerModule:Make;bfwStorageConnIBXModule:Make;bfwStorageNotifier:Make;bfwSecurityManagerModule:Make;bfwSettingManagerModule:Make;bfwEntityCatalogInterface:Make;bfwEntityCatalogModule:Make;bfwGadgetCatalogInterface:Make;bfwGadgetCatalogModule:Make;bfwReportManagerModule:Make;bfwReportEngineXLModule:Make;bfwReportEngineFRModule:Make;BDSModule:Make;BPMLibrary:Make;BPMModule:Make;BPMModuleExt:Make"/>
+			<CallTarget Targets="BoosterConfigTool:Make;BoosterStorageTool:Make;Hermes:Make;bfwCore:Make;bfwInterfaces:Make;bfwShell:Make;bfwUI:Make;bfwUITemplates:Make;bfwShellLayout:Make;bfwSecurityBaseControllerModule:Make;bfwStorageConnIBXModule:Make;bfwStorageNotifierModule:Make;bfwSecurityManagerModule:Make;bfwSettingManagerModule:Make;bfwEntityCatalogInterface:Make;bfwEntityCatalogModule:Make;bfwGadgetCatalogInterface:Make;bfwGadgetCatalogModule:Make;bfwReportManagerModule:Make;bfwReportEngineXLModule:Make;bfwReportEngineFRModule:Make;BDSModule:Make;BPMLibrary:Make;BPMModule:Make;BPMModuleExt:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

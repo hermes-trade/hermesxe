@@ -1,38 +1,26 @@
 unit BDSModuleInit;
 
 interface
-uses classes, CoreClasses, CustomModule,ShellIntf,
+uses classes, CoreClasses, ShellIntf,
   ViewServiceIntf, BDSController, Graphics;
 
 
 type
-  TBDSModule = class(TCustomModule)
-  protected
-    procedure OnLoaded; override;
+  TBDSModule = class(TModule)
+  public
+    procedure Load; override;
   end;
 
 implementation
 
-
-function GetModuleActivatorClass: TClass;
-begin
-  Result := TBDSModule;
-end;
-
-function GetModuleKind: TModuleKind;
-begin
-  Result := mkExtension;
-end;
-
-
 { TBDSModule }
 
-procedure TBDSModule.OnLoaded;
+procedure TBDSModule.Load;
 begin
-  InstantiateController(TBDSController);
+  WorkItem.WorkItems.Add(TBDSController);
 end;
 
 initialization
-  RegisterEmbededModule(GetModuleActivatorClass, GetModuleKind);
+  RegisterModule(TBDSModule);
   
 end.

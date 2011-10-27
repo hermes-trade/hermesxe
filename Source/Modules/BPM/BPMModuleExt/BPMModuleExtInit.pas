@@ -1,42 +1,26 @@
 unit BPMModuleExtInit;
 
 interface
-uses classes, CoreClasses, CustomModule, BPMConst, BPMConstExt, ShellIntf,
+uses classes, CoreClasses, BPMConst, BPMConstExt, ShellIntf,
   ViewServiceIntf, BPMControllerExt;
 
 type
-  TBPMModuleExt = class(TCustomModule)
-  protected
-    procedure OnLoading; override;
-    procedure OnLoaded; override;
+  TBPMModuleExt = class(TModule)
+  public
+    procedure Load; override;
   end;
 
 implementation
 
-function GetModuleActivatorClass: TClass;
-begin
-  Result := TBPMModuleExt;
-end;
-
-function GetModuleKind: TModuleKind;
-begin
-  Result := mkExtension;
-end;
 
 { TBPMModuleExt }
 
-procedure TBPMModuleExt.OnLoaded;
+procedure TBPMModuleExt.Load;
 begin
-  InstantiateController(TBPMControllerExt);
-
-end;
-
-procedure TBPMModuleExt.OnLoading;
-begin
-
+  WorkItem.WorkItems.Add(TBPMControllerExt);
 end;
 
 initialization
-  RegisterEmbededModule(GetModuleActivatorClass, GetModuleKind);
+  RegisterModule(TBPMModuleExt);
 
 end.

@@ -47,6 +47,8 @@ end;
 
 procedure TBPMController.OnInitialize;
 begin
+  (WorkItem.Services[IActivityService] as IActivityService).
+    RegisterActivityInfo(ACT_BPM_TASK_ITEM_OPEN);
   WorkItem.Root.Actions[ACT_BPM_TASK_ITEM_OPEN].SetHandler(ActionTaskItemOpen);
   WorkItem.Root.Actions[ACT_BPM_TASK_ITEM_OPEN].SetDataClass(TTaskItemPresenterData);
 end;

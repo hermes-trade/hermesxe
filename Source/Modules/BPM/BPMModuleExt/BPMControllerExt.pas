@@ -37,31 +37,47 @@ implementation
 
 
 procedure TBPMControllerExt.OnInitialize;
+var
+  svc: IActivityService;
 begin
-  RegisterExtension(VIEW_BPM_TASK_BULK_SALE_COLLECT_JRN, TTaskBulkJournalExtension);
 
-  RegisterActivity(VIEW_BPM_TASK_DESK_SAL_WH,
-    ACT_CTG_JOURNALS, ACT_GROUP_BPM_TASKS, ACT_BPM_TASK_DESK_SAL_WH_CAPTION,
-    TSalTaskDeskPresenterWh, TfrSalTaskDeskViewWh);
 
-  RegisterView(VIEW_BPM_TASK_BULK_SALE_COLLECT_ITEM, TTaskBulkItemPresenter,
-    TfrTaskBulkItemView);
+  svc := WorkItem.Services[IActivityService] as IActivityService;
 
-  RegisterActivity(VIEW_BPM_TASK_LIST_SAL_CERT,
-    ACT_CTG_JOURNALS, ACT_GROUP_BPM_TASKS, ACT_BPM_TASK_LIST_SAL_CERT_CAPTION,
-    TSalTaskListPresenterCert, TfrGenericTaskListView);
+  svc.RegisterActivityInfo(VIEW_BPM_TASK_DESK_SAL_WH);
+  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
+    VIEW_BPM_TASK_DESK_SAL_WH, TSalTaskDeskPresenterWh, TfrSalTaskDeskViewWh));
 
-  RegisterActivity(VIEW_BPM_TASK_LIST_SAL_WH,
-    ACT_CTG_JOURNALS, ACT_GROUP_BPM_TASKS, ACT_BPM_TASK_LIST_SAL_WH_CAPTION,
-    TSalTaskListPresenterWh, TfrGenericTaskListView);
+  svc.RegisterActivityInfo(VIEW_BPM_TASK_BULK_SALE_COLLECT_ITEM);
+  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
+    VIEW_BPM_TASK_BULK_SALE_COLLECT_ITEM, TTaskBulkItemPresenter, TfrTaskBulkItemView));
 
-  RegisterActivity(VIEW_BPM_TASK_LIST_SAL_DLV,
-    ACT_CTG_JOURNALS, ACT_GROUP_BPM_TASKS, ACT_BPM_TASK_LIST_SAL_DLV_CAPTION,
-    TSalTaskListPresenterDlv, TfrGenericTaskListView);
+  (WorkItem.Services[IViewManagerService] as IViewManagerService).
+    RegisterExtension(VIEW_BPM_TASK_BULK_SALE_COLLECT_JRN, TTaskBulkJournalExtension);
 
-  RegisterView(VIEW_BPM_TASK_ITEM_SAL_DLV, TSalTaskItemPresenterCert, TfrGenericTaskItemView);
-  RegisterView(VIEW_BPM_TASK_ITEM_SAL_CERT, TSalTaskItemPresenterCert, TfrGenericTaskItemView);
-  RegisterView(VIEW_BPM_TASK_ITEM_SAL_WH, TSalTaskItemPresenterWh, TfrGenericTaskItemView);
+  svc.RegisterActivityInfo(VIEW_BPM_TASK_LIST_SAL_CERT);
+  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
+    VIEW_BPM_TASK_LIST_SAL_CERT, TSalTaskListPresenterCert, TfrGenericTaskListView));
+
+  svc.RegisterActivityInfo(VIEW_BPM_TASK_LIST_SAL_WH);
+  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
+    VIEW_BPM_TASK_LIST_SAL_WH, TSalTaskListPresenterWh, TfrGenericTaskListView));
+
+  svc.RegisterActivityInfo(VIEW_BPM_TASK_LIST_SAL_DLV);
+  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
+    VIEW_BPM_TASK_LIST_SAL_DLV, TSalTaskListPresenterDlv, TfrGenericTaskListView));
+
+  svc.RegisterActivityInfo(VIEW_BPM_TASK_ITEM_SAL_DLV);
+  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
+    VIEW_BPM_TASK_ITEM_SAL_DLV, TSalTaskItemPresenterCert, TfrGenericTaskItemView));
+
+  svc.RegisterActivityInfo(VIEW_BPM_TASK_ITEM_SAL_CERT);
+  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
+    VIEW_BPM_TASK_ITEM_SAL_CERT, TSalTaskItemPresenterCert, TfrGenericTaskItemView));
+
+  svc.RegisterActivityInfo(VIEW_BPM_TASK_ITEM_SAL_WH);
+  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
+    VIEW_BPM_TASK_ITEM_SAL_WH, TSalTaskItemPresenterWh, TfrGenericTaskItemView));
 
   BPMConst.RegisterTaskItemView(BPM_ACTIVITY_CODE_SAL_DLV, VIEW_BPM_TASK_ITEM_SAL_DLV);
   BPMConst.RegisterTaskItemView(BPM_ACTIVITY_CODE_SAL_CERT, VIEW_BPM_TASK_ITEM_SAL_CERT);
