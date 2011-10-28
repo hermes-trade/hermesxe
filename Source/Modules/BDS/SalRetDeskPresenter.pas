@@ -3,7 +3,7 @@ unit SalRetDeskPresenter;
 interface
 uses classes, sysutils, CoreClasses, ShellIntf, CommonViewIntf,
   Variants, EntityServiceIntf, CustomContentPresenter,
-   db, Controls, ViewServiceIntf;
+   db, Controls;
 
 const
   VIEW_SALRET_DESK = 'views.bds.salret.desk';
@@ -127,7 +127,7 @@ begin
       FDocLoaded := true;
     end
     else
-      App.Views.MessageBox.ErrorMessage(strDocNotFound);
+      App.UI.MessageBox.ErrorMessage(strDocNotFound);
   end;
 
 
@@ -136,7 +136,7 @@ end;
 
 procedure TSalRetDeskPresenter.CmdPostDoc(Sender: TObject);
 begin
-  if not App.Views.MessageBox.ConfirmYesNo('Провести документ ?') then exit;
+  if not App.UI.MessageBox.ConfirmYesNo('Провести документ ?') then exit;
 
   GetEVHead.Save;
   App.Entities[ENT_SALRET_DESK].GetOper(ENT_OPER_POST, WorkItem).
@@ -260,7 +260,7 @@ end;
 
 procedure TSalRetDeskPresenter.CmdRollbackDoc(Sender: TObject);
 begin
-  if not App.Views.MessageBox.ConfirmYesNo('Отменить проведение документа ?') then exit;
+  if not App.UI.MessageBox.ConfirmYesNo('Отменить проведение документа ?') then exit;
 
   if GetEVHead.IsModified then GetEVHead.Save;
   App.Entities[ENT_SALRET_DESK].GetOper(ENT_OPER_ROLLBACK, WorkItem).
@@ -281,7 +281,7 @@ end;
 
 procedure TSalRetDeskPresenter.CmdCreateMove(Sender: TObject);
 begin
-  if not App.Views.MessageBox.ConfirmYesNo('Сформировать перемещения по складу возвратов ?') then exit;
+  if not App.UI.MessageBox.ConfirmYesNo('Сформировать перемещения по складу возвратов ?') then exit;
 
   App.Entities[ENT_SALRET_DESK].GetOper(ENT_OPER_CREATEMOVE, WorkItem).
       Execute([GetEVHead.Values['ID']]);

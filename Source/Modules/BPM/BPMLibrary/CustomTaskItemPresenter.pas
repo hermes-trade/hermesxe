@@ -3,7 +3,7 @@ unit CustomTaskItemPresenter;
 interface
 
 uses classes, CoreClasses, CustomContentPresenter, ShellIntf, CommonViewIntf,
-  Variants, BPMConst, EntityServiceIntf, db, ViewServiceIntf;
+  Variants, BPMConst, EntityServiceIntf, db;
 
 const
   strTaskUpdateProcessFinished = 'Обновление задачи обработано';
@@ -83,7 +83,7 @@ begin
     App.Entities[ENT_BPM_TASK].
       GetOper(ENT_BPM_TASK_OPER_UPDATE_PROCESS, WorkItem).Execute(_taskID);
     GetEVUpdates.ReloadRecord(_taskID);
-    App.Views.MessageBox.InfoMessage(strTaskUpdateProcessFinished);
+    App.UI.MessageBox.InfoMessage(strTaskUpdateProcessFinished);
   end;
 
 end;

@@ -2,7 +2,7 @@ unit BDSModuleInit;
 
 interface
 uses classes, CoreClasses, ShellIntf,
-  ViewServiceIntf, BDSController, Graphics;
+  BDSController, Graphics;
 
 
 type

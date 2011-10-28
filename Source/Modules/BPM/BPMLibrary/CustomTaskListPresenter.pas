@@ -3,7 +3,7 @@ unit CustomTaskListPresenter;
 interface
 uses CustomContentPresenter, classes, CoreClasses, ShellIntf, SysUtils, db,
   CommonViewIntf, Variants, EntityServiceIntf, BPMConst, ReportServiceIntf,
-  Controls, CustomTaskItemPresenter, ViewServiceIntf;
+  Controls, CustomTaskItemPresenter;
 
 const
   Command_ChangeState_Auto = '{59D529B3-E650-46A8-9428-FB5487478232}';
@@ -246,7 +246,7 @@ begin
   else
     NewStateID := -1;
 
-  if not App.Views.MessageBox.ConfirmYesNo('Сменить текущее состояние ?') then Exit;
+  if not App.UI.MessageBox.ConfirmYesNo('Сменить текущее состояние ?') then Exit;
 
   try
     IDList := VarArrayCreate([0, View.Selection.Count - 1], varVariant);

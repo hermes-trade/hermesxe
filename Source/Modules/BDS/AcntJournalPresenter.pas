@@ -2,7 +2,7 @@ unit AcntJournalPresenter;
 
 interface
 uses  ShellIntf, EntityServiceIntf, 
-  EntityCatalogIntf, CustomContentPresenter, ViewServiceIntf,
+  EntityCatalogIntf, CustomContentPresenter,
   sysutils, CustomPresenter, db, variants, CommonViewIntf, CoreClasses,
   CommonUtils, Controls;
 

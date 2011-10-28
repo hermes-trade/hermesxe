@@ -128,7 +128,7 @@ begin
       FTaskID := Unassigned;
       GetEVTaskExecutors.Load([null]);
       if Trim(VarToStr(vTaskID)) <> '' then
-        App.Views.MessageBox.ErrorMessage(strTaskNotFound);
+        App.UI.MessageBox.ErrorMessage(strTaskNotFound);
     end
   end
 end;
@@ -136,7 +136,7 @@ end;
 procedure TSalTaskDeskPresenterWh.CmdRemoveExecutor(Sender: TObject);
 begin
   if FTaskLoaded and (not VarIsEmpty(GetTaskExecutor)) and
-     App.Views.MessageBox.ConfirmYesNo('Исключить исполнителя?')  then
+     App.UI.MessageBox.ConfirmYesNo('Исключить исполнителя?')  then
   begin
     App.Entities[ENT_BPM_TASK].
       GetOper(ENT_BPM_TASK_OPER_EXECUTOR_REMOVE, WorkItem).

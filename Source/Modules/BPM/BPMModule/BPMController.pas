@@ -2,7 +2,7 @@ unit BPMController;
 
 interface
 uses classes, CoreClasses, CustomUIController, BPMConst, ShellIntf,
-  ActivityServiceIntf,  Variants, ViewServiceIntf, CustomTaskItemPresenter;
+  ActivityServiceIntf,  Variants, CustomTaskItemPresenter;
 
 type
   TBPMController = class(TCustomUIController)

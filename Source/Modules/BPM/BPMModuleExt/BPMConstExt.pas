@@ -2,7 +2,7 @@ unit BPMConstExt;
 
 interface
 uses
-  CommonViewIntf, ViewServiceIntf;
+  CommonViewIntf;
 
 const
 

@@ -2,7 +2,7 @@ unit BPMModuleExtInit;
 
 interface
 uses classes, CoreClasses, BPMConst, BPMConstExt, ShellIntf,
-  ViewServiceIntf, BPMControllerExt;
+  BPMControllerExt;
 
 type
   TBPMModuleExt = class(TModule)

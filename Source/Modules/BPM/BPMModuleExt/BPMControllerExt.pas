@@ -2,7 +2,7 @@ unit BPMControllerExt;
 
 interface
 uses classes, CoreClasses, CustomUIController, BPMConst, BPMConstExt, ShellIntf,
-  ViewServiceIntf, CommonViewIntf, EntityCatalogIntf,
+   CommonViewIntf, EntityCatalogIntf,
   ActivityServiceIntf, Variants,
   GenericTaskListView, GenericTaskItemView,
   SalTaskListPresenterWh, SalTaskItemPresenterWh,
@@ -52,8 +52,8 @@ begin
   svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
     VIEW_BPM_TASK_BULK_SALE_COLLECT_ITEM, TTaskBulkItemPresenter, TfrTaskBulkItemView));
 
-  (WorkItem.Services[IViewManagerService] as IViewManagerService).
-    RegisterExtension(VIEW_BPM_TASK_BULK_SALE_COLLECT_JRN, TTaskBulkJournalExtension);
+  //(WorkItem.Services[IViewManagerService] as IViewManagerService).
+    RegisterViewExtension(VIEW_BPM_TASK_BULK_SALE_COLLECT_JRN, TTaskBulkJournalExtension);
 
   svc.RegisterActivityInfo(VIEW_BPM_TASK_LIST_SAL_CERT);
   svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,

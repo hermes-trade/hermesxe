@@ -36,7 +36,7 @@ var
   bulk_id: variant;
 begin
 
-  if not App.Views.MessageBox.ConfirmYesNo('Консолидировать выделенные задачи ?') then Exit;
+  if not App.UI.MessageBox.ConfirmYesNo('Консолидировать выделенные задачи ?') then Exit;
 
   try
     bulk_id := App.Entities[ENT_TASKBULK].
