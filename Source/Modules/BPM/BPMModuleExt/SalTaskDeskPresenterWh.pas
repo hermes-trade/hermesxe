@@ -3,9 +3,10 @@ unit SalTaskDeskPresenterWh;
 interface
 uses classes, sysutils, CoreClasses, CustomTaskItemPresenter, ShellIntf, UIClasses,
   Variants, BPMConst, BPMConstExt, EntityServiceIntf, CustomContentPresenter,
-  GadgetCatalogIntf, db;
+  db;
 
 const
+  ET_BARSCAN_BARCODE = 'events://barscan.barcode';
   ENT_INF_GID = 'INF_GID';
   ENT_INF_GID_OPER_DECODE = 'Decode';
 

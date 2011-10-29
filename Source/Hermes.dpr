@@ -8,6 +8,7 @@ uses
   bfwApp,
   bfwModules,
   ConfigServiceIntf,
+  BarCodeScanerModuleInit,
   BDSModuleInit,
   BPMModuleInit,
   BPMModuleExtInit;
