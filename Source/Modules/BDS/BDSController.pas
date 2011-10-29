@@ -1,20 +1,20 @@
 unit BDSController;
 
 interface
-uses classes, CoreClasses, CustomUIController, ShellIntf,
-  ActivityServiceIntf, Variants, CommonViewIntf,
-  db, CommonUtils, sysutils, controls, EntityCatalogIntf,
+uses classes, CoreClasses, ShellIntf,
+  ActivityServiceIntf, Variants, UIClasses,
+  db, CommonUtils, sysutils, controls,
   AcntJournalPresenter, AcntJournalView,
   SalRetDeskPresenter, SalRetDeskView;
 
 
 type
 
-  TBDSController = class(TCustomUIController)
+  TBDSController = class(TWorkItemController)
   private
     procedure ActionAcntJrn(Sender: IAction);
   protected
-    procedure OnInitialize; override;
+    procedure Initialize; override;
   end;
 
 implementation
@@ -23,7 +23,7 @@ implementation
 
 { TBDSController }
 
-procedure TBDSController.OnInitialize;
+procedure TBDSController.Initialize;
 var
   svc: IActivityService;
 begin

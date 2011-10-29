@@ -1,8 +1,8 @@
 unit BPMControllerExt;
 
 interface
-uses classes, CoreClasses, CustomUIController, BPMConst, BPMConstExt, ShellIntf,
-   CommonViewIntf, EntityCatalogIntf,
+uses classes, CoreClasses, BPMConst, BPMConstExt, ShellIntf,
+   UIClasses,
   ActivityServiceIntf, Variants,
   GenericTaskListView, GenericTaskItemView,
   SalTaskListPresenterWh, SalTaskItemPresenterWh,
@@ -14,7 +14,6 @@ uses classes, CoreClasses, CustomUIController, BPMConst, BPMConstExt, ShellIntf,
 type
   TTaskBulkJournalExtension = class(TViewExtension, IExtensionCommand)
   private
-    function View: IEntityJournalView;
     procedure CmdPrintBulkCollect(Sender: TObject);
     procedure CmdPrintCollectTask(Sender: TObject);
     procedure CmdNew(Sender: TObject);
@@ -24,9 +23,9 @@ type
     procedure CommandUpdate;
   end;
 
-  TBPMControllerExt = class(TCustomUIController)
+  TBPMControllerExt = class(TWorkItemController)
   protected
-    procedure OnInitialize; override;
+    procedure Initialize; override;
   end;
 
 
@@ -36,7 +35,7 @@ implementation
 
 
 
-procedure TBPMControllerExt.OnInitialize;
+procedure TBPMControllerExt.Initialize;
 var
   svc: IActivityService;
 begin
@@ -127,11 +126,11 @@ begin
 
   WorkItem.Commands[COMMAND_PRINT_BULKCOLLECT].Caption := 'Задачи по участкам';
   WorkItem.Commands[COMMAND_PRINT_BULKCOLLECT].SetHandler(CmdPrintBulkCollect);
-  View.CommandBar.AddCommand(COMMAND_PRINT_BULKCOLLECT, 'Печать', true);
+ // View.CommandBar.AddCommand(COMMAND_PRINT_BULKCOLLECT, 'Печать', true);
 
   WorkItem.Commands[COMMAND_PRINT_COLLECTTASK].Caption := 'Комплектовочные листы';
   WorkItem.Commands[COMMAND_PRINT_COLLECTTASK].SetHandler(CmdPrintCollectTask);
-  View.CommandBar.AddCommand(COMMAND_PRINT_COLLECTTASK, 'Печать');
+ // View.CommandBar.AddCommand(COMMAND_PRINT_COLLECTTASK, 'Печать');
 end;
 
 procedure TTaskBulkJournalExtension.CommandUpdate;
@@ -141,7 +140,7 @@ begin
   WorkItem.Commands[COMMAND_NEW].Status := csDisabled;
   WorkItem.Commands[COMMAND_STATE_CHANGE_NEXT].Status := csDisabled;
   WorkItem.Commands[COMMAND_STATE_CHANGE_PREV].Status := csDisabled;
-
+{
   if View.Tabs.Active = 0 then
     WorkItem.Commands[COMMAND_NEW].Status := csEnabled;
 
@@ -153,12 +152,8 @@ begin
 
   if (View.Tabs.Active < (View.Tabs.Count - 1)) and (View.Selection.Count > 0) then
     WorkItem.Commands[COMMAND_STATE_CHANGE_NEXT].Status := csEnabled;
-
+ }
 end;
 
-function TTaskBulkJournalExtension.View: IEntityJournalView;
-begin
-  Result := GetView as IEntityJournalView;
-end;
 
 end.

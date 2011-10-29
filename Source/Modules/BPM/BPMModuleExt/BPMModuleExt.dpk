@@ -29,7 +29,6 @@ requires
   bfwCore,
   bfwInterfaces,
   bfwUI,
-  bfwEntityCatalogInterface,
   bfwGadgetCatalogInterface,
   BPMLibrary;
 

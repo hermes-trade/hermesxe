@@ -2,6 +2,7 @@ inherited frAcntJournalView: TfrAcntJournalView
   Left = 562
   Top = 289
   Caption = 'frAcntJournalView'
+  ExplicitWidth = 320
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
@@ -16,15 +17,24 @@ inherited frAcntJournalView: TfrAcntJournalView
       TabOrder = 2
       TabPosition = tpBottom
       ClientRectBottom = 119
-      ClientRectRight = 761
-      ClientRectTop = 0
+      ClientRectLeft = 4
+      ClientRectRight = 757
+      ClientRectTop = 4
       object cxTabSheet1: TcxTabSheet
         Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1089#1095#1077#1090#1072
         ImageIndex = 0
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
       object cxTabSheet2: TcxTabSheet
         Caption = #1054#1073#1086#1088#1086#1090#1099' '#1080' '#1089#1072#1083#1100#1076#1086
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object grBS: TcxDBVerticalGrid
           Left = 0
           Top = 0
@@ -106,6 +116,7 @@ inherited frAcntJournalView: TfrAcntJournalView
       HotZoneClassName = 'TcxXPTaskBarStyle'
       AlignSplitter = salBottom
       Control = pcTotal
+      ExplicitWidth = 8
     end
     object pnInfo: TcxGroupBox
       Left = 2

@@ -10,7 +10,7 @@ uses
   cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridBandedTableView, cxGridDBBandedTableView, cxGrid,
   cxPC, StdCtrls, cxButtons, cxGroupBox, AcntJournalPresenter, cxVGrid,
-  cxDBVGrid, cxInplaceContainer, cxSplitter, CustomContentView, CommonViewIntf,
+  cxDBVGrid, cxInplaceContainer, cxSplitter, CustomContentView, UIClasses,
   cxGridDBTableView;
 
 type

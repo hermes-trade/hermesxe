@@ -2,7 +2,7 @@ unit SalTaskBulkItemPresenter;
 
 interface
 uses CoreClasses, CustomContentPresenter, ShellIntf, EntityServiceIntf, SysUtils,
-  variants, CommonViewIntf, db, BPMConst, ReportServiceIntf, BPMConstExt;
+  variants, UIClasses, db, BPMConst, ReportServiceIntf, BPMConstExt;
 
 const
   ENT = 'BPM_TASKBULK';

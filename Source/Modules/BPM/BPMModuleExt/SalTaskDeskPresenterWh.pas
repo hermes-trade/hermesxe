@@ -1,12 +1,14 @@
 unit SalTaskDeskPresenterWh;
 
 interface
-uses classes, sysutils, CoreClasses, CustomTaskItemPresenter, ShellIntf, CommonViewIntf,
+uses classes, sysutils, CoreClasses, CustomTaskItemPresenter, ShellIntf, UIClasses,
   Variants, BPMConst, BPMConstExt, EntityServiceIntf, CustomContentPresenter,
-  EntityCatalogIntf,
   GadgetCatalogIntf, db;
 
 const
+  ENT_INF_GID = 'INF_GID';
+  ENT_INF_GID_OPER_DECODE = 'Decode';
+
   strTaskNotFound = 'Задача не найдена';
 
   constTask_Activity_Sal = 'Sal.Wh2';

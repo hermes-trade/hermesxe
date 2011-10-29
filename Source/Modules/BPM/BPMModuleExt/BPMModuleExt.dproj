@@ -55,7 +55,6 @@
 			<DCCReference Include="bfwCore.dcp"/>
 			<DCCReference Include="bfwInterfaces.dcp"/>
 			<DCCReference Include="bfwUI.dcp"/>
-			<DCCReference Include="bfwEntityCatalogInterface.dcp"/>
 			<DCCReference Include="bfwGadgetCatalogInterface.dcp"/>
 			<DCCReference Include="BPMLibrary.dcp"/>
 			<DCCReference Include="BPMConstExt.pas"/>

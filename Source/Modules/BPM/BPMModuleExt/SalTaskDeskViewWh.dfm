@@ -4,14 +4,18 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
   Caption = 'frSalTaskDeskViewWh'
   ClientHeight = 657
   ClientWidth = 851
+  ExplicitWidth = 320
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
     PanelStyle.OfficeBackgroundKind = pobkOffice11Color
+    ExplicitWidth = 851
+    ExplicitHeight = 657
     Height = 657
     Width = 851
     inherited pnButtons: TcxGroupBox
       TabOrder = 1
+      ExplicitWidth = 847
       Width = 847
       object btAddExecutor: TcxButton
         Left = 94
@@ -19,9 +23,9 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
         Width = 150
         Height = 25
         Action = acAddExecutor
-        TabOrder = 0
         LookAndFeel.Kind = lfOffice11
         SpeedButtonOptions.CanBeFocused = False
+        TabOrder = 0
       end
       object btRemoveExecutor: TcxButton
         Left = 254
@@ -29,9 +33,9 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
         Width = 150
         Height = 25
         Action = acRemoveExecutor
-        TabOrder = 1
         LookAndFeel.Kind = lfOffice11
         SpeedButtonOptions.CanBeFocused = False
+        TabOrder = 1
       end
       object cxButton6: TcxButton
         Left = 414
@@ -39,9 +43,9 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
         Width = 150
         Height = 25
         Action = acTaskIssue
-        TabOrder = 3
         LookAndFeel.Kind = lfOffice11
         SpeedButtonOptions.CanBeFocused = False
+        TabOrder = 3
       end
       object cxLabel1: TcxLabel
         Left = 570
@@ -72,9 +76,9 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
         Width = 83
         Height = 25
         Action = acClose
-        TabOrder = 5
         LookAndFeel.Kind = lfOffice11
         SpeedButtonOptions.CanBeFocused = False
+        TabOrder = 5
       end
     end
     object cxGroupBox3: TcxGroupBox

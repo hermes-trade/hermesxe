@@ -1,16 +1,16 @@
 unit BPMController;
 
 interface
-uses classes, CoreClasses, CustomUIController, BPMConst, ShellIntf,
+uses classes, CoreClasses, BPMConst, ShellIntf,
   ActivityServiceIntf,  Variants, CustomTaskItemPresenter;
 
 type
-  TBPMController = class(TCustomUIController)
+  TBPMController = class(TWorkItemController)
   private
     //Actions
     procedure ActionTaskItemOpen(Sender: IAction);
   protected
-    procedure OnInitialize; override;
+    procedure Initialize; override;
   end;
 
 
@@ -45,7 +45,7 @@ begin
 
 end;
 
-procedure TBPMController.OnInitialize;
+procedure TBPMController.Initialize;
 begin
   (WorkItem.Services[IActivityService] as IActivityService).
     RegisterActivityInfo(ACT_BPM_TASK_ITEM_OPEN);

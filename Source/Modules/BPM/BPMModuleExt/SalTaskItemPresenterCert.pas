@@ -1,7 +1,7 @@
 unit SalTaskItemPresenterCert;
 
 interface
-uses classes, CoreClasses, CustomTaskItemPresenter, ShellIntf, CommonViewIntf,
+uses classes, CoreClasses, CustomTaskItemPresenter, ShellIntf, UIClasses,
   Variants, BPMConst, BPMConstExt, EntityServiceIntf;
 
 type

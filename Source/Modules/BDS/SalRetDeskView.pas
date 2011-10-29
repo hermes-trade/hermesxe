@@ -13,7 +13,7 @@ uses
   cxTextEdit, cxMaskEdit, cxButtonEdit, cxDropDownEdit, cxLookAndFeels,
   dxSkinsCore, dxSkinsDefaultPainters, dxSkinscxPCPainter,
   cxGridBandedTableView, cxGridDBBandedTableView, cxDBLookupComboBox,
-  SalRetDeskPresenter, CustomContentView, CommonViewIntf;
+  SalRetDeskPresenter, CustomContentView, UIClasses;
 
 
 

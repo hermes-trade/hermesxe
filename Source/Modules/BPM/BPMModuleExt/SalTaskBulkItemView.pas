@@ -10,7 +10,7 @@ uses
   cxDataStorage, DB, cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid,
   cxSplitter, cxInplaceContainer, cxVGrid, cxDBVGrid, SalTaskBulkItemPresenter,
-  ISelectionGridImpl, CommonViewIntf, CoreClasses, cxPC, ITabsImpl;
+  ISelectionGridImpl, UIClasses, CoreClasses, cxPC, ITabsImpl;
 
 type
   TfrTaskBulkItemView = class(TfrCustomContentView, ITaskBulkItemView)

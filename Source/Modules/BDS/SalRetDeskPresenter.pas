@@ -1,7 +1,7 @@
 unit SalRetDeskPresenter;
 
 interface
-uses classes, sysutils, CoreClasses, ShellIntf, CommonViewIntf,
+uses classes, sysutils, CoreClasses, ShellIntf, UIClasses,
   Variants, EntityServiceIntf, CustomContentPresenter,
    db, Controls;
 

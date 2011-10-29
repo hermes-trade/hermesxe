@@ -2,7 +2,7 @@ unit BPMConstExt;
 
 interface
 uses
-  CommonViewIntf;
+  UIClasses;
 
 const
 

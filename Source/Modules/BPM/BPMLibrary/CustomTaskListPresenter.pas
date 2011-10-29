@@ -2,7 +2,7 @@ unit CustomTaskListPresenter;
 
 interface
 uses CustomContentPresenter, classes, CoreClasses, ShellIntf, SysUtils, db,
-  CommonViewIntf, Variants, EntityServiceIntf, BPMConst, ReportServiceIntf,
+  UIClasses, Variants, EntityServiceIntf, BPMConst, ReportServiceIntf,
   Controls, CustomTaskItemPresenter;
 
 const

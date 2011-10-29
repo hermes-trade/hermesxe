@@ -11,7 +11,7 @@ uses
   cxGridTableView, cxGridBandedTableView, cxGridDBBandedTableView, cxGrid,
   cxSplitter, Menus, StdCtrls, cxButtons, cxGridDBTableView,
   cxInplaceContainer, cxVGrid, cxDBVGrid, ExtCtrls, cxTextEdit, cxMaskEdit,
-  cxButtonEdit, CommonViewIntf, cxLookAndFeels, CustomContentView, cxLabel,
+  cxButtonEdit, UIClasses, cxLookAndFeels, CustomContentView, cxLabel,
   SalTaskDeskPresenterWh;
 
 

@@ -2,7 +2,7 @@ unit SalTaskListPresenterDlv;
 
 interface
 uses CustomTaskListPresenter, classes, CoreClasses, ShellIntf, SysUtils, db,
-  CommonViewIntf, Variants, EntityServiceIntf, BPMConst, BPMConstExt;
+  UIClasses, Variants, EntityServiceIntf, BPMConst, BPMConstExt;
 
 const
   const_LaneID = 4;

@@ -11,7 +11,7 @@ uses
   cxGridDBBandedTableView, cxGrid, cxPC, StdCtrls, cxButtons, cxContainer,
   cxGroupBox, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar, cxLabel,
   cxVGrid, cxInplaceContainer, cxCheckBox, cxLookAndFeels,
-  CustomTaskListPresenter, CustomContentView, CommonViewIntf;
+  CustomTaskListPresenter, CustomContentView, UIClasses;
 
 type
   TfrCustomTaskListView = class(TfrCustomContentView, ICustomTaskListView)

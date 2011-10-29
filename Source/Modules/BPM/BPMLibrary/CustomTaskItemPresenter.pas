@@ -2,7 +2,7 @@ unit CustomTaskItemPresenter;
 
 interface
 
-uses classes, CoreClasses, CustomContentPresenter, ShellIntf, CommonViewIntf,
+uses classes, CoreClasses, CustomContentPresenter, ShellIntf, UIClasses,
   Variants, BPMConst, EntityServiceIntf, db;
 
 const

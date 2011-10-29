@@ -3,11 +3,14 @@ inherited frCustomTaskListView: TfrCustomTaskListView
   Top = 216
   Caption = 'frCustomTaskListView'
   ClientWidth = 1023
+  ExplicitWidth = 320
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
+    ExplicitWidth = 1023
     Width = 1023
     inherited pnButtons: TcxGroupBox
+      ExplicitWidth = 1019
       Width = 1019
     end
     object pnFilter: TcxGroupBox
@@ -65,13 +68,14 @@ inherited frCustomTaskListView: TfrCustomTaskListView
       Left = 2
       Top = 82
       Width = 1019
-      Height = 439
+      Height = 431
       Align = alClient
       LookAndFeel.Kind = lfOffice11
       LookAndFeel.NativeStyle = False
       Style = 8
       TabOrder = 2
-      ClientRectBottom = 439
+      ExplicitHeight = 439
+      ClientRectBottom = 431
       ClientRectRight = 1019
       ClientRectTop = 0
       object grMain: TcxGrid

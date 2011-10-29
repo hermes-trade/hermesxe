@@ -2,8 +2,8 @@ unit AcntJournalPresenter;
 
 interface
 uses  ShellIntf, EntityServiceIntf, 
-  EntityCatalogIntf, CustomContentPresenter,
-  sysutils, CustomPresenter, db, variants, CommonViewIntf, CoreClasses,
+ CustomContentPresenter,
+  sysutils, CustomPresenter, db, variants, UIClasses, CoreClasses,
   CommonUtils, Controls;
 
 const
@@ -76,6 +76,8 @@ implementation
 
 
 procedure TAcntJournalPresenter.CmdOpen(Sender: TObject);
+const
+ACTION_ENTITY_ITEM = 'actions.entity.item';
 var
   action: IAction;
 begin
@@ -116,7 +118,7 @@ begin
   action := WorkItem.Actions[actionName];
   action.Data.Assign(WorkItem);
   action.Execute(WorkItem);
-  if (action.Data as TEntitySelectorPresenterData).ModalResult = mrOk then
+  if (action.Data as TPresenterData).ModalResult = mrOk then
   begin
     action.Data.AssignTo(WorkItem);
     UpdateInfoText;
