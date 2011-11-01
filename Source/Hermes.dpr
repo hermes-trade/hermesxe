@@ -25,7 +25,7 @@ type
 
 procedure THermesApp.AddServices;
 begin
-  ConfigServiceIntf.LOCAL_APP_DATA_KEY := 'Hermes\HermesTrade';
+//  ConfigServiceIntf.LOCAL_APP_DATA_KEY := 'Hermes\HermesTrade';
   inherited;
 end;
 
@@ -33,5 +33,6 @@ begin
 //  Application.Initialize;   for enabled applicaion options editor
 
 //  Application.MainFormOnTaskbar := True;
+  ConfigServiceIntf.LOCAL_APP_DATA_KEY := 'Hermes\HermesTrade';
   THermesApp.ShellInstantiate;
 end.
