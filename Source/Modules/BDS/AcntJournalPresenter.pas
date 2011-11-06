@@ -28,7 +28,7 @@ const
 
 
 type
-  TTransAcntJrnData = class(TPresenterData)
+  TTransAcntJrnData = class(TViewActivityData)
   private
     FACNT_ID: Variant;
     procedure SetACNT_ID(const Value: Variant);
@@ -118,7 +118,7 @@ begin
   action := WorkItem.Actions[actionName];
   action.Data.Assign(WorkItem);
   action.Execute(WorkItem);
-  if (action.Data as TPresenterData).ModalResult = mrOk then
+  if (action.Data as TViewActivityData).ModalResult = mrOk then
   begin
     action.Data.AssignTo(WorkItem);
     UpdateInfoText;

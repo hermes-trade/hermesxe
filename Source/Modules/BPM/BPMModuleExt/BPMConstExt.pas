@@ -56,7 +56,7 @@ const
   VIEW_BPM_TASK_ITEM_SAL_WH = 'views.bpm.task.item.sal.wh';
 
 type
-  TTaskBulkItemData = class(TPresenterData)
+  TTaskBulkItemData = class(TViewActivityData)
   private
     FID: Variant;
     procedure SetID(const Value: Variant);

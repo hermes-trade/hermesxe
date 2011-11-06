@@ -228,12 +228,12 @@ procedure TSalRetDeskPresenter.CmdSelectForwarder(Sender: TObject);
 var
   forwarderID: Variant;
   _action: IAction;
-  _actionData: TPresenterData;
+  _actionData: TViewActivityData;
 begin
   if not FDocLoaded then exit;
 
   _action := WorkItem.Actions[VIEW_B52_SOTR_PICKLIST];
-  _actionData := _action.Data as TPresenterData;
+  _actionData := _action.Data as TViewActivityData;
   _actionData.SetValue('POSITION', STAFF_POSITION_FORWARDER);
   _action.Execute(WorkItem);
 

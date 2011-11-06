@@ -313,10 +313,10 @@ procedure TCustomTaskListPresenter.CmdExecutorSet(Sender: TObject);
 var
   I: integer;
   _action: IAction;
-  _actionData: TPresenterData;
+  _actionData: TViewActivityData;
 begin
   _action := WorkItem.Actions[ACT_BPM_EXECUTOR_SELECT];
-  _actionData := _action.Data as TPresenterData;
+  _actionData := _action.Data as TViewActivityData;
   _action.Execute(WorkItem);
 
   if _actionData.ModalResult = mrOk then

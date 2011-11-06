@@ -19,7 +19,7 @@ type
     procedure LinkData(Task, Data, DataRec, Links, Updates: TDataSet);
   end;
 
-  TTaskItemPresenterData = class(TPresenterData)
+  TTaskItemPresenterData = class(TViewActivityData)
   private
     FID: Variant;
     procedure SetID(const Value: Variant);

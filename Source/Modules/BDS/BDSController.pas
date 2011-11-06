@@ -50,7 +50,7 @@ var
 begin
   actionGetAcnt := WorkItem.Actions[ACTION_ACNT_PICKLIST];
   actionGetAcnt.Execute(WorkItem);
-  if (actionGetAcnt.Data as TPresenterData).ModalResult <> mrOk then Exit;
+  if (actionGetAcnt.Data as TViewActivityData).ModalResult <> mrOk then Exit;
   action := WorkItem.Actions[VIEW_ACNT_JRN];
   actionData := action.Data as TTransAcntJrnData;
   actionData.ACNT_ID := actionGetAcnt.Data['ID'];
