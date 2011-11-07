@@ -1,16 +1,16 @@
 unit BPMController;
 
 interface
-uses classes, CoreClasses, BPMConst, ShellIntf,
-  ActivityServiceIntf,  Variants, CustomTaskItemPresenter;
+uses classes, CoreClasses, BPMConst, ShellIntf, Variants, CustomTaskItemPresenter;
 
 type
   TBPMController = class(TWorkItemController)
-  private
-    //Actions
-    procedure ActionTaskItemOpen(Sender: IAction);
   protected
     procedure Initialize; override;
+  type
+    TTaskItemActivityHandler = class(TActivityHandler)
+      procedure Execute(Sender: TWorkItem; Activity: IActivity); override;
+    end;
   end;
 
 
@@ -18,8 +18,16 @@ implementation
 
 { TBPMController }
 
+procedure TBPMController.Initialize;
+begin
+  WorkItem.Activities[ACT_BPM_TASK_ITEM_OPEN].
+    RegisterHandler(TTaskItemActivityHandler.Create);
+end;
 
-procedure TBPMController.ActionTaskItemOpen(Sender: IAction);
+{ TBPMController.TTaskItemActivityHandler }
+
+procedure TBPMController.TTaskItemActivityHandler.Execute(Sender: TWorkItem;
+  Activity: IActivity);
 var
   _activityCode: string;
   _viewURI: string;
@@ -27,30 +35,23 @@ var
   action: IAction;
   taskID: Variant;
 begin
-  taskID := (Sender.Data as TTaskItemPresenterData).ID;
+  taskID := Activity.Params['ID'];
 
   _activityCode :=
     App.Entities.Entity[ENT_BPM_ACTIVITY].
-      GetOper(ENT_BPM_ACTIVITY_OPER_GETBYTASK, WorkItem).Execute([taskID])['CODE'];
+      GetOper(ENT_BPM_ACTIVITY_OPER_GETBYTASK, Sender).Execute([taskID])['CODE'];
 
   _viewURI := GetTaskItemView(_activityCode);
   if _viewURI <> '' then
   begin
     _presenterID := _viewURI + VarToStr(taskID);
-    action := WorkItem.Actions[_viewURI];
-    (action.Data as TTaskItemPresenterData).ID := taskID;
-    (action.Data as TTaskItemPresenterData).PresenterID := _presenterID;
-    action.Execute(WorkItem);
+    with Sender.Activities[_viewURI] do
+    begin
+      Params['ID'] := taskID;
+      Params['PresenterID'] := _presenterID;
+      Execute(Sender);
+    end;
   end;
-
-end;
-
-procedure TBPMController.Initialize;
-begin
-  (WorkItem.Services[IActivityService] as IActivityService).
-    RegisterActivityInfo(ACT_BPM_TASK_ITEM_OPEN);
-  WorkItem.Root.Actions[ACT_BPM_TASK_ITEM_OPEN].SetHandler(ActionTaskItemOpen);
-  WorkItem.Root.Actions[ACT_BPM_TASK_ITEM_OPEN].SetDataClass(TTaskItemPresenterData);
 end;
 
 end.

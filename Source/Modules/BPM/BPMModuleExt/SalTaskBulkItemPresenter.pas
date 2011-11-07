@@ -42,12 +42,10 @@ type
     function View: ITaskBulkItemView;
   protected
     function OnGetWorkItemState(const AName: string): Variant; override;
-    procedure OnInit(Sender: IAction); override;
+    procedure OnInit(Sender: IActivity); override;
     procedure OnViewReady; override;
     function GetEVHeader: IEntityView;
     function GetEVDetails: IEntityView;
-  public
-    class function ExecuteDataClass: TActionDataClass; override;  
   end;
 
 implementation
@@ -74,7 +72,7 @@ begin
     Result := inherited OnGetWorkItemState(AName);
 end;
 
-procedure TTaskBulkItemPresenter.OnInit(Sender: IAction);
+procedure TTaskBulkItemPresenter.OnInit(Sender: IActivity);
 begin
   ViewTitle := GetEVHeader.Values['VIEW_TITLE'];
   WorkItem.State['HID'] := WorkItem.State['ID'];
@@ -189,10 +187,5 @@ begin
   SetCommandsStatus;
 end;
 
-
-class function TTaskBulkItemPresenter.ExecuteDataClass: TActionDataClass;
-begin
-  Result := TTaskBulkItemData;
-end;
 
 end.

@@ -19,20 +19,12 @@ type
     procedure LinkData(Task, Data, DataRec, Links, Updates: TDataSet);
   end;
 
-  TTaskItemPresenterData = class(TViewActivityData)
-  private
-    FID: Variant;
-    procedure SetID(const Value: Variant);
-  published
-    property ID: Variant read FID write SetID;
-  end;
-
   TCustomTaskItemPresenter = class(TCustomContentPresenter)
   private
     procedure CmdTaskLinkedOpen(Sender: TObject);
     procedure CmdTaskUpdateProcess(Sender: TObject);
   protected
-    procedure OnInit(Sender: IAction); override;
+    procedure OnInit(Sender: IActivity); override;
     procedure OnViewReady; override;
     function GetEntityName: string;
     function GetEntityViewName: string;
@@ -49,8 +41,6 @@ type
 
     function GetEVUpdates: IEntityView; virtual;
     function GetEntityUpdatesViewName: string; virtual;
-  public
-    class function ExecuteDataClass: TActionDataClass; override;
   end;
 
 implementation
@@ -61,16 +51,14 @@ implementation
 procedure TCustomTaskItemPresenter.CmdTaskLinkedOpen(Sender: TObject);
 var
   _taskID: Variant;
-  _action: IAction;
 begin
   _taskID := GetView.Value[VAL_TASK_LINKED_SELECTED];
   if not VarIsEmpty(_taskID) then
-  begin
-    _action := WorkItem.Actions[ACT_BPM_TASK_ITEM_OPEN];
-    (_action.Data as TTaskItemPresenterData).ID := _taskID;
-    _action.Execute(WorkItem);
-    _action := nil;
-  end;
+    with WorkItem.Activities[ACT_BPM_TASK_ITEM_OPEN] do
+    begin
+      Params['ID'] := _taskID;
+      Execute(WorkItem);
+    end;
 end;
 
 procedure TCustomTaskItemPresenter.CmdTaskUpdateProcess(Sender: TObject);
@@ -88,7 +76,7 @@ begin
 
 end;
 
-procedure TCustomTaskItemPresenter.OnInit(Sender: IAction);
+procedure TCustomTaskItemPresenter.OnInit(Sender: IActivity);
 begin
   WorkItem.State['TASK_ID'] := WorkItem.State['ID'];
 end;
@@ -108,14 +96,7 @@ begin
   WorkItem.Commands[Command_OpenTaskLinked].SetHandler(CmdTaskLinkedOpen);
   WorkItem.Commands[Command_ProcessTaskUpdate].SetHandler(CmdTaskUpdateProcess);
 
-
   inherited;
-
-end;
-
-class function TCustomTaskItemPresenter.ExecuteDataClass: TActionDataClass;
-begin
-  Result := TTaskItemPresenterData;
 end;
 
 function TCustomTaskItemPresenter.GetEntityDataRecViewName: string;
@@ -176,13 +157,5 @@ begin
   Result := Self.GetEView(GetEntityName, GetEntityUpdatesViewName);
 end;
 
-
-{ TTaskItemPresenterData }
-
-procedure TTaskItemPresenterData.SetID(const Value: Variant);
-begin
-  FID := Value;
-  PresenterID := Value;
-end;
 
 end.

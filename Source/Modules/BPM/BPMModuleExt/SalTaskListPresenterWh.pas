@@ -18,7 +18,7 @@ type
   private
     procedure CmdTaskBulk(Sender: TObject);
   protected
-    procedure OnInit(Sender: IAction); override;
+    procedure OnInit(Sender: IActivity); override;
     procedure OnViewReady; override;
     procedure OnSelectionChanged; override;
     function GetLaneID: Variant; override;
@@ -65,7 +65,7 @@ begin
   Result := const_LaneID;
 end;
 
-procedure TSalTaskListPresenterWh.OnInit(Sender: IAction);
+procedure TSalTaskListPresenterWh.OnInit(Sender: IActivity);
 begin
   inherited;
   ViewTitle := ACT_BPM_TASK_LIST_SAL_WH_CAPTION;

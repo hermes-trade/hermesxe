@@ -11,7 +11,7 @@ type
   TSalTaskListPresenterDlv = class(TCustomTaskListPresenter)
   private
   protected
-    procedure OnInit(Sender: IAction); override;
+    procedure OnInit(Sender: IActivity); override;
     function GetLaneID: Variant; override;
     function GetEVListName: string; override;
   end;
@@ -31,7 +31,7 @@ begin
   Result := const_LaneID;
 end;
 
-procedure TSalTaskListPresenterDlv.OnInit(Sender: IAction);
+procedure TSalTaskListPresenterDlv.OnInit(Sender: IActivity);
 begin
   ViewTitle := ACT_BPM_TASK_LIST_SAL_DLV_CAPTION;
 end;

@@ -1,8 +1,7 @@
 unit BDSController;
 
 interface
-uses classes, CoreClasses, ShellIntf,
-  ActivityServiceIntf, Variants, UIClasses,
+uses classes, CoreClasses, ShellIntf, Variants, UIClasses,
   db, CommonUtils, sysutils, controls,
   AcntJournalPresenter, AcntJournalView,
   SalRetDeskPresenter, SalRetDeskView;
@@ -11,10 +10,13 @@ uses classes, CoreClasses, ShellIntf,
 type
 
   TBDSController = class(TWorkItemController)
-  private
-    procedure ActionAcntJrn(Sender: IAction);
   protected
     procedure Initialize; override;
+  type
+    TAcntJrnNavBarActivityHandler = class(TActivityHandler)
+    public
+      procedure Execute(Sender: TWorkItem; Activity: IActivity); override;
+    end;
   end;
 
 implementation
@@ -24,38 +26,39 @@ implementation
 { TBDSController }
 
 procedure TBDSController.Initialize;
-var
-  svc: IActivityService;
 begin
-  svc := WorkItem.Services[IActivityService] as IActivityService;
 
-  WorkItem.Root.Actions[VIEW_ACNT_JRN + '.NavBar'].SetHandler(ActionAcntJrn);
+  WorkItem.Activities[VIEW_ACNT_JRN + '.NavBar'].
+    RegisterHandler(TAcntJrnNavBarActivityHandler.Create);
 
-  svc.RegisterActivityInfo(VIEW_ACNT_JRN);
-  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
-    VIEW_ACNT_JRN, TAcntJournalPresenter, TfrAcntJournalView));
+  WorkItem.Activities[VIEW_ACNT_JRN].
+    RegisterHandler(TViewActivityHandler.Create(TAcntJournalPresenter, TfrAcntJournalView));
 
-  svc.RegisterActivityClass(TViewActivityBuilder.Create(WorkItem,
-     'views.BDS_SALRET.Desk', TSalRetDeskPresenter, TfrSalRetDeskView));
+  WorkItem.Activities['views.BDS_SALRET.Desk'].
+    RegisterHandler(TViewActivityHandler.Create(TSalRetDeskPresenter, TfrSalRetDeskView));
 end;
 
 
-procedure TBDSController.ActionAcntJrn(Sender: IAction);
+
+{ TBDSController.TAcntJrnNavBarActivityHandler }
+
+procedure TBDSController.TAcntJrnNavBarActivityHandler.Execute(
+  Sender: TWorkItem; Activity: IActivity);
 const
   ACTION_ACNT_PICKLIST = 'views.BDS_ACNT.PickList';
-var
-  actionGetAcnt: IAction;
-  action: IAction;
-  actionData: TTransAcntJrnData;
 begin
-  actionGetAcnt := WorkItem.Actions[ACTION_ACNT_PICKLIST];
-  actionGetAcnt.Execute(WorkItem);
-  if (actionGetAcnt.Data as TViewActivityData).ModalResult <> mrOk then Exit;
-  action := WorkItem.Actions[VIEW_ACNT_JRN];
-  actionData := action.Data as TTransAcntJrnData;
-  actionData.ACNT_ID := actionGetAcnt.Data['ID'];
-  action.Execute(Sender.Caller);
-end;
+  with Sender.Activities[ACTION_ACNT_PICKLIST] do
+  begin
+    Execute(Sender);
+    if  Outs[TViewActivityOuts.ModalResult] <> mrOk then Exit;
 
+    with Sender.Activities[VIEW_ACNT_JRN] do
+    begin
+      Params[TAcntJournalPresenter.TAcntJrnActivityParams.ACNT_ID] :=
+        Sender.Activities[ACTION_ACNT_PICKLIST].Outs['ID'];
+      Execute(Sender);
+    end;
+  end;
+end;
 
 end.

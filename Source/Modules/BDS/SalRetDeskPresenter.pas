@@ -227,24 +227,22 @@ end;
 procedure TSalRetDeskPresenter.CmdSelectForwarder(Sender: TObject);
 var
   forwarderID: Variant;
-  _action: IAction;
-  _actionData: TViewActivityData;
 begin
   if not FDocLoaded then exit;
 
-  _action := WorkItem.Actions[VIEW_B52_SOTR_PICKLIST];
-  _actionData := _action.Data as TViewActivityData;
-  _actionData.SetValue('POSITION', STAFF_POSITION_FORWARDER);
-  _action.Execute(WorkItem);
-
-  if _actionData.ModalResult = mrOk then
+  with WorkItem.Activities[VIEW_B52_SOTR_PICKLIST] do
   begin
-    forwarderID := _actionData['ID'];
-    GetEVHead.Values['FORWARDER_ID'] := forwarderID;
-    GetView.Value['FORWARDER_NAME'] :=
-      App.Entities[ENT_BDS_STAFF].GetView('Item', WorkItem).Load([forwarderID])['NAME'];
-  end;
+    Params['POSITION'] :=  STAFF_POSITION_FORWARDER;
+    Execute(WorkItem);
 
+    if Outs[TViewActivityOuts.ModalResult] = mrOk then
+    begin
+      forwarderID := Outs['ID'];
+      GetEVHead.Values['FORWARDER_ID'] := forwarderID;
+      GetView.Value['FORWARDER_NAME'] :=
+        App.Entities[ENT_BDS_STAFF].GetView('Item', WorkItem).Load([forwarderID])['NAME'];
+    end;
+  end;
   GetEVHead.Save;
 end;
 

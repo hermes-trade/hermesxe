@@ -312,63 +312,31 @@ end;
 procedure TCustomTaskListPresenter.CmdExecutorSet(Sender: TObject);
 var
   I: integer;
-  _action: IAction;
-  _actionData: TViewActivityData;
 begin
-  _action := WorkItem.Actions[ACT_BPM_EXECUTOR_SELECT];
-  _actionData := _action.Data as TViewActivityData;
-  _action.Execute(WorkItem);
-
-  if _actionData.ModalResult = mrOk then
+  with WorkItem.Activities[ACT_BPM_EXECUTOR_SELECT] do
   begin
-    for I := 0 to View.Selection.Count - 1 do
-    begin
-      App.Entities[ENT_BPM_TASK].
-          GetOper(ENT_BPM_TASK_OPER_EXECUTOR_ADD, WorkItem).
-            Execute([View.Selection[I], _actionData['ID']]);
-      GetEVList.ReloadRecord(View.Selection[I]);
-    end;
-  end;
-
-{  with WorkItem.Actions[ACT_BPM_EXECUTOR_SELECT] do
-  begin
-    DataIn['TASK_ID'] := View.Selection.First;
     Execute(WorkItem);
-    selectAction := DataOut['SelectViewAction'];
-    _listID := DataOut['SelectViewID'];
-  end;
 
-  if (selectAction = svaOK) and VarIsArray(_listID) then
-  begin
-    for I := 0 to View.Selection.Count - 1 do
-      for Y := 0 to VarArrayHighBound(_listID, 1) do
+    if Outs[TViewActivityOuts.ModalResult] = mrOk then
+    begin
+      for I := 0 to View.Selection.Count - 1 do
       begin
         App.Entities[ENT_BPM_TASK].
-          GetOper(ENT_BPM_TASK_OPER_EXECUTOR_ADD, WorkItem).
-            Execute([View.Selection[I], _listID[Y]]);
+            GetOper(ENT_BPM_TASK_OPER_EXECUTOR_ADD, WorkItem).
+              Execute([View.Selection[I], Outs['ID']]);
         GetEVList.ReloadRecord(View.Selection[I]);
       end;
-  end
-  else if selectAction = svaClear then
-  begin
-    for I := 0 to View.Selection.Count - 1 do
-     begin
-       App.Entities[ENT_BPM_TASK].
-          GetOper(ENT_BPM_TASK_OPER_EXECUTOR_REMOVE, WorkItem).
-            Execute([View.Selection[I], -1]);
-        GetEVList.ReloadRecord(View.Selection[I]);
-     end;
+    end;
   end;
- }
 end;
 
 procedure TCustomTaskListPresenter.CmdOpenTask(Sender: TObject);
-var
-  action: IAction;
 begin
-  action := WorkItem.Actions[ACT_BPM_TASK_ITEM_OPEN];
-  (action.Data as TTaskItemPresenterData).ID := WorkItem.State['ID'];
-  action.Execute(WorkItem);
+   with WorkItem.Activities[ACT_BPM_TASK_ITEM_OPEN] do
+   begin
+     Params['ID'] := WorkItem.State['ID'];
+     Execute(WorkItem);
+   end;
 end;
 
 procedure TCustomTaskListPresenter.OnAfterChangeState(OldState, NewState: Integer;

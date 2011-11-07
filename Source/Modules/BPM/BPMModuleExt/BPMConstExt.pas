@@ -55,24 +55,10 @@ const
   VIEW_BPM_TASK_LIST_SAL_WH = 'views.bpm.task.list.sal.wh';
   VIEW_BPM_TASK_ITEM_SAL_WH = 'views.bpm.task.item.sal.wh';
 
-type
-  TTaskBulkItemData = class(TViewActivityData)
-  private
-    FID: Variant;
-    procedure SetID(const Value: Variant);
-  published
-    property ID: Variant read FID write SetID;
-  end;
 
 
 implementation
 
-{ TTaskBulkItemData }
 
-procedure TTaskBulkItemData.SetID(const Value: Variant);
-begin
-  FID := Value;
-  PresenterID := Value;
-end;
 
 end.

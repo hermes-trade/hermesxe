@@ -28,13 +28,6 @@ const
 
 
 type
-  TTransAcntJrnData = class(TViewActivityData)
-  private
-    FACNT_ID: Variant;
-    procedure SetACNT_ID(const Value: Variant);
-  published
-    property ACNT_ID: Variant read FACNT_ID write SetACNT_ID;
-  end;
 
 
   IAcntJournalView = interface(IContentView)
@@ -48,6 +41,12 @@ type
   end;
 
   TAcntJournalPresenter = class(TCustomContentPresenter)
+  type
+    TAcntJrnActivityParams = record
+    const
+      ACNT_ID = 'ACNT_ID';
+    end;
+
   private
     FSelectorInitialized: boolean;
     procedure InitializeSelector;
@@ -66,8 +65,6 @@ type
     function GetEVBS: IEntityView;
     procedure CmdOpen(Sender: TObject);
     procedure CmdReload(Sender: TObject);
-  public
-    class function ExecuteDataClass: TActionDataClass; override;
   end;
 
 implementation
@@ -77,26 +74,27 @@ implementation
 
 procedure TAcntJournalPresenter.CmdOpen(Sender: TObject);
 const
-ACTION_ENTITY_ITEM = 'actions.entity.item';
-var
-  action: IAction;
+  ACTION_ENTITY_ITEM = 'actions.entity.item';
 begin
   if VarIsEmpty(WorkItem.State['ITEM_ID']) then Exit;
 
-  action := WorkItem.Actions[ACTION_ENTITY_ITEM];
-  action.Data.Value['ID'] := WorkItem.State['ITEM_ID'];
-  action.Data.Value['ENTITYNAME'] := 'BDS_TRANS';//UIInfo.EntityName;
-  action.Execute(WorkItem);
+  with WorkItem.Activities[ACTION_ENTITY_ITEM] do
+  begin
+    Params['ID'] := WorkItem.State['ITEM_ID'];
+    Params['PresenterID'] := Params['ID'];
+    Params['ENTITYNAME'] := 'BDS_TRANS';//UIInfo.EntityName;
+    Execute(WorkItem);
+  end;
 end;
 
 procedure TAcntJournalPresenter.CmdOpenCAcntJrn(Sender: TObject);
-var
-  action: IAction;
 begin
-  action := WorkItem.Actions[VIEW_ACNT_JRN];
-  action.Data.Value['ACNT_ID'] := GetCorrAcnt;
-  action.Execute(WorkItem);
-
+  with WorkItem.Activities[VIEW_ACNT_JRN] do
+  begin
+    Params['ACNT_ID'] := GetCorrAcnt;
+    Params['PresenterID'] := Params['ACNT_ID'];
+    Execute(WorkItem);
+  end;
 end;
 
 procedure TAcntJournalPresenter.CmdReload(Sender: TObject);
@@ -110,29 +108,21 @@ procedure TAcntJournalPresenter.CmdSelector(Sender: TObject);
 const
   FMT_VIEW_SELECTOR = 'Views.%s.Selector';
 var
-  action: IAction;
   actionName: string;
 begin
   actionName := format(FMT_VIEW_SELECTOR, [ENT_SELECTOR]);
 
-  action := WorkItem.Actions[actionName];
-  action.Data.Assign(WorkItem);
-  action.Execute(WorkItem);
-  if (action.Data as TViewActivityData).ModalResult = mrOk then
+  with WorkItem.Activities[actionName] do
   begin
-    action.Data.AssignTo(WorkItem);
-    UpdateInfoText;
-    WorkItem.Commands[COMMAND_RELOAD].Execute;
+    Params.Assign(WorkItem);
+    Execute(WorkItem);
+    if Outs[TViewActivityOuts.ModalResult] = mrOk then
+    begin
+      Outs.AssignTo(WorkItem);
+      UpdateInfoText;
+      WorkItem.Commands[COMMAND_RELOAD].Execute;
+    end;
   end;
-
-end;
-
-
-
-
-class function TAcntJournalPresenter.ExecuteDataClass: TActionDataClass;
-begin
-  Result := TTransAcntJrnData;
 end;
 
 function TAcntJournalPresenter.GetCorrAcnt: Variant;
@@ -291,12 +281,5 @@ begin
   Result := GetView as IAcntJournalView;
 end;
 
-{ TTransAcntJrnData }
-
-procedure TTransAcntJrnData.SetACNT_ID(const Value: Variant);
-begin
-  FACNT_ID := Value;
-  PresenterID := Value;
-end;
 
 end.

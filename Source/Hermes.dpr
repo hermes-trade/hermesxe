@@ -7,12 +7,12 @@ uses
   midaslib,
   bfwApp,
   bfwModules,
-  ConfigServiceIntf;
-{  BarCodeScanerModuleInit,
+  ConfigServiceIntf,
   BDSModuleInit,
   BPMModuleInit,
-  BPMModuleExtInit;
- }
+  BPMModuleExtInit,
+  BarCodeScanerModuleInit;
+
 {$R *.res}
 
 type
