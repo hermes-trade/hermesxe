@@ -14,8 +14,7 @@ uses
   ConfigServiceIntf,
   BDSModuleInit,
   BPMModuleInit,
-  BPMModuleExtInit,
-  BarCodeScanerModuleInit;
+  BPMModuleExtInit;
 
 {$R *.res}
 
