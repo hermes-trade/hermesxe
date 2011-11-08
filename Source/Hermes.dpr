@@ -6,7 +6,11 @@ uses
   Forms,
   midaslib,
   bfwApp,
+
+{$DEFINE BFW_SERVEMODULE}
   bfwModules,
+
+
   ConfigServiceIntf,
   BDSModuleInit,
   BPMModuleInit,
