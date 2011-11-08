@@ -32,7 +32,6 @@ var
   _activityCode: string;
   _viewURI: string;
   _presenterID: string;
-  action: IAction;
   taskID: Variant;
 begin
   taskID := Activity.Params['ID'];

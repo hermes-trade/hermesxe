@@ -90,8 +90,6 @@ begin
 end;
 
 procedure TTaskBulkJournalExtension.CmdOpen(Sender: TObject);
-var
-  action: IAction;
 begin
   if VarIsEmpty(WorkItem.State['ITEM_ID']) then Exit;
   with WorkItem.Activities[VIEW_BPM_TASK_BULK_SALE_COLLECT_ITEM] do
