@@ -5,7 +5,7 @@ uses Classes, ShellIntf;
 
 const
 
-  ACT_CTG_JOURNALS = ShellIntf.MAIN_MENU_CATEGORY; //'Журналы и справочники';
+//  ACT_CTG_JOURNALS = ShellIntf.MAIN_MENU_CATEGORY; //'Журналы и справочники';
   ACT_GROUP_DIRECTORIES = 'Справочники';
   ACT_GROUP_JOURNALS = 'Журналы';
   ACT_GROUP_OPERS = 'Операции';
