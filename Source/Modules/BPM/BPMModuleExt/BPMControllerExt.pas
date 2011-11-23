@@ -101,8 +101,8 @@ end;
 
 procedure TTaskBulkJournalExtension.CmdPrintBulkCollect(Sender: TObject);
 begin
-  App.Reports[COMMAND_PRINT_BULKCOLLECT].Params['ID'] := WorkItem.State['ITEM_ID'];
-  App.Reports[COMMAND_PRINT_BULKCOLLECT].Execute(WorkItem);
+//  App.Reports[COMMAND_PRINT_BULKCOLLECT].Params['ID'] := WorkItem.State['ITEM_ID'];
+//  App.Reports[COMMAND_PRINT_BULKCOLLECT].Execute(WorkItem);
 end;
 
 procedure TTaskBulkJournalExtension.CmdPrintCollectTask(Sender: TObject);

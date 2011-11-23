@@ -2,7 +2,7 @@ inherited frTaskBulkItemView: TfrTaskBulkItemView
   Left = 597
   Top = 360
   Caption = 'frTaskBulkItemView'
-  ExplicitWidth = 320
+  ExplicitHeight = 543
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
@@ -26,7 +26,6 @@ inherited frTaskBulkItemView: TfrTaskBulkItemView
       OptionsData.Inserting = False
       TabOrder = 1
       DataController.DataSource = HeaderDataSource
-      ExplicitWidth = 769
       Version = 1
     end
     object cxSplitter1: TcxSplitter
@@ -36,7 +35,6 @@ inherited frTaskBulkItemView: TfrTaskBulkItemView
       Height = 6
       AlignSplitter = salTop
       Control = grHeader
-      ExplicitWidth = 769
     end
     object tcDetails: TcxTabControl
       Left = 2
@@ -50,16 +48,14 @@ inherited frTaskBulkItemView: TfrTaskBulkItemView
       Tabs.Strings = (
         #1053#1077' '#1085#1072#1087#1077#1095#1072#1090#1072#1085#1085#1099#1077
         #1053#1072#1087#1077#1095#1072#1090#1072#1085#1085#1099#1077)
-      ExplicitWidth = 769
-      ExplicitHeight = 272
       ClientRectBottom = 264
       ClientRectRight = 761
       ClientRectTop = 24
       object grList: TcxGrid
         Left = 0
         Top = 24
-        Width = 769
-        Height = 248
+        Width = 761
+        Height = 240
         Align = alClient
         TabOrder = 0
         LookAndFeel.Kind = lfOffice11

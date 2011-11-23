@@ -2,7 +2,7 @@ unit CustomTaskListPresenter;
 
 interface
 uses CustomContentPresenter, classes, CoreClasses, ShellIntf, SysUtils, db,
-  UIClasses, Variants, EntityServiceIntf, BPMConst, ReportServiceIntf,
+  UIClasses, Variants, EntityServiceIntf, BPMConst,
   Controls, CustomTaskItemPresenter;
 
 const
@@ -348,6 +348,10 @@ begin
 end;
 
 procedure TCustomTaskListPresenter.TaskListPrint(AIDList: Variant; AutoPrint: boolean);
+const
+  LAUNCH_MODE = 'LaunchMode';
+  LAUNCH_MODE_PREVIEW = 1;
+  LAUNCH_MODE_HOLD = 3;
 var
   I: integer;
   _count: integer;
@@ -364,18 +368,24 @@ begin
     while not _rptData.Eof do
     begin
       _rptID := _rptData['Report_ID'];
-      App.Reports.Report[_rptID].Params['ID'] := VarToStr(AIDList[I]);
-      App.Reports.Report[_rptID].Params['OutCode'] := _rptData['Out_Code'];
+      WorkItem.Activities[_rptID].Params['ID'] := VarToStr(AIDList[I]);
+      WorkItem.Activities[_rptID].Params['OutCode'] := _rptData['Out_Code'];
 
       if _count = 0 then
-        App.Reports.Report[_rptID].Execute(WorkItem, reaExecute)
+        WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_PREVIEW
+        //App.Reports.Report[_rptID].Execute(WorkItem, reaExecute)
       else if I = 0 then
-        App.Reports.Report[_rptID].Execute(WorkItem, reaPrepareFirst)
+        WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_HOLD
+        //App.Reports.Report[_rptID].Execute(WorkItem, reaPrepareFirst)
       else if I = _count then
-        App.Reports.Report[_rptID].Execute(WorkItem, reaExecutePrepared)
+        WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_PREVIEW
+        //App.Reports.Report[_rptID].Execute(WorkItem, reaExecutePrepared)
       else
-        App.Reports.Report[_rptID].Execute(WorkItem, reaPrepareNext);
+        WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_HOLD;
+        //App.Reports.Report[_rptID].Execute(WorkItem, reaPrepareNext);
 
+
+      WorkItem.Activities[_rptID].Execute(WorkItem);
       _rptData.Next;
     end;
 

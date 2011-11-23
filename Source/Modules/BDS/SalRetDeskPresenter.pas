@@ -297,7 +297,8 @@ end;
 
 procedure TSalRetDeskPresenter.CmdPrintOrder(Sender: TObject);
 begin
-  App.Reports[Command_PrintOrder].Execute(WorkItem);
+  WorkItem.Activities[Command_PrintOrder].Params['ID'] := GetEVHead.Values['ID'];
+  WorkItem.Activities[Command_PrintOrder].Execute(WorkItem);
 end;
 
 procedure TSalRetDeskPresenter.CmdClearForwarder(Sender: TObject);

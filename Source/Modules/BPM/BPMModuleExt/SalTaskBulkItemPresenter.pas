@@ -2,7 +2,7 @@ unit SalTaskBulkItemPresenter;
 
 interface
 uses CoreClasses, CustomContentPresenter, ShellIntf, EntityServiceIntf, SysUtils,
-  variants, UIClasses, db, BPMConst, ReportServiceIntf, BPMConstExt;
+  variants, UIClasses, db, BPMConst, BPMConstExt;
 
 const
   ENT = 'BPM_TASKBULK';
@@ -122,9 +122,9 @@ end;
 
 procedure TTaskBulkItemPresenter.CmdPrintBulkCollect(Sender: TObject);
 begin
-  //App.Reports[COMMAND_PRINT_BULKCOLLECT].Execute(WorkItem);
-  App.Reports[COMMAND_PRINT_BULKCOLLECT].Params['ID'] := WorkItem.State['ID'];
-  App.Reports[COMMAND_PRINT_BULKCOLLECT].Execute(WorkItem);
+
+//  App.Reports[COMMAND_PRINT_BULKCOLLECT].Params['ID'] := WorkItem.State['ID'];
+//  App.Reports[COMMAND_PRINT_BULKCOLLECT].Execute(WorkItem);
 end;
 
 procedure TTaskBulkItemPresenter.CmdPrintCollectTask(Sender: TObject);
@@ -144,7 +144,7 @@ procedure TTaskBulkItemPresenter.CmdPrintCollectTask(Sender: TObject);
       _rptData := App.Entities.Entity[ENT_BPM_TASK].
         GetOper(ENT_BPM_TASK_OPER_REPORTS_GET, WorkItem).Execute([TaskList[I]]);
 
-      while not _rptData.Eof do
+   {   while not _rptData.Eof do
       begin
         _rptID := _rptData['Report_ID'];
         App.Reports.Report[_rptID].Params['ID'] := VarToStr(TaskList[I]);
@@ -160,7 +160,7 @@ procedure TTaskBulkItemPresenter.CmdPrintCollectTask(Sender: TObject);
           App.Reports.Report[_rptID].Execute(WorkItem, reaPrepareNext);
 
         _rptData.Next;
-      end;
+      end;}
     end;
   end;
 begin
