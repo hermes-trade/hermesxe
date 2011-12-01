@@ -1,15 +1,14 @@
 program Hermes;
 
+
+
 {$R *.dres}
 
 uses
   Forms,
   midaslib,
   bfwApp,
-
-{$DEFINE BFW_SERVEMODULE}
   bfwModules,
-
   BDSModuleInit,
   BPMModuleInit,
   BPMModuleExtInit;
@@ -21,7 +20,7 @@ type
   end;
 
 begin
-//  Application.Initialize;   for enabled applicaion options editor
+ // Application.Initialize;  // for enabled applicaion options editor
 
 //  Application.MainFormOnTaskbar := True;
 

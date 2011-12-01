@@ -3,7 +3,7 @@ unit CustomTaskListPresenter;
 interface
 uses CustomContentPresenter, classes, CoreClasses, ShellIntf, SysUtils, db,
   UIClasses, Variants, EntityServiceIntf, BPMConst,
-  Controls, CustomTaskItemPresenter;
+  Controls, CustomTaskItemPresenter, UIStr;
 
 const
   Command_ChangeState_Auto = '{59D529B3-E650-46A8-9428-FB5487478232}';
@@ -115,17 +115,17 @@ begin
   View.Tabs.Add('Отмененные');
   View.Tabs.Active := 1;
 
-  WorkItem.Commands[COMMAND_CLOSE].Caption := COMMAND_CLOSE_CAPTION;
+  WorkItem.Commands[COMMAND_CLOSE].Caption := GetLocaleString(@COMMAND_CLOSE_CAPTION);
   WorkItem.Commands[COMMAND_CLOSE].ShortCut := COMMAND_CLOSE_SHORTCUT;
   WorkItem.Commands[COMMAND_CLOSE].SetHandler(CmdClose);
   (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE);
 
-  WorkItem.Commands[COMMAND_RELOAD].Caption := COMMAND_RELOAD_CAPTION;
+  WorkItem.Commands[COMMAND_RELOAD].Caption := GetLocaleString(@COMMAND_RELOAD_CAPTION);
   WorkItem.Commands[COMMAND_RELOAD].ShortCut := COMMAND_RELOAD_SHORTCUT;
   WorkItem.Commands[COMMAND_RELOAD].SetHandler(CmdReload);
   (GetView as IContentView).CommandBar.AddCommand(COMMAND_RELOAD);
 
-  WorkItem.Commands[COMMAND_OPEN].Caption := COMMAND_OPEN_CAPTION;
+  WorkItem.Commands[COMMAND_OPEN].Caption := GetLocaleString(@COMMAND_OPEN_CAPTION);
   WorkItem.Commands[COMMAND_OPEN].ShortCut := COMMAND_OPEN_SHORTCUT;
   WorkItem.Commands[COMMAND_OPEN].SetHandler(CmdOpenTask);
   (GetView as IContentView).CommandBar.AddCommand(COMMAND_OPEN);

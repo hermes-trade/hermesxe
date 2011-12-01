@@ -3,7 +3,7 @@ unit CustomTaskItemPresenter;
 interface
 
 uses classes, CoreClasses, CustomContentPresenter, ShellIntf, UIClasses,
-  Variants, BPMConst, EntityServiceIntf, db;
+  Variants, BPMConst, EntityServiceIntf, db, UIStr;
 
 const
   strTaskUpdateProcessFinished = 'Обновление задачи обработано';
@@ -89,7 +89,7 @@ begin
     GetEVLinks.DataSet, GetEVUpdates.DataSet);
 
   WorkItem.Commands[COMMAND_CLOSE].
-    Init(COMMAND_CLOSE_CAPTION, COMMAND_CLOSE_SHORTCUT, CmdClose);
+    Init(GetLocaleString(@COMMAND_CLOSE_CAPTION), COMMAND_CLOSE_SHORTCUT, CmdClose);
   (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE);
 
 

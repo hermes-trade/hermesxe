@@ -1,10 +1,9 @@
 unit AcntJournalPresenter;
 
 interface
-uses  ShellIntf, EntityServiceIntf, 
- CustomContentPresenter,
+uses  ShellIntf, EntityServiceIntf, CustomContentPresenter,
   sysutils, CustomPresenter, db, variants, UIClasses, CoreClasses,
-  CommonUtils, Controls;
+  CommonUtils, Controls, UIStr;
 
 const
   VIEW_ACNT_JRN = 'views.BDS_TRANS.JournalAcnt';

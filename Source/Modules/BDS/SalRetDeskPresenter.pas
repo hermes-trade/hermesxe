@@ -3,7 +3,7 @@ unit SalRetDeskPresenter;
 interface
 uses classes, sysutils, CoreClasses, ShellIntf, UIClasses,
   Variants, EntityServiceIntf, CustomContentPresenter,
-   db, Controls;
+   db, Controls, UIStr;
 
 const
   VIEW_SALRET_DESK = 'views.bds.salret.desk';
@@ -193,7 +193,7 @@ begin
   GetEVRec.DataSet.AfterPost := EVRecChangedHandler;
 
   //-------------------- CommandBar begin
-  WorkItem.Commands[COMMAND_CLOSE].Caption := COMMAND_CLOSE_CAPTION;
+  WorkItem.Commands[COMMAND_CLOSE].Caption := GetLocaleString(@COMMAND_CLOSE_CAPTION);
   WorkItem.Commands[COMMAND_CLOSE].ShortCut := COMMAND_CLOSE_SHORTCUT;
   WorkItem.Commands[COMMAND_CLOSE].SetHandler(CmdClose);
   (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE);
