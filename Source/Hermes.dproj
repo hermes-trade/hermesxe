@@ -24,7 +24,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_UnitSearchPath>..\External\Boosterfw\Sources\Core;..\External\Boosterfw\Sources\Interfaces;..\External\Boosterfw\Sources\Shell;..\External\Boosterfw\Sources\Shell\Services;..\External\Boosterfw\Sources\UI;..\External\Boosterfw\Sources\UITemplates;..\External\Boosterfw\Sources\Modules\ShellLayout;..\External\Boosterfw\Sources\Modules\StorageConn;..\External\Boosterfw\Sources\Modules\Admin;..\External\Boosterfw\Sources\Modules\Reporting;..\External\Boosterfw\Sources\Modules\Reporting\EngineFR;..\External\Boosterfw\Sources\Modules\Reporting\EngineXL;..\External\Boosterfw\Sources\Modules\Reporting\EngineXL\xlReportLibrary\Source;..\External\Boosterfw\Sources\Modules\EntityUI\;..\External\Boosterfw\Sources\Modules\Serve;..\Source\Modules\BDS;..\Source\Modules\BPM\BPMLibrary;..\Source\Modules\BPM\BPMModule;..\Source\Modules\BPM\BPMModuleExt;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>..\External\Boosterfw\Sources\Core;..\External\Boosterfw\Sources\Interfaces;..\External\Boosterfw\Sources\Shell;..\External\Boosterfw\Sources\Shell\Services;..\External\Boosterfw\Sources\UI;..\External\Boosterfw\Sources\UITemplates;..\External\Boosterfw\Sources\Modules\ShellLayout;..\External\Boosterfw\Sources\DAL;..\External\Boosterfw\Sources\Modules\Admin;..\External\Boosterfw\Sources\Modules\Reporting;..\External\Boosterfw\Sources\Modules\Reporting\EngineFR;..\External\Boosterfw\Sources\Modules\Reporting\EngineXL;..\External\Boosterfw\Sources\Modules\Reporting\EngineXL\xlReportLibrary\Source;..\External\Boosterfw\Sources\Modules\EntityUI\;..\External\Boosterfw\Sources\Modules\Serve;..\Source\Modules\BDS;..\Source\Modules\BPM\BPMLibrary;..\Source\Modules\BPM\BPMModule;..\Source\Modules\BPM\BPMModuleExt;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_DcuOutput>.\$(Config)\$(Platform)</DCC_DcuOutput>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
@@ -57,10 +57,6 @@
 			<DelphiCompile Include="Hermes.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<RcItem Include="HermesAppLogo.bmp">
-				<ResourceType>BITMAP</ResourceType>
-				<ResourceId>APP_LOGO</ResourceId>
-			</RcItem>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
