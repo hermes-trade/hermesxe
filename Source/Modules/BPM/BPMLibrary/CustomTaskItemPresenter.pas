@@ -83,7 +83,7 @@ end;
 
 procedure TCustomTaskItemPresenter.OnViewReady;
 begin
-  ViewTitle := 'Задача: ' + VarToStr(GetEVItem.Values['TASK_ID']);
+  ViewTitle := 'Задача: ' + VarToStr(GetEVItem.DataSet['TASK_ID']);
 
   (GetView as ICustomTaskItemView).LinkData(GetEVItem.DataSet, GetEVData.DataSet, GetEVDataRec.DataSet,
     GetEVLinks.DataSet, GetEVUpdates.DataSet);

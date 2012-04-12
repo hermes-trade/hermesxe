@@ -58,11 +58,10 @@ type
     function View: IAcntJournalView;
     procedure CmdSelector(Sender: TObject);
   protected
-    function OnGetWorkItemState(const AName: string): Variant; override;
+    function OnGetWorkItemState(const AName: string; var Done: boolean): Variant; override;
     procedure OnViewReady; override;
     function GetEVJrn: IEntityView;
     function GetEVBS: IEntityView;
-    procedure CmdOpen(Sender: TObject);
     procedure CmdReload(Sender: TObject);
   end;
 
@@ -71,35 +70,21 @@ implementation
 { TAcntJournalPresenter }
 
 
-procedure TAcntJournalPresenter.CmdOpen(Sender: TObject);
-const
-  ACTION_ENTITY_ITEM = 'actions.entity.item';
-begin
-  if VarIsEmpty(WorkItem.State['ITEM_ID']) then Exit;
-
-  with WorkItem.Activities[ACTION_ENTITY_ITEM] do
-  begin
-    Params['ID'] := WorkItem.State['ITEM_ID'];
-    Params['PresenterID'] := Params['ID'];
-    Params['ENTITYNAME'] := 'BDS_TRANS';//UIInfo.EntityName;
-    Execute(WorkItem);
-  end;
-end;
 
 procedure TAcntJournalPresenter.CmdOpenCAcntJrn(Sender: TObject);
 begin
   with WorkItem.Activities[VIEW_ACNT_JRN] do
   begin
     Params['ACNT_ID'] := GetCorrAcnt;
-    Params['PresenterID'] := Params['ACNT_ID'];
+    Params[TViewActivityParams.InstanceID] := Params['ACNT_ID'];
     Execute(WorkItem);
   end;
 end;
 
 procedure TAcntJournalPresenter.CmdReload(Sender: TObject);
 begin
-  GetEVJrn.Reload;
-  GetEVBS.Reload;
+  GetEVJrn.Load;
+  GetEVBS.Load;
   View.SetBSDateRangeInfo(WorkItem.State['DATE1'], WorkItem.State['DATE2']);
 end;
 
@@ -126,7 +111,7 @@ end;
 
 function TAcntJournalPresenter.GetCorrAcnt: Variant;
 begin
-  Result := GetEVJrn.Values['CORR_ID'];
+  Result := GetEVJrn.DataSet['CORR_ID'];
 end;
 
 function TAcntJournalPresenter.GetEVBS: IEntityView;
@@ -155,7 +140,6 @@ var
 begin
   Result := '';
   eView := App.Entities[ENT].GetView(ENT_VIEW_TITLE, WorkItem);
-  eView.ParamsBind;
   Result := eView.Load['Title'];
 end;
 
@@ -164,7 +148,7 @@ var
   ds: TDataSet;
   I: integer;
 begin
-  ds := App.Entities[ENT_SELECTOR].GetView('Selector', WorkItem).Load(WorkItem);
+  ds := App.Entities[ENT_SELECTOR].GetView('Selector', WorkItem).Load;
   for I := 0 to ds.FieldCount - 1 do
     WorkItem.State[ds.Fields[I].FieldName] := ds.Fields[I].Value;
   UpdateInfoText;
@@ -172,24 +156,20 @@ begin
 end;
 
 function TAcntJournalPresenter.OnGetWorkItemState(
-  const AName: string): Variant;
+  const AName: string; var Done: boolean): Variant;
 begin
+  Done := true;
   if SameText(AName, 'ITEM_ID') then
     Result := (GetView as IAcntJournalView).Selection.First
-  else if SameText('STATE_ID', AName) then
-  begin
-    {if GetView <> nil then
-    begin
-      GetEVStates.DataSet.Locate('NAME', View.Tabs.TabCaption[View.Tabs.Active], []);
-      result := GetEVStates.DataSet['ID'];
-    end;}
-  end
   else if SameText('USE_DRANGE', AName) then
   begin
     Result := 1;
   end
   else
-    Result := inherited OnGetWorkItemState(AName);
+  begin
+    Done := false;
+    Result := inherited OnGetWorkItemState(AName, Done);
+  end;
 end;
 
 
@@ -216,7 +196,7 @@ begin
   View.CommandBar.AddCommand(COMMAND_SELECTOR, 'Отбор', '', CmdSelector);
 
   View.CommandBar.AddCommand(COMMAND_OPEN, COMMAND_OPEN_CAPTION, COMMAND_OPEN_SHORTCUT,
-    CmdOpen, 'Открыть', true);
+    'Открыть', true);
 
   View.CommandBar.AddCommand(COMMAND_CACNT_JRN, 'Журнал контрагента', 'Ctrl+K',
     CmdOpenCAcntJrn, 'Открыть');
@@ -268,7 +248,7 @@ var
   txt: string;
 begin
   txt := VarToStr(App.Entities[ENT_SELECTOR].
-     GetView('SelectorInfo', WorkItem).Load(WorkItem)['Info']);
+     GetView('SelectorInfo', WorkItem).Load['Info']);
 
   if GetView <> nil then
       View.SetInfoText(txt);

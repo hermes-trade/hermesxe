@@ -81,7 +81,7 @@ begin
     App.Entities[ENT_BPM_TASK].
       GetOper(ENT_BPM_TASK_OPER_EXECUTOR_ADD, WorkItem).
          Execute([FTaskID, executorID]);
-    GetEVTaskExecutors.Reload;
+    GetEVTaskExecutors.Load;
   end;
 
 end;
@@ -93,7 +93,7 @@ begin
     App.Entities[ENT_BPM_TASK].
       GetOper(ENT_BPM_TASK_OPER_EXECUTOR_ADD, WorkItem).
          Execute([FTaskID, GetExecutor]);
-    GetEVTaskExecutors.Reload;
+    GetEVTaskExecutors.Load;
   end;        
 end;
 
@@ -119,7 +119,7 @@ begin
     GetEVTask.Load([vTaskID]);
     if not GetEVTask.DataSet.IsEmpty then
     begin
-      FTaskID := GetEVTask.Values['TASK_ID'];
+      FTaskID := GetEVTask.DataSet['TASK_ID'];
       FTaskLoaded := true;
       GetEVTaskExecutors.Load([FTaskID]);
       SetCommandStatus(Command_StageSet, true);
@@ -144,7 +144,7 @@ begin
     App.Entities[ENT_BPM_TASK].
       GetOper(ENT_BPM_TASK_OPER_EXECUTOR_REMOVE, WorkItem).
          Execute([FTaskID, GetTaskExecutor]);
-    GetEVTaskExecutors.Reload;
+    GetEVTaskExecutors.Load;
   end;
 end;
 

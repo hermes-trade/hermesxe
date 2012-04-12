@@ -69,7 +69,7 @@ type
     procedure LoadEmptyDoc;
     procedure EVRecChangedHandler(ADataSet: TDataSet);
   protected
-    function OnGetWorkItemState(const AName: string): Variant; override;
+    function OnGetWorkItemState(const AName: string; var Done: boolean): Variant; override;
     //
     procedure OnViewReady; override;
   end;
@@ -106,11 +106,13 @@ begin
     if not GetEVHead.DataSet.IsEmpty then
     begin
 
-      GetEVHead.Values['DUMMY'] := '_'; //need for modified
-      GetEVRec.Load([GetEVHead.Values['ID'], GetEVHead.Values['KIND_ID'], GetEVHead.Values['SAL_ID']]);
+      GetEVHead.DataSet.Edit;
+      GetEVHead.DataSet['DUMMY'] := '_'; //need for modified
+      GetEVHead.DataSet.Post;
+      GetEVRec.Load([GetEVHead.DataSet['ID'], GetEVHead.DataSet['KIND_ID'], GetEVHead.DataSet['SAL_ID']]);
 
-      GetView.Value['FORWARDER_NAME'] := GetEVHead.Values['FORWARDER_NAME'];
-      if GetEVHead.Values['STATE_ID'] = SALRET_STATE_POSTED then
+      GetView.Value['FORWARDER_NAME'] := GetEVHead.DataSet['FORWARDER_NAME'];
+      if GetEVHead.DataSet['STATE_ID'] = SALRET_STATE_POSTED then
       begin
         (GetView as ISalRetDeskView).SetViewMode(vmReview);
         //GetView.Value['ViewMode'] := VIEW_MODE_REVIEW;
@@ -140,7 +142,7 @@ begin
 
   GetEVHead.Save;
   App.Entities[ENT_SALRET_DESK].GetOper(ENT_OPER_POST, WorkItem).
-      Execute([GetEVHead.Values['ID']]);
+      Execute([GetEVHead.DataSet['ID']]);
 
   SetCommandStatus(Command_PostDoc, false);
   SetCommandStatus(Command_RollbackDoc, false);
@@ -238,7 +240,9 @@ begin
     if Outs[TViewActivityOuts.ModalResult] = mrOk then
     begin
       forwarderID := Outs['ID'];
-      GetEVHead.Values['FORWARDER_ID'] := forwarderID;
+      GetEVHead.DataSet.Edit;
+      GetEVHead.DataSet['FORWARDER_ID'] := forwarderID;
+      GetEVHead.DataSet.Post;
       GetView.Value['FORWARDER_NAME'] :=
         App.Entities[ENT_BDS_STAFF].GetView('Item', WorkItem).Load([forwarderID])['NAME'];
     end;
@@ -262,7 +266,7 @@ begin
 
   if GetEVHead.IsModified then GetEVHead.Save;
   App.Entities[ENT_SALRET_DESK].GetOper(ENT_OPER_ROLLBACK, WorkItem).
-      Execute([GetEVHead.Values['ID']]);
+      Execute([GetEVHead.DataSet['ID']]);
 
   SetCommandStatus(Command_PostDoc, false);
   SetCommandStatus(Command_RollbackDoc, false);
@@ -282,22 +286,26 @@ begin
   if not App.UI.MessageBox.ConfirmYesNo('—формировать перемещени€ по складу возвратов ?') then exit;
 
   App.Entities[ENT_SALRET_DESK].GetOper(ENT_OPER_CREATEMOVE, WorkItem).
-      Execute([GetEVHead.Values['ID']]);
+      Execute([GetEVHead.DataSet['ID']]);
 
 end;
 
-function TSalRetDeskPresenter.OnGetWorkItemState(const AName: string): Variant;
+function TSalRetDeskPresenter.OnGetWorkItemState(const AName: string;
+  var Done: boolean): Variant;
 begin
   if (AName = 'ID') and FDocLoaded then
-    Result := GetEVHead.Values['ID']
+  begin
+    Result := GetEVHead.DataSet['ID'];
+    Done := true;
+  end
   else
-    Result := inherited OnGetWorkItemState(AName);
+    Result := inherited OnGetWorkItemState(AName, Done);
 
 end;
 
 procedure TSalRetDeskPresenter.CmdPrintOrder(Sender: TObject);
 begin
-  WorkItem.Activities[Command_PrintOrder].Params['ID'] := GetEVHead.Values['ID'];
+  WorkItem.Activities[Command_PrintOrder].Params['ID'] := GetEVHead.DataSet['ID'];
   WorkItem.Activities[Command_PrintOrder].Execute(WorkItem);
 end;
 
@@ -305,8 +313,10 @@ procedure TSalRetDeskPresenter.CmdClearForwarder(Sender: TObject);
 begin
   if not FDocLoaded then exit;
 
-  GetEVHead.Values['FORWARDER_ID'] := null;
+  GetEVHead.DataSet.Edit;
+  GetEVHead.DataSet['FORWARDER_ID'] := null;
   GetView.Value['FORWARDER_NAME'] := '';
+  GetEVHead.DataSet.Post;
   GetEVHead.Save;
 end;
 

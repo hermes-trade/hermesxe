@@ -41,7 +41,7 @@ type
     procedure CmdExecutorClear(Sender: TObject);
 
   protected
-    function OnGetWorkItemState(const AName: string): Variant; override;
+    function OnGetWorkItemState(const AName: string; var Done: boolean): Variant; override;
     function GetSelectedIDList: Variant;
     function View: ICustomTaskListView;
     //Должно возвращать значение из БД (BPM_LANES.ID)
@@ -465,14 +465,15 @@ end;
 
 procedure TCustomTaskListPresenter.CmdReload(Sender: TObject);
 begin
-  GetEVList.Reload;
+  GetEVList.Load(true, '-');
 end;
 
 function TCustomTaskListPresenter.OnGetWorkItemState(
-  const AName: string): Variant;
+  const AName: string; var Done: boolean): Variant;
 var
   I: integer;
 begin
+  Done := true;
   if SameText(AName, 'ID') then
     Result := View.Selection.First
   else if SameText(AName, 'IDList') then
@@ -494,9 +495,10 @@ begin
         Result := Result + ',' + VarToStr(View.Selection[I]);
   end
   else
-
-    Result := inherited OnGetWorkItemState(AName);
-
+  begin
+    Done := false;
+    Result := inherited OnGetWorkItemState(AName, Done);
+  end;
 end;
 
 end.

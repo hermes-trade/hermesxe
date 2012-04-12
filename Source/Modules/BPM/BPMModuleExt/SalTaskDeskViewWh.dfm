@@ -4,7 +4,8 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
   Caption = 'frSalTaskDeskViewWh'
   ClientHeight = 657
   ClientWidth = 851
-  ExplicitWidth = 320
+  ExplicitWidth = 857
+  ExplicitHeight = 685
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
@@ -240,6 +241,8 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
     end
   end
   inherited ActionList: TActionList
+    Left = 102
+    Top = 102
     object acAddExecutor: TAction
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1080#1089#1087#1086#1083#1085#1080#1090#1077#1083#1103
     end

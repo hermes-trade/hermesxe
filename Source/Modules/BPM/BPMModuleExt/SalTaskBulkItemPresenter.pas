@@ -41,7 +41,7 @@ type
    // procedure CmdChangeRecSelect(Sender: TObject);
     function View: ITaskBulkItemView;
   protected
-    function OnGetWorkItemState(const AName: string): Variant; override;
+    function OnGetWorkItemState(const AName: string; var Done: boolean): Variant; override;
     procedure OnInit(Sender: IActivity); override;
     procedure OnViewReady; override;
     function GetEVHeader: IEntityView;
@@ -64,17 +64,17 @@ begin
 end;
 
 function TTaskBulkItemPresenter.OnGetWorkItemState(
-  const AName: string): Variant;
+  const AName: string; var Done: boolean): Variant;
 begin
   if SameText(AName, 'PRINTED_STATUS') then
     Result := View.DetailTabs.Active
   else
-    Result := inherited OnGetWorkItemState(AName);
+    Result := inherited OnGetWorkItemState(AName, Done);
 end;
 
 procedure TTaskBulkItemPresenter.OnInit(Sender: IActivity);
 begin
-  ViewTitle := GetEVHeader.Values['VIEW_TITLE'];
+  ViewTitle := GetEVHeader.DataSet['VIEW_TITLE'];
   WorkItem.State['HID'] := WorkItem.State['ID'];
 end;
 
@@ -168,13 +168,13 @@ begin
   try
     PrintTask;
   finally
-    GetEVDetails.Reload;  
+    GetEVDetails.Load;
   end;
 end;
 
 procedure TTaskBulkItemPresenter.OnDetailTabChanged;
 begin
-  GetEVDetails.Reload;
+  GetEVDetails.Load;
   SetCommandsStatus;
 end;
 

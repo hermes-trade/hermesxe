@@ -1,7 +1,8 @@
 unit BPMController;
 
 interface
-uses classes, CoreClasses, BPMConst, ShellIntf, Variants, CustomTaskItemPresenter;
+uses classes, CoreClasses, BPMConst, ShellIntf, Variants, CustomTaskItemPresenter,
+  UIClasses;
 
 type
   TBPMController = class(TWorkItemController)
@@ -47,7 +48,7 @@ begin
     with Sender.Activities[_viewURI] do
     begin
       Params['ID'] := taskID;
-      Params['PresenterID'] := _presenterID;
+      Params[TViewActivityParams.InstanceID] := _presenterID;
       Execute(Sender);
     end;
   end;
