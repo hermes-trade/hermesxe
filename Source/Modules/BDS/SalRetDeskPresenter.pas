@@ -195,30 +195,25 @@ begin
   GetEVRec.DataSet.AfterPost := EVRecChangedHandler;
 
   //-------------------- CommandBar begin
-  WorkItem.Commands[COMMAND_CLOSE].Caption := GetLocaleString(@COMMAND_CLOSE_CAPTION);
-  WorkItem.Commands[COMMAND_CLOSE].ShortCut := COMMAND_CLOSE_SHORTCUT;
+  //WorkItem.Commands[COMMAND_CLOSE].Caption := GetLocaleString(@COMMAND_CLOSE_CAPTION);
+  //WorkItem.Commands[COMMAND_CLOSE].ShortCut := COMMAND_CLOSE_SHORTCUT;
   WorkItem.Commands[COMMAND_CLOSE].SetHandler(CmdClose);
-  (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE);
+  (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE,
+    GetLocaleString(@COMMAND_CLOSE_CAPTION), COMMAND_CLOSE_SHORTCUT);
 
-  WorkItem.Commands[Command_PostDoc].Caption := 'Провести';
   WorkItem.Commands[Command_PostDoc].SetHandler(CmdPostDoc);
-  (GetView as IContentView).CommandBar.AddCommand(Command_PostDoc);
+  (GetView as IContentView).CommandBar.AddCommand(Command_PostDoc, 'Провести');
   SetCommandStatus(Command_PostDoc, false);
 
-  //WorkItem.Commands[Command_RollbackDoc].SetHandler(CmdRollbackDoc);
-  //SetCommandStatus(Command_RollbackDoc, false);
-  WorkItem.Commands[Command_RollbackDoc].Caption := 'Отменить проведение';
   WorkItem.Commands[Command_RollbackDoc].SetHandler(CmdRollbackDoc);
-  (GetView as IContentView).CommandBar.AddCommand(Command_RollbackDoc);
+  (GetView as IContentView).CommandBar.AddCommand(Command_RollbackDoc, 'Отменить проведение');
   SetCommandStatus(Command_RollbackDoc, false);
 
-  WorkItem.Commands[Command_CreateMove].Caption := 'Переместить';
   WorkItem.Commands[Command_CreateMove].SetHandler(CmdCreateMove);
-  (GetView as IContentView).CommandBar.AddCommand(Command_CreateMove);
+  (GetView as IContentView).CommandBar.AddCommand(Command_CreateMove, 'Переместить');
 
-  WorkItem.Commands[Command_PrintOrder].Caption := 'Приходный ордер';
   WorkItem.Commands[Command_PrintOrder].SetHandler(CmdPrintOrder);
-  (GetView as IContentView).CommandBar.AddCommand(Command_PrintOrder, 'Печать', true);
+  (GetView as IContentView).CommandBar.AddCommand(Command_PrintOrder, 'Приходный ордер', '', 'Печать', true);
 
   WorkItem.Commands[Command_LoadDoc].SetHandler(CmdLoadDoc);
   WorkItem.Commands[Command_SelectForwarder].SetHandler(CmdSelectForwarder);

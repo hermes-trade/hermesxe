@@ -88,9 +88,9 @@ begin
   (GetView as ICustomTaskItemView).LinkData(GetEVItem.DataSet, GetEVData.DataSet, GetEVDataRec.DataSet,
     GetEVLinks.DataSet, GetEVUpdates.DataSet);
 
-  WorkItem.Commands[COMMAND_CLOSE].
-    Init(GetLocaleString(@COMMAND_CLOSE_CAPTION), COMMAND_CLOSE_SHORTCUT, CmdClose);
-  (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE);
+  WorkItem.Commands[COMMAND_CLOSE].SetHandler(CmdClose);
+  (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE,
+    GetLocaleString(@COMMAND_CLOSE_CAPTION), COMMAND_CLOSE_SHORTCUT);
 
 
   WorkItem.Commands[Command_OpenTaskLinked].SetHandler(CmdTaskLinkedOpen);

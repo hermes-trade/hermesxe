@@ -188,18 +188,22 @@ begin
   WorkItem.Commands[COMMAND_CACNT_JRN].SetHandler(CmdOpenCAcntJrn);
 
   View.CommandBar.
-    AddCommand(COMMAND_CLOSE, COMMAND_CLOSE_CAPTION, COMMAND_CLOSE_SHORTCUT, CmdClose);
+    AddCommand(COMMAND_CLOSE, COMMAND_CLOSE_CAPTION, COMMAND_CLOSE_SHORTCUT);
+  WorkItem.Commands[COMMAND_CLOSE].SetHandler(CmdClose);
 
   View.CommandBar.
-    AddCommand(COMMAND_RELOAD, COMMAND_RELOAD_CAPTION, COMMAND_RELOAD_SHORTCUT, CmdReload);
+    AddCommand(COMMAND_RELOAD, COMMAND_RELOAD_CAPTION, COMMAND_RELOAD_SHORTCUT);
+  WorkItem.Commands[COMMAND_RELOAD].SetHandler(CmdReload);
 
-  View.CommandBar.AddCommand(COMMAND_SELECTOR, 'Отбор', '', CmdSelector);
+  View.CommandBar.AddCommand(COMMAND_SELECTOR, 'Отбор');
+  WorkItem.Commands[COMMAND_SELECTOR].SetHandler(CmdSelector);
 
   View.CommandBar.AddCommand(COMMAND_OPEN, COMMAND_OPEN_CAPTION, COMMAND_OPEN_SHORTCUT,
     'Открыть', true);
 
   View.CommandBar.AddCommand(COMMAND_CACNT_JRN, 'Журнал контрагента', 'Ctrl+K',
-    CmdOpenCAcntJrn, 'Открыть');
+    'Открыть');
+  WorkItem.Commands[COMMAND_CACNT_JRN].SetHandler(CmdOpenCAcntJrn);
 
   (GetView as IAcntJournalView).SetJournalDataSet(GetEVJrn.DataSet);
 

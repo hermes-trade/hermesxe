@@ -115,48 +115,45 @@ begin
   View.Tabs.Add('Отмененные');
   View.Tabs.Active := 1;
 
-  WorkItem.Commands[COMMAND_CLOSE].Caption := GetLocaleString(@COMMAND_CLOSE_CAPTION);
-  WorkItem.Commands[COMMAND_CLOSE].ShortCut := COMMAND_CLOSE_SHORTCUT;
   WorkItem.Commands[COMMAND_CLOSE].SetHandler(CmdClose);
-  (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE);
+  (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE,
+    GetLocaleString(@COMMAND_CLOSE_CAPTION), COMMAND_CLOSE_SHORTCUT);
 
-  WorkItem.Commands[COMMAND_RELOAD].Caption := GetLocaleString(@COMMAND_RELOAD_CAPTION);
-  WorkItem.Commands[COMMAND_RELOAD].ShortCut := COMMAND_RELOAD_SHORTCUT;
   WorkItem.Commands[COMMAND_RELOAD].SetHandler(CmdReload);
-  (GetView as IContentView).CommandBar.AddCommand(COMMAND_RELOAD);
+  (GetView as IContentView).CommandBar.AddCommand(COMMAND_RELOAD,
+    GetLocaleString(@COMMAND_RELOAD_CAPTION), COMMAND_RELOAD_SHORTCUT);
 
-  WorkItem.Commands[COMMAND_OPEN].Caption := GetLocaleString(@COMMAND_OPEN_CAPTION);
-  WorkItem.Commands[COMMAND_OPEN].ShortCut := COMMAND_OPEN_SHORTCUT;
   WorkItem.Commands[COMMAND_OPEN].SetHandler(CmdOpenTask);
-  (GetView as IContentView).CommandBar.AddCommand(COMMAND_OPEN);
+  (GetView as IContentView).CommandBar.AddCommand(COMMAND_OPEN,
+    GetLocaleString(@COMMAND_OPEN_CAPTION), COMMAND_OPEN_SHORTCUT);
 
-  WorkItem.Commands[Command_ChangeState_Auto].Caption := 'Сменить состояние (авто)';
   WorkItem.Commands[Command_ChangeState_Auto].SetHandler(CmdChangeState);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Auto, 'Сменить состояние', true);
+  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Auto,
+    'Сменить состояние (авто)', '', 'Сменить состояние', true);
 
-  WorkItem.Commands[Command_ChangeState_Started].Caption := 'Сменить состояние (выполнение)';
   WorkItem.Commands[Command_ChangeState_Started].SetHandler(CmdChangeState);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Started, 'Сменить состояние');
+  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Started,
+    'Сменить состояние (выполнение)', '', 'Сменить состояние');
 
-  WorkItem.Commands[Command_ChangeState_Suspended].Caption := 'Сменить состояние (отложить)';
   WorkItem.Commands[Command_ChangeState_Suspended].SetHandler(CmdChangeState);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Suspended, 'Сменить состояние');
+  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Suspended,
+    'Сменить состояние (отложить)', '', 'Сменить состояние');
 
-  WorkItem.Commands[Command_ChangeState_Finished].Caption := 'Сменить состояние (завершить)';
   WorkItem.Commands[Command_ChangeState_Finished].SetHandler(CmdChangeState);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Finished, 'Сменить состояние');
+  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Finished,
+    'Сменить состояние (завершить)', '', 'Сменить состояние');
 
-  WorkItem.Commands[Command_PrintTask].Caption := 'Печать задачи';
   WorkItem.Commands[Command_PrintTask].SetHandler(CmdPrintTask);
-  (GetView as IContentView).CommandBar.AddCommand(Command_PrintTask, 'Печать', true);
-  
-  WorkItem.Commands[Command_ExecutorSet].Caption := 'Назначить исполнителя';
-  WorkItem.Commands[Command_ExecutorSet].SetHandler(CmdExecutorSet);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ExecutorSet, 'Другие действия');
+  (GetView as IContentView).CommandBar.AddCommand(Command_PrintTask,
+    'Печать задачи', '', 'Печать', true);
 
-  WorkItem.Commands[Command_ExecutorClear].Caption := 'Исключить исполнителя';
+  WorkItem.Commands[Command_ExecutorSet].SetHandler(CmdExecutorSet);
+  (GetView as IContentView).CommandBar.AddCommand(Command_ExecutorSet,
+    'Назначить исполнителя', '', 'Другие действия');
+
   WorkItem.Commands[Command_ExecutorClear].SetHandler(CmdExecutorClear);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ExecutorClear, 'Другие действия');
+  (GetView as IContentView).CommandBar.AddCommand(Command_ExecutorClear,
+    'Исключить исполнителя', '', 'Другие действия');
 
 
   View.Value['DBEG'] := Date;

@@ -80,7 +80,7 @@ end;
 
 procedure TTaskBulkItemPresenter.OnViewReady;
 begin
-  WorkItem.Commands[COMMAND_CLOSE].Caption := COMMAND_CLOSE_CAPTION;
+{  WorkItem.Commands[COMMAND_CLOSE].Caption := COMMAND_CLOSE_CAPTION;
   WorkItem.Commands[COMMAND_CLOSE].ShortCut := COMMAND_CLOSE_SHORTCUT;
   WorkItem.Commands[COMMAND_CLOSE].SetHandler(CmdClose);
   (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE);
@@ -92,7 +92,7 @@ begin
   WorkItem.Commands[COMMAND_PRINT_COLLECTTASK].Caption := 'Комплектовочный лист';
   WorkItem.Commands[COMMAND_PRINT_COLLECTTASK].SetHandler(CmdPrintCollectTask);
   (GetView as IContentView).CommandBar.AddCommand(COMMAND_PRINT_COLLECTTASK, 'Печать');
-
+ }
   //GetView.LinkDataSet('Header', GetEVHeader.DataSet);
   //GetView.LinkDataSet('Details', GetEVDetails.DataSet);
   View.SetData(GetEVHeader.DataSet, GetEVDetails.DataSet);

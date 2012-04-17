@@ -105,7 +105,9 @@
 					<Source>
 						<Source Name="MainSource">Hermes.dpr</Source>
 					</Source>
-					<Parameters/>
+					<Parameters>
+						<Parameters Name="RunParams">-ShellLayout:1 -StartActivity:uri.1</Parameters>
+					</Parameters>
 				</Delphi.Personality>
 				<Platforms>
 					<Platform value="Win32">True</Platform>
