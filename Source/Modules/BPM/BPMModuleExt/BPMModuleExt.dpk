@@ -35,8 +35,6 @@ contains
   BPMConstExt in 'BPMConstExt.pas',
   BPMControllerExt in 'BPMControllerExt.pas',
   BPMModuleExtInit in 'BPMModuleExtInit.pas',
-  SalTaskBulkItemPresenter in 'SalTaskBulkItemPresenter.pas',
-  SalTaskBulkItemView in 'SalTaskBulkItemView.pas' {frTaskBulkItemView},
   SalTaskDeskPresenterWh in 'SalTaskDeskPresenterWh.pas',
   SalTaskDeskViewWh in 'SalTaskDeskViewWh.pas' {frSalTaskDeskViewWh},
   SalTaskItemPresenterCert in 'SalTaskItemPresenterCert.pas',

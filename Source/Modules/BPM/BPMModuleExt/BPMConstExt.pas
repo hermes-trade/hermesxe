@@ -37,17 +37,12 @@ const
   BPM_ACTIVITY_CODE_SAL_WH2 = 'Sal.Wh2';
   BPM_ACTIVITY_CODE_SAL_WH3 = 'Sal.Wh3';
   BPM_ACTIVITY_CODE_SAL_WH7 = 'Sal.Wh7';
-  BPM_ACTIVITY_CODE_SAL_COLLECT_BULK = 'SALE.COLLECT.BULK';
+
 
   ACT_BPM_TASK_DESK_SAL_WH = 'activities.bpm.task.desk.sal.wh';
   ACT_BPM_TASK_DESK_SAL_WH_CAPTION = 'Диспетчер задач [комплектация]';
   VIEW_BPM_TASK_DESK_SAL_WH = 'views.bpm.task.desk.sal.wh';
 
-  VIEW_BPM_TASK_BULK_SALE_COLLECT_JRN_CAPTION = 'Консолидация задач [комплектация]';
-  VIEW_BPM_TASK_BULK_SALE_COLLECT_JRN = 'views.BPM_TASKBULK.Journal';
-
-  VIEW_BPM_TASK_BULK_SALE_COLLECT_ITEM_CAPTION = 'Консолидация задач [комплектация]';
-  VIEW_BPM_TASK_BULK_SALE_COLLECT_ITEM = 'views.BPM_TASKBULK.sale.collect.item';
 
   ACT_BPM_TASK_LIST_SAL_WH = 'activities.bpm.task.list.sal.wh';
   ACT_BPM_TASK_LIST_SAL_WH_CAPTION = 'Задачи [комплектация]';

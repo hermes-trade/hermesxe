@@ -55,6 +55,7 @@
 			<DCCReference Include="bfwCore.dcp"/>
 			<DCCReference Include="bfwInterfaces.dcp"/>
 			<DCCReference Include="bfwUI.dcp"/>
+			<DCCReference Include="cxPageControldxBarPopupMenuD15.dcp"/>
 			<DCCReference Include="BPMConst.pas"/>
 			<DCCReference Include="CustomTaskItemPresenter.pas"/>
 			<DCCReference Include="CustomTaskItemView.pas">

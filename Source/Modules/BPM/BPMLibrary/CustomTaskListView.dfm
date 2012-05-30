@@ -3,7 +3,7 @@ inherited frCustomTaskListView: TfrCustomTaskListView
   Top = 216
   Caption = 'frCustomTaskListView'
   ClientWidth = 1023
-  ExplicitWidth = 320
+  ExplicitWidth = 1029
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
@@ -70,24 +70,25 @@ inherited frCustomTaskListView: TfrCustomTaskListView
       Width = 1019
       Height = 431
       Align = alClient
-      LookAndFeel.Kind = lfOffice11
-      LookAndFeel.NativeStyle = False
-      Style = 8
       TabOrder = 2
-      ExplicitHeight = 439
-      ClientRectBottom = 431
-      ClientRectRight = 1019
-      ClientRectTop = 0
+      LookAndFeel.Kind = lfOffice11
+      ClientRectBottom = 427
+      ClientRectLeft = 4
+      ClientRectRight = 1015
+      ClientRectTop = 4
       object grMain: TcxGrid
-        Left = 0
-        Top = 0
-        Width = 1019
-        Height = 439
+        Left = 4
+        Top = 4
+        Width = 1011
+        Height = 423
         Align = alClient
         TabOrder = 0
         LookAndFeel.Kind = lfOffice11
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 1019
+        ExplicitHeight = 431
         object grMainViewDef: TcxGridDBBandedTableView
-          NavigatorButtons.ConfirmDelete = False
           FilterBox.Position = fpTop
           OnCellDblClick = grMainViewDefCellDblClick
           DataController.DataSource = MainDataSource

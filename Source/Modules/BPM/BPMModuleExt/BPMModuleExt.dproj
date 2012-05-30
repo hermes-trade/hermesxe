@@ -59,10 +59,6 @@
 			<DCCReference Include="BPMConstExt.pas"/>
 			<DCCReference Include="BPMControllerExt.pas"/>
 			<DCCReference Include="BPMModuleExtInit.pas"/>
-			<DCCReference Include="SalTaskBulkItemPresenter.pas"/>
-			<DCCReference Include="SalTaskBulkItemView.pas">
-				<Form>frTaskBulkItemView</Form>
-			</DCCReference>
 			<DCCReference Include="SalTaskDeskPresenterWh.pas"/>
 			<DCCReference Include="SalTaskDeskViewWh.pas">
 				<Form>frSalTaskDeskViewWh</Form>
