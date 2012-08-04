@@ -1,13 +1,13 @@
 ﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
-			<ProjectGuid>{4FF2DDA4-3ED7-476B-B2FA-528AB5121381}</ProjectGuid>
-			<MainSource>Hermes.dpr</MainSource>
+			<ProjectGuid>{6970DE93-E5F2-46D5-B6F4-E9C294233AC4}</ProjectGuid>
+			<MainSource>DLVModule.dpk</MainSource>
 			<ProjectVersion>12.3</ProjectVersion>
 			<Base>True</Base>
 			<Config Condition="'$(Config)'==''">Debug</Config>
 			<Platform>Win32</Platform>
-			<AppType>Console</AppType>
-			<FrameworkType>VCL</FrameworkType>
+			<AppType>Package</AppType>
+			<FrameworkType>None</FrameworkType>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
@@ -24,24 +24,19 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_UnitSearchPath>..\External\Boosterfw\Sources\Core;..\External\Boosterfw\Sources\Interfaces;..\External\Boosterfw\Sources\Shell;..\External\Boosterfw\Sources\Shell\Services;..\External\Boosterfw\Sources\UI;..\External\Boosterfw\Sources\UITemplates;..\External\Boosterfw\Sources\Modules\ShellLayout;..\External\Boosterfw\Sources\DAL;..\External\Boosterfw\Sources\Modules\Admin;..\External\Boosterfw\Sources\Modules\Reporting;..\External\Boosterfw\Sources\Modules\Reporting\EngineFR;..\External\Boosterfw\Sources\Modules\Reporting\EngineXL;..\External\Boosterfw\Sources\Modules\Reporting\EngineXL\xlReportLibrary\Source;..\External\Boosterfw\Sources\Modules\EntityUI\;..\External\Boosterfw\Sources\Modules\Serve;..\Source\Modules\BDS;..\Source\Modules\DLV;..\Source\Modules\BPM\BPMLibrary;..\Source\Modules\BPM\BPMModule;..\Source\Modules\BPM\BPMModuleExt;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<GenPackage>true</GenPackage>
 			<DCC_DcuOutput>.\$(Config)\$(Platform)</DCC_DcuOutput>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_ExeOutput>..\Output\Bin</DCC_ExeOutput>
+			<DCC_CBuilderOutput>All</DCC_CBuilderOutput>
 			<DCC_E>false</DCC_E>
-			<DCC_N>false</DCC_N>
 			<DCC_S>false</DCC_S>
+			<GenDll>true</GenDll>
+			<DCC_N>false</DCC_N>
 			<DCC_F>false</DCC_F>
 			<DCC_K>false</DCC_K>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
-			<DCC_DebugDCUs>true</DCC_DebugDCUs>
-			<ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
-			<BCC_DebugLineNumbers>true</BCC_DebugLineNumbers>
-			<BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
-			<DCC_SYMBOL_PLATFORM>false</DCC_SYMBOL_PLATFORM>
-			<DCC_SYMBOL_DEPRECATED>false</DCC_SYMBOL_DEPRECATED>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 			<DCC_Optimize>false</DCC_Optimize>
 			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
@@ -53,9 +48,18 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<ItemGroup>
-			<DelphiCompile Include="Hermes.dpr">
+			<DelphiCompile Include="DLVModule.dpk">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
+			<DCCReference Include="rtl.dcp"/>
+			<DCCReference Include="bfwCore.dcp"/>
+			<DCCReference Include="bfwInterfaces.dcp"/>
+			<DCCReference Include="bfwUI.dcp"/>
+			<DCCReference Include="DLVModuleInit.pas"/>
+			<DCCReference Include="DLVDeskpView.pas">
+				<Form>frDLVDeskpView</Form>
+			</DCCReference>
+			<DCCReference Include="DLVDeskpPresenter.pas"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -72,11 +76,14 @@
 		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
 		<ProjectExtensions>
 			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
-			<Borland.ProjectType/>
+			<Borland.ProjectType>Package</Borland.ProjectType>
 			<BorlandProject>
 				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">DLVModule.dpk</Source>
+					</Source>
 					<VersionInfo>
-						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
@@ -87,7 +94,7 @@
 						<VersionInfo Name="Special">False</VersionInfo>
 						<VersionInfo Name="Private">False</VersionInfo>
 						<VersionInfo Name="DLL">False</VersionInfo>
-						<VersionInfo Name="Locale">1058</VersionInfo>
+						<VersionInfo Name="Locale">1049</VersionInfo>
 						<VersionInfo Name="CodePage">1251</VersionInfo>
 					</VersionInfo>
 					<VersionInfoKeys>
@@ -102,15 +109,10 @@
 						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
-					<Source>
-						<Source Name="MainSource">Hermes.dpr</Source>
-					</Source>
-					<Parameters/>
 				</Delphi.Personality>
 				<Platforms>
 					<Platform value="Win32">True</Platform>
 				</Platforms>
-				<ModelSupport>False</ModelSupport>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>
 		</ProjectExtensions>

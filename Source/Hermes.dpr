@@ -10,6 +10,7 @@ uses
   bfwApp,
   bfwModules,
   BDSModuleInit,
+  DLVModuleInit,
   BPMModuleInit,
   BPMModuleExtInit;
 

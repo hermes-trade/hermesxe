@@ -54,6 +54,9 @@
 			<Projects Include="Modules\BDS\BDSModule.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="Modules\DLV\DLVModule.dproj">
+				<Dependencies/>
+			</Projects>
 			<Projects Include="Modules\BPM\BPMLibrary\BPMLibrary.dproj">
 				<Dependencies/>
 			</Projects>
@@ -224,6 +227,15 @@
 		<Target Name="BDSModule:Make">
 			<MSBuild Projects="Modules\BDS\BDSModule.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="DLVModule">
+			<MSBuild Projects="Modules\DLV\DLVModule.dproj"/>
+		</Target>
+		<Target Name="DLVModule:Clean">
+			<MSBuild Projects="Modules\DLV\DLVModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="DLVModule:Make">
+			<MSBuild Projects="Modules\DLV\DLVModule.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="BPMLibrary">
 			<MSBuild Projects="Modules\BPM\BPMLibrary\BPMLibrary.dproj"/>
 		</Target>
@@ -252,13 +264,13 @@
 			<MSBuild Projects="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj" Targets="Make"/>
 		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="BoosterServerWin;BoosterServerSvc;BoosterConfigTool;BoosterStorageTool;BoosterUpdater;Hermes;bfwCore;bfwInterfaces;bfwShell;bfwUI;bfwUITemplates;bfwShellLayout;bfwReportingModule;bfwEntityUIModule;bfwAdminModule;bfwServeModule;BDSModule;BPMLibrary;BPMModule;BPMModuleExt"/>
+			<CallTarget Targets="BoosterServerWin;BoosterServerSvc;BoosterConfigTool;BoosterStorageTool;BoosterUpdater;Hermes;bfwCore;bfwInterfaces;bfwShell;bfwUI;bfwUITemplates;bfwShellLayout;bfwReportingModule;bfwEntityUIModule;bfwAdminModule;bfwServeModule;BDSModule;DLVModule;BPMLibrary;BPMModule;BPMModuleExt"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="BoosterServerWin:Clean;BoosterServerSvc:Clean;BoosterConfigTool:Clean;BoosterStorageTool:Clean;BoosterUpdater:Clean;Hermes:Clean;bfwCore:Clean;bfwInterfaces:Clean;bfwShell:Clean;bfwUI:Clean;bfwUITemplates:Clean;bfwShellLayout:Clean;bfwReportingModule:Clean;bfwEntityUIModule:Clean;bfwAdminModule:Clean;bfwServeModule:Clean;BDSModule:Clean;BPMLibrary:Clean;BPMModule:Clean;BPMModuleExt:Clean"/>
+			<CallTarget Targets="BoosterServerWin:Clean;BoosterServerSvc:Clean;BoosterConfigTool:Clean;BoosterStorageTool:Clean;BoosterUpdater:Clean;Hermes:Clean;bfwCore:Clean;bfwInterfaces:Clean;bfwShell:Clean;bfwUI:Clean;bfwUITemplates:Clean;bfwShellLayout:Clean;bfwReportingModule:Clean;bfwEntityUIModule:Clean;bfwAdminModule:Clean;bfwServeModule:Clean;BDSModule:Clean;DLVModule:Clean;BPMLibrary:Clean;BPMModule:Clean;BPMModuleExt:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="BoosterServerWin:Make;BoosterServerSvc:Make;BoosterConfigTool:Make;BoosterStorageTool:Make;BoosterUpdater:Make;Hermes:Make;bfwCore:Make;bfwInterfaces:Make;bfwShell:Make;bfwUI:Make;bfwUITemplates:Make;bfwShellLayout:Make;bfwReportingModule:Make;bfwEntityUIModule:Make;bfwAdminModule:Make;bfwServeModule:Make;BDSModule:Make;BPMLibrary:Make;BPMModule:Make;BPMModuleExt:Make"/>
+			<CallTarget Targets="BoosterServerWin:Make;BoosterServerSvc:Make;BoosterConfigTool:Make;BoosterStorageTool:Make;BoosterUpdater:Make;Hermes:Make;bfwCore:Make;bfwInterfaces:Make;bfwShell:Make;bfwUI:Make;bfwUITemplates:Make;bfwShellLayout:Make;bfwReportingModule:Make;bfwEntityUIModule:Make;bfwAdminModule:Make;bfwServeModule:Make;BDSModule:Make;DLVModule:Make;BPMLibrary:Make;BPMModule:Make;BPMModuleExt:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
