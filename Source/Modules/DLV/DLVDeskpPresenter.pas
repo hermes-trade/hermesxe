@@ -10,7 +10,6 @@ const
   COMMAND_TRIP_EDIT = '{0664E4CA-F174-4660-A854-5111D9687088}';
   COMMAND_TRIP_DEL = '{C379D5DB-FADF-433A-87A0-A1AA42016FB4}';
 
-  COMMAND_TASK_OPEN = '{015166EC-46FA-41B2-99B5-7FDCAE870AE8}';
   COMMAND_TASK_ADD = '{CE8844BF-C00E-4D5B-AD40-30AECE1E38DA}';
   COMMAND_TASK_REMOVE = '{CCE86082-B214-4F19-A383-6404AD29A944}';
 
@@ -160,7 +159,8 @@ begin
     try
       GetEVTrips.DataSet.Delete;
       GetEVTrips.Save;
-      GetEVTasks.Load;
+     // GetEVTasks.Load;
+      WorkItem.Commands[COMMAND_RELOAD].Execute;
     except
       GetEVTrips.CancelUpdates;
       raise;
@@ -216,6 +216,13 @@ begin
     Result := View.GetActiveTrip
   else if SameText(AName, 'TASKS_KIND') then
     Result := View.GetTasksKind
+  else if SameText(AName, 'TASK_ID') then
+  begin
+    if View.SelectedTasks.Count > 0 then
+      Result := View.SelectedTasks.First
+    else
+      Done := false;
+  end
   else
     Done := false;
 
@@ -228,7 +235,6 @@ begin
 
   WorkItem.Commands[COMMAND_TASK_ADD].Status := csDisabled;
   WorkItem.Commands[COMMAND_TASK_REMOVE].Status := csDisabled;
-  WorkItem.Commands[COMMAND_TASK_OPEN].Status := csDisabled;
 
   if not VarIsEmpty(View.GetActiveTrip) then
   begin
@@ -241,9 +247,6 @@ begin
 
   if View.SelectedTripTasks.Count <> 0 then
     WorkItem.Commands[COMMAND_TASK_REMOVE].Status := csEnabled;
-
-  if View.SelectedTasks.Count <> 0 then
-    WorkItem.Commands[COMMAND_TASK_OPEN].Status := csEnabled;
 
 end;
 
@@ -275,8 +278,6 @@ begin
   WorkItem.Commands[COMMAND_TASK_ADD].SetHandler(CmdTaskAdd);
   View.CommandBar.AddCommand(COMMAND_TASK_REMOVE, 'Исключить задачу', '', 'Включить задачу');
   WorkItem.Commands[COMMAND_TASK_REMOVE].SetHandler(CmdTaskRemove);
-
-  View.CommandBar.AddCommand(COMMAND_TASK_OPEN, 'Открыть задачу');
 
   WorkItem.Commands[COMMAND_DATE_INC].SetHandler(CmdDateInc);
   WorkItem.Commands[COMMAND_DATE_DEC].SetHandler(CmdDateDec);
