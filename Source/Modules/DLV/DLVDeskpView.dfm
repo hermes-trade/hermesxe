@@ -115,10 +115,13 @@ inherited frDLVDeskpView: TfrDLVDeskpView
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
+          OptionsBehavior.PullFocusing = True
           OptionsCustomize.ColumnsQuickCustomization = True
           OptionsData.Deleting = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
+          OptionsSelection.MultiSelect = True
+          OptionsSelection.UnselectFocusedRecordOnExit = False
           OptionsView.GroupByBox = False
         end
         object cxGridLevel1: TcxGridLevel
@@ -163,13 +166,17 @@ inherited frDLVDeskpView: TfrDLVDeskpView
             FilterBox.Position = fpTop
             OnCellDblClick = grTasksViewCellDblClick
             DataController.DataSource = dsTasks
+            DataController.Options = [dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding, dcoImmediatePost]
             DataController.Summary.DefaultGroupSummaryItems = <>
             DataController.Summary.FooterSummaryItems = <>
             DataController.Summary.SummaryGroups = <>
+            OptionsBehavior.PullFocusing = True
             OptionsCustomize.ColumnsQuickCustomization = True
             OptionsData.Deleting = False
             OptionsData.Editing = False
             OptionsData.Inserting = False
+            OptionsSelection.MultiSelect = True
+            OptionsSelection.UnselectFocusedRecordOnExit = False
             OptionsView.GroupByBox = False
           end
           object cxGridLevel2: TcxGridLevel
@@ -211,14 +218,13 @@ inherited frDLVDeskpView: TfrDLVDeskpView
         LookAndFeel.Kind = lfOffice11
         object grTripsView: TcxGridDBTableView
           OnCellDblClick = grTripsViewCellDblClick
-          OnFocusedRecordChanged = grTripsViewFocusedRecordChanged
           DataController.DataSource = dsTrips
+          DataController.Options = [dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding, dcoImmediatePost]
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
           OptionsCustomize.ColumnsQuickCustomization = True
           OptionsData.Deleting = False
-          OptionsData.Editing = False
           OptionsData.Inserting = False
           OptionsView.GroupByBox = False
         end

@@ -17,7 +17,11 @@ const
   COMMAND_DATE_DEC = '{1A61D1EB-63A5-46DC-A168-1753000B014E}';
 
   COMMAND_CHANGE_TASKS_KIND = '{CE590136-D650-4A81-A47A-C3644B582C43}';
-  COMMAND_ACTIVE_TRIP_CHANGED = '{1CBDE422-4D0A-4C83-893E-BF2DD8662A3D}';
+  COMMAND_TRIP_SELECTED = '{1CBDE422-4D0A-4C83-893E-BF2DD8662A3D}';
+  COMMAND_TASK_SELECTED = '{273E10C3-F218-4566-90E0-B529BB8DBAE2}';
+  COMMAND_TRIP_TASK_SELECTED = '{33AE05A6-B377-4BF5-8595-EE6CD8436260}';
+  COMMAND_TASK_OPEN = '{C9AF572E-1EF5-4707-B03C-373D989C64DC}';
+  COMMAND_TRIP_TASK_OPEN = '{A0D70EE0-C261-4401-9FAA-657A0E1C08A7}';
 
   ENT = 'DLV_DESKP';
 type
@@ -25,7 +29,7 @@ type
   ['{4BB31718-0C03-4E54-B1AF-E4A53AE9E62A}']
     procedure SetDate(AValue: TDateTime);
     function GetTasksKind: integer;
-    function GetActiveTrip: variant;
+    function SelectedTrips: ISelection;
     function SelectedTasks: ISelection;
     function SelectedTripTasks: ISelection;
     procedure LinkData(Trips, Tasks, TripTasks: TDataSet);
@@ -44,9 +48,13 @@ type
     procedure CmdDateInc(Sender: TObject);
     procedure CmdDateDec(Sender: TObject);
     procedure CmdChangeTasksKind(Sender: TObject);
-    procedure CmdActiveTripChanged(Sender: TObject);
+    procedure CmdTripSelected(Sender: TObject);
+    procedure CmdTaskSelected(Sender: TObject);
+    procedure CmdTripTaskSelected(Sender: TObject);
     procedure CmdTaskAdd(Sender: TObject);
     procedure CmdTaskRemove(Sender: TObject);
+    procedure CmdTaskOpen(Sender: TObject);
+    procedure CmdTripTaskOpen(Sender: TObject);
     procedure CmdReload(Sender: TObject);
     function View: IDLVTripDeskView;
   protected
@@ -58,12 +66,6 @@ type
 implementation
 
 { TDLVTripDeskPresenter }
-
-procedure TDLVDeskpPresenter.CmdActiveTripChanged(Sender: TObject);
-begin
-  GetEVTripTasks.Load;
-  UpdateCommandStatus;
-end;
 
 procedure TDLVDeskpPresenter.CmdChangeTasksKind(Sender: TObject);
 begin
@@ -111,9 +113,21 @@ begin
   finally
     GetEVTasks.Load;
     GetEVTripTasks.Load;
+    GetEVTrips.ReloadRecord(WorkItem.State['TRIP_ID']);
     UpdateCommandStatus;
   end;
 
+end;
+
+procedure TDLVDeskpPresenter.CmdTaskOpen(Sender: TObject);
+var
+  activity: IActivity;
+begin
+  if View.SelectedTasks.Count = 0 then Exit;
+
+  activity := WorkItem.Activities['views.DLV_TASK.Item'];
+  activity.Params['ID'] := View.SelectedTasks.First;
+  activity.Execute(WorkItem);
 end;
 
 procedure TDLVDeskpPresenter.CmdTaskRemove(Sender: TObject);
@@ -131,9 +145,15 @@ begin
   finally
     GetEVTasks.Load;
     GetEVTripTasks.Load;
+    GetEVTrips.ReloadRecord(WorkItem.State['TRIP_ID']);
     UpdateCommandStatus;
   end;
 
+end;
+
+procedure TDLVDeskpPresenter.CmdTaskSelected(Sender: TObject);
+begin
+  UpdateCommandStatus;
 end;
 
 procedure TDLVDeskpPresenter.CmdTripAddBulk(Sender: TObject);
@@ -187,6 +207,29 @@ begin
   activity.Execute(WorkItem);
 end;
 
+procedure TDLVDeskpPresenter.CmdTripSelected(Sender: TObject);
+begin
+  GetEVTripTasks.Load;
+  UpdateCommandStatus;
+end;
+
+procedure TDLVDeskpPresenter.CmdTripTaskOpen(Sender: TObject);
+var
+  activity: IActivity;
+begin
+  if View.SelectedTripTasks.Count = 0 then Exit;
+
+  activity := WorkItem.Activities['views.DLV_TASK.Item'];
+  activity.Params['ID'] :=  GetEVTripTasks.DataSet['TASK_ID']; //View.SelectedTripTasks.First;
+  activity.Execute(WorkItem);
+
+end;
+
+procedure TDLVDeskpPresenter.CmdTripTaskSelected(Sender: TObject);
+begin
+  UpdateCommandStatus;
+end;
+
 function TDLVDeskpPresenter.GetEVTasks: IEntityView;
 begin
   Result := (WorkItem.Services[IEntityService] as IEntityService).
@@ -212,17 +255,13 @@ function TDLVDeskpPresenter.OnGetWorkItemState(const AName: string;
   var Done: boolean): Variant;
 begin
   Done := true;
+
   if SameText(AName, 'TRIP_ID') then
-    Result := View.GetActiveTrip
+    Result := View.SelectedTrips.First
   else if SameText(AName, 'TASKS_KIND') then
     Result := View.GetTasksKind
   else if SameText(AName, 'TASK_ID') then
-  begin
-    if View.SelectedTasks.Count > 0 then
       Result := View.SelectedTasks.First
-    else
-      Done := false;
-  end
   else
     Done := false;
 
@@ -236,13 +275,13 @@ begin
   WorkItem.Commands[COMMAND_TASK_ADD].Status := csDisabled;
   WorkItem.Commands[COMMAND_TASK_REMOVE].Status := csDisabled;
 
-  if not VarIsEmpty(View.GetActiveTrip) then
+  if not VarIsEmpty(View.SelectedTrips.First) then
   begin
     WorkItem.Commands[COMMAND_TRIP_EDIT].Status := csEnabled;
     WorkItem.Commands[COMMAND_TRIP_DEL].Status := csEnabled;
   end;
 
-  if (not VarIsEmpty(View.GetActiveTrip)) and (View.SelectedTasks.Count <> 0) then
+  if (not VarIsEmpty(View.SelectedTrips.First)) and (View.SelectedTasks.Count <> 0) then
     WorkItem.Commands[COMMAND_TASK_ADD].Status := csEnabled;
 
   if View.SelectedTripTasks.Count <> 0 then
@@ -283,10 +322,23 @@ begin
   WorkItem.Commands[COMMAND_DATE_DEC].SetHandler(CmdDateDec);
 
   WorkItem.Commands[COMMAND_CHANGE_TASKS_KIND].SetHandler(CmdChangeTasksKind);
-  WorkItem.Commands[COMMAND_ACTIVE_TRIP_CHANGED].SetHandler(CmdActiveTripChanged);
+
+  View.SelectedTrips.SetChangedCommand(COMMAND_TRIP_SELECTED);
+  WorkItem.Commands[COMMAND_TRIP_SELECTED].SetHandler(CmdTripSelected);
+
+  View.SelectedTasks.SetChangedCommand(COMMAND_TASK_SELECTED);
+  WorkItem.Commands[COMMAND_TASK_SELECTED].SetHandler(CmdTaskSelected);
+
+  View.SelectedTripTasks.SetChangedCommand(COMMAND_TRIP_TASK_SELECTED);
+  WorkItem.Commands[COMMAND_TRIP_TASK_SELECTED].SetHandler(CmdTripTaskSelected);
+
+  WorkItem.Commands[COMMAND_TASK_OPEN].SetHandler(CmdTaskOpen);
+  WorkItem.Commands[COMMAND_TRIP_TASK_OPEN].SetHandler(CmdTripTaskOpen);
 
   WorkItem.State['DAT'] := Date;
   View.SetDate(Date);
+
+  GetEVTrips.ImmediateSave := true;
 
   View.LinkData(GetEVTrips.DataSet, GetEVTasks.DataSet, GetEVTripTasks.DataSet);
 end;

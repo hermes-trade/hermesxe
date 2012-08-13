@@ -41,9 +41,6 @@ type
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
       AShift: TShiftState; var AHandled: Boolean);
     procedure tcTasksChange(Sender: TObject);
-    procedure grTripsViewFocusedRecordChanged(Sender: TcxCustomGridTableView;
-      APrevFocusedRecord, AFocusedRecord: TcxCustomGridRecord;
-      ANewItemRecordFocusingChanged: Boolean);
     procedure grTasksViewCellDblClick(Sender: TcxCustomGridTableView;
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
       AShift: TShiftState; var AHandled: Boolean);
@@ -56,7 +53,7 @@ type
     //IDLVTripDeskView
     procedure SetDate(AValue: TDateTime);
     function GetTasksKind: integer;
-    function GetActiveTrip: variant;
+    function SelectedTrips: ISelection;
     function SelectedTasks: ISelection;
     function SelectedTripTasks: ISelection;
     procedure LinkData(Trips, Tasks, TripTasks: TDataSet);
@@ -84,13 +81,6 @@ begin
   WorkItem.Commands[COMMAND_DATE_INC].Execute;
 end;
 
-function TfrDLVDeskpView.GetActiveTrip: variant;
-begin
-  Result := Unassigned;
-
-  if (grTripsView.ItemCount > 0) and (grTripsView.Controller.SelectedRowCount > 0) then
-    Result := grTripsView.Controller.SelectedRecords[0].Values[0];
-end;
 
 function TfrDLVDeskpView.GetTasksKind: integer;
 begin
@@ -101,7 +91,7 @@ procedure TfrDLVDeskpView.grTasksViewCellDblClick(
   Sender: TcxCustomGridTableView; ACellViewInfo: TcxGridTableDataCellViewInfo;
   AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
 begin
-  WorkItem.Commands[COMMAND_TASK_ADD].Execute;
+  WorkItem.Commands[COMMAND_TASK_OPEN].Execute;
 end;
 
 procedure TfrDLVDeskpView.grTripsViewCellDblClick(
@@ -111,18 +101,11 @@ begin
   WorkItem.Commands[COMMAND_TRIP_EDIT].Execute;
 end;
 
-procedure TfrDLVDeskpView.grTripsViewFocusedRecordChanged(
-  Sender: TcxCustomGridTableView; APrevFocusedRecord,
-  AFocusedRecord: TcxCustomGridRecord; ANewItemRecordFocusingChanged: Boolean);
-begin
-  WorkItem.Commands[COMMAND_ACTIVE_TRIP_CHANGED].Execute;
-end;
-
 procedure TfrDLVDeskpView.grTripTasksViewCellDblClick(
   Sender: TcxCustomGridTableView; ACellViewInfo: TcxGridTableDataCellViewInfo;
   AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
 begin
-  WorkItem.Commands[COMMAND_TASK_REMOVE].Execute;
+  WorkItem.Commands[COMMAND_TRIP_TASK_OPEN].Execute;
 end;
 
 procedure TfrDLVDeskpView.LinkData(Trips, Tasks, TripTasks: TDataSet);
@@ -135,6 +118,11 @@ end;
 function TfrDLVDeskpView.SelectedTasks: ISelection;
 begin
   Result := GetChildInterface(grTasksView.Name) as ISelection;
+end;
+
+function TfrDLVDeskpView.SelectedTrips: ISelection;
+begin
+  Result := GetChildInterface(grTripsView.Name) as ISelection;
 end;
 
 function TfrDLVDeskpView.SelectedTripTasks: ISelection;
