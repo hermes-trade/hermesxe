@@ -2,7 +2,7 @@ unit DLVDeskpPresenter;
 
 interface
 uses CustomContentPresenter, UIClasses, coreClasses, UIStr, EntityServiceIntf,
-  db, sysutils, ShellIntf, variants;
+  db, sysutils, ShellIntf, variants, strutils;
 
 const
   COMMAND_TRIP_NEW = '{BAADFA0E-AA30-499D-B939-817F73A906BF}';
@@ -41,6 +41,7 @@ type
     function GetEVTasks: IEntityView;
     function GetEVTripTasks: IEntityView;
 
+    procedure CmdEVReload(Sender: TObject);
     procedure CmdTripNew(Sender: TObject);
     procedure CmdTripAddBulk(Sender: TObject);
     procedure CmdTripEdit(Sender: TObject);
@@ -84,6 +85,16 @@ begin
   WorkItem.State['DAT'] :=  WorkItem.State['DAT'] + 1;
   View.SetDate(WorkItem.State['DAT']);
   WorkItem.Commands[COMMAND_RELOAD].Execute;
+end;
+
+procedure TDLVDeskpPresenter.CmdEVReload(Sender: TObject);
+var
+  cmd: ICommand;
+  evName: string;
+begin
+  Sender.GetInterface(ICommand, cmd);
+  evName := cmd.Data['EntityView'];
+  App.Entities[ENT].GetView(evName, WorkItem).Load;
 end;
 
 procedure TDLVDeskpPresenter.CmdReload(Sender: TObject);
@@ -253,6 +264,29 @@ end;
 
 function TDLVDeskpPresenter.OnGetWorkItemState(const AName: string;
   var Done: boolean): Variant;
+
+  function TripTaskNotPrinted: Variant;
+  var
+    ds: TDataSet;
+    I: integer;
+  begin
+    Result := Unassigned;
+
+    ds := App.Entities[ENT].
+      GetOper('TripTasksNotPrinted', WorkItem).Execute([WorkItem.State['TRIP_ID']]);
+
+    if ds.IsEmpty then Exit;
+
+    Result := VarArrayCreate([0, ds.RecordCount - 1], varVariant);
+    I := 0;
+    while not ds.Eof do
+    begin
+      Result[I] := ds.Fields[0].Value;
+      Inc(I);
+      ds.Next;
+    end;
+  end;
+
 begin
   Done := true;
 
@@ -261,7 +295,11 @@ begin
   else if SameText(AName, 'TASKS_KIND') then
     Result := View.GetTasksKind
   else if SameText(AName, 'TASK_ID') then
-      Result := View.SelectedTasks.First
+    Result := View.SelectedTasks.First
+  else if SameText(AName, 'TRIP_TASKS') then
+    Result := View.SelectedTripTasks.AsArray
+  else if SameText(AName, 'TRIP_TASKS_NOT_PRINTED') then
+    Result := TripTaskNotPrinted
   else
     Done := false;
 
@@ -334,6 +372,12 @@ begin
 
   WorkItem.Commands[COMMAND_TASK_OPEN].SetHandler(CmdTaskOpen);
   WorkItem.Commands[COMMAND_TRIP_TASK_OPEN].SetHandler(CmdTripTaskOpen);
+
+  with WorkItem.Commands['Commands.EV.TripTasks.Reload'] do
+  begin
+    Data['EntityView'] := 'TripTasks';
+    SetHandler(CmdEVReload);
+  end;
 
   WorkItem.State['DAT'] := Date;
   View.SetDate(Date);

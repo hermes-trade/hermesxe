@@ -218,8 +218,8 @@ inherited frDLVDeskpView: TfrDLVDeskpView
         LookAndFeel.Kind = lfOffice11
         object grTripsView: TcxGridDBTableView
           OnCellDblClick = grTripsViewCellDblClick
+          OnEditChanged = grTripsViewEditChanged
           DataController.DataSource = dsTrips
-          DataController.Options = [dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding, dcoImmediatePost]
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>

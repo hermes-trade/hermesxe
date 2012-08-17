@@ -367,19 +367,21 @@ begin
       _rptID := _rptData['Report_ID'];
       WorkItem.Activities[_rptID].Params['ID'] := VarToStr(AIDList[I]);
       WorkItem.Activities[_rptID].Params['OutCode'] := _rptData['Out_Code'];
+      WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_PREVIEW;
 
       if _count = 0 then
-        WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_PREVIEW
-        //App.Reports.Report[_rptID].Execute(WorkItem, reaExecute)
+        WorkItem.Activities[_rptID].CallMode := acmSingle
+        //WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_PREVIEW
       else if I = 0 then
-        WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_HOLD
-        //App.Reports.Report[_rptID].Execute(WorkItem, reaPrepareFirst)
+        WorkItem.Activities[_rptID].CallMode := acmBatchFirst
+        //WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_HOLD
       else if I = _count then
-        WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_PREVIEW
-        //App.Reports.Report[_rptID].Execute(WorkItem, reaExecutePrepared)
+        WorkItem.Activities[_rptID].CallMode := acmBatchLast
+        //WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_PREVIEW
       else
-        WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_HOLD;
-        //App.Reports.Report[_rptID].Execute(WorkItem, reaPrepareNext);
+        WorkItem.Activities[_rptID].CallMode := acmBatchNext;
+        //WorkItem.Activities[_rptID].Params[LAUNCH_MODE] := LAUNCH_MODE_HOLD;
+
 
 
       WorkItem.Activities[_rptID].Execute(WorkItem);

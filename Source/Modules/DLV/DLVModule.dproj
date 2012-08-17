@@ -55,6 +55,7 @@
 			<DCCReference Include="bfwCore.dcp"/>
 			<DCCReference Include="bfwInterfaces.dcp"/>
 			<DCCReference Include="bfwUI.dcp"/>
+			<DCCReference Include="cxPageControldxBarPopupMenuD15.dcp"/>
 			<DCCReference Include="DLVModuleInit.pas"/>
 			<DCCReference Include="DLVDeskpView.pas">
 				<Form>frDLVDeskpView</Form>

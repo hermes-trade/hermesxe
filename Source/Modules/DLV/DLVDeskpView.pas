@@ -47,6 +47,8 @@ type
     procedure grTripTasksViewCellDblClick(Sender: TcxCustomGridTableView;
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
       AShift: TShiftState; var AHandled: Boolean);
+    procedure grTripsViewEditChanged(Sender: TcxCustomGridTableView;
+      AItem: TcxCustomGridTableItem);
   private
 
   protected
@@ -99,6 +101,12 @@ procedure TfrDLVDeskpView.grTripsViewCellDblClick(
   AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
 begin
   WorkItem.Commands[COMMAND_TRIP_EDIT].Execute;
+end;
+
+procedure TfrDLVDeskpView.grTripsViewEditChanged(Sender: TcxCustomGridTableView;
+  AItem: TcxCustomGridTableItem);
+begin
+  dsTrips.DataSet.Post;
 end;
 
 procedure TfrDLVDeskpView.grTripTasksViewCellDblClick(

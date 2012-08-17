@@ -28,7 +28,8 @@ requires
   rtl,
   bfwCore,
   bfwInterfaces,
-  bfwUI;
+  bfwUI,
+  cxPageControldxBarPopupMenuD15;
 
 contains
   DLVModuleInit in 'DLVModuleInit.pas',
