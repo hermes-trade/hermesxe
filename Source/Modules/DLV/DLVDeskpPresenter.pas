@@ -122,6 +122,7 @@ begin
       oper.Execute;
     end;
   finally
+    WorkItem.Commands['OnTaskAdd'].Execute;
     GetEVTasks.Load;
     GetEVTripTasks.Load;
     GetEVTrips.ReloadRecord(WorkItem.State['TRIP_ID']);
