@@ -28,13 +28,13 @@ type
     cxGroupBox3: TcxGroupBox;
     btDateInc: TcxButton;
     btDateDec: TcxButton;
-    lbDate: TcxLabel;
     tcTasks: TcxTabControl;
     grTasks: TcxGrid;
     grTasksView: TcxGridDBTableView;
     cxGridLevel2: TcxGridLevel;
     dsTasks: TDataSource;
     dsTripTasks: TDataSource;
+    edDate: TcxDateEdit;
     procedure btDateIncClick(Sender: TObject);
     procedure btDateDecClick(Sender: TObject);
     procedure grTripsViewCellDblClick(Sender: TcxCustomGridTableView;
@@ -49,6 +49,7 @@ type
       AShift: TShiftState; var AHandled: Boolean);
     procedure grTripsViewEditChanged(Sender: TcxCustomGridTableView;
       AItem: TcxCustomGridTableItem);
+    procedure edDatePropertiesEditValueChanged(Sender: TObject);
   private
 
   protected
@@ -83,6 +84,12 @@ begin
   WorkItem.Commands[COMMAND_DATE_INC].Execute;
 end;
 
+
+procedure TfrDLVDeskpView.edDatePropertiesEditValueChanged(Sender: TObject);
+begin
+  WorkItem.Commands[COMMAND_DATE_SET].Data['Date'] := edDate.Date;
+  WorkItem.Commands[COMMAND_DATE_SET].Execute;
+end;
 
 function TfrDLVDeskpView.GetTasksKind: integer;
 begin
@@ -140,7 +147,11 @@ end;
 
 procedure TfrDLVDeskpView.SetDate(AValue: TDateTime);
 begin
-  lbDate.Caption := DateToStr(AValue);
+//  lbDate.Caption := DateToStr(AValue);
+//  edDate.Date := AValue;
+  edDate.Properties.OnEditValueChanged := nil;
+  edDate.Date := AValue;
+  edDate.Properties.OnEditValueChanged := edDatePropertiesEditValueChanged;
 end;
 
 procedure TfrDLVDeskpView.tcTasksChange(Sender: TObject);

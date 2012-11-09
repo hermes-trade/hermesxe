@@ -15,6 +15,7 @@ const
 
   COMMAND_DATE_INC = '{66ACD6C1-8C88-44EE-A4FA-AB0326811870}';
   COMMAND_DATE_DEC = '{1A61D1EB-63A5-46DC-A168-1753000B014E}';
+  COMMAND_DATE_SET = '{077053BE-D86A-4F2D-8F61-3EE03A5659FF}';
 
   COMMAND_CHANGE_TASKS_KIND = '{CE590136-D650-4A81-A47A-C3644B582C43}';
   COMMAND_TRIP_SELECTED = '{1CBDE422-4D0A-4C83-893E-BF2DD8662A3D}';
@@ -48,6 +49,7 @@ type
     procedure CmdTripDel(Sender: TObject);
     procedure CmdDateInc(Sender: TObject);
     procedure CmdDateDec(Sender: TObject);
+    procedure CmdDateSet(Sender: TObject);
     procedure CmdChangeTasksKind(Sender: TObject);
     procedure CmdTripSelected(Sender: TObject);
     procedure CmdTaskSelected(Sender: TObject);
@@ -84,6 +86,16 @@ procedure TDLVDeskpPresenter.CmdDateInc(Sender: TObject);
 begin
   WorkItem.State['DAT'] :=  WorkItem.State['DAT'] + 1;
   View.SetDate(WorkItem.State['DAT']);
+  WorkItem.Commands[COMMAND_RELOAD].Execute;
+end;
+
+procedure TDLVDeskpPresenter.CmdDateSet(Sender: TObject);
+var
+  cmd: ICommand;
+begin
+  Sender.GetInterface(ICommand, cmd);
+  WorkItem.State['DAT'] :=   cmd.Data['Date'];
+//  View.SetDate(WorkItem.State['DAT']);
   WorkItem.Commands[COMMAND_RELOAD].Execute;
 end;
 
@@ -204,7 +216,10 @@ procedure TDLVDeskpPresenter.CmdTripEdit(Sender: TObject);
 var
   activity: IActivity;
 begin
-  activity := WorkItem.Activities['views.DLV_TRIP.Head'];
+  if GetEVTrips.DataSet['STATUS'] = 0 then
+    activity := WorkItem.Activities['views.DLV_TRIP.Head']
+  else
+    activity := WorkItem.Activities['views.DLV_TRIP.Item'];
   activity.Params['ID'] := WorkItem.State['TRIP_ID'];
   activity.Execute(WorkItem);
 end;
@@ -359,6 +374,7 @@ begin
 
   WorkItem.Commands[COMMAND_DATE_INC].SetHandler(CmdDateInc);
   WorkItem.Commands[COMMAND_DATE_DEC].SetHandler(CmdDateDec);
+  WorkItem.Commands[COMMAND_DATE_SET].SetHandler(CmdDateSet);
 
   WorkItem.Commands[COMMAND_CHANGE_TASKS_KIND].SetHandler(CmdChangeTasksKind);
 

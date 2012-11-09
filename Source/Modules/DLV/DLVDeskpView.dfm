@@ -15,7 +15,7 @@ inherited frDLVDeskpView: TfrDLVDeskpView
       ExplicitWidth = 924
       Width = 924
       object cxGroupBox3: TcxGroupBox
-        Left = 728
+        Left = 712
         Top = 2
         Align = alRight
         PanelStyle.Active = True
@@ -28,9 +28,9 @@ inherited frDLVDeskpView: TfrDLVDeskpView
         TabOrder = 0
         Transparent = True
         Height = 36
-        Width = 194
+        Width = 210
         object btDateInc: TcxButton
-          Left = 146
+          Left = 162
           Top = 0
           Width = 48
           Height = 36
@@ -40,6 +40,7 @@ inherited frDLVDeskpView: TfrDLVDeskpView
           SpeedButtonOptions.CanBeFocused = False
           TabOrder = 0
           OnClick = btDateIncClick
+          ExplicitLeft = 146
         end
         object btDateDec: TcxButton
           Left = 0
@@ -53,12 +54,23 @@ inherited frDLVDeskpView: TfrDLVDeskpView
           TabOrder = 1
           OnClick = btDateDecClick
         end
-        object lbDate: TcxLabel
-          Left = 48
-          Top = 0
+        object edDate: TcxDateEdit
+          AlignWithMargins = True
+          Left = 51
+          Top = 3
+          TabStop = False
           Align = alClient
-          Caption = 'lbDate'
           ParentFont = False
+          Properties.Alignment.Horz = taCenter
+          Properties.Alignment.Vert = taVCenter
+          Properties.AutoSelect = False
+          Properties.DateButtons = [btnToday]
+          Properties.DateOnError = deToday
+          Properties.PostPopupValueOnTab = True
+          Properties.ReadOnly = False
+          Properties.UseLeftAlignmentOnEditing = False
+          Properties.OnEditValueChanged = edDatePropertiesEditValueChanged
+          Style.BorderStyle = ebsNone
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clWindowText
           Style.Font.Height = -13
@@ -70,11 +82,12 @@ inherited frDLVDeskpView: TfrDLVDeskpView
           StyleDisabled.LookAndFeel.Kind = lfOffice11
           StyleFocused.LookAndFeel.Kind = lfOffice11
           StyleHot.LookAndFeel.Kind = lfOffice11
-          Properties.Alignment.Horz = taCenter
-          Properties.Alignment.Vert = taVCenter
-          Transparent = True
-          AnchorX = 97
-          AnchorY = 18
+          TabOrder = 2
+          ExplicitLeft = 25
+          ExplicitTop = -4
+          ExplicitWidth = 121
+          ExplicitHeight = 36
+          Width = 108
         end
       end
     end
