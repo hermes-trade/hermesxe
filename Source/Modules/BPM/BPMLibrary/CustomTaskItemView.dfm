@@ -2,6 +2,7 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
   Left = 712
   Top = 442
   Caption = 'frCustomTaskItemView'
+  ExplicitWidth = 320
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
@@ -9,20 +10,29 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
       TabOrder = 1
     end
     object pcMain: TcxPageControl
-      Left = 2
-      Top = 42
-      Width = 769
-      Height = 479
-      ActivePage = tsMain
+      Left = 0
+      Top = 40
+      Width = 765
+      Height = 475
       Align = alClient
-      LookAndFeel.Kind = lfOffice11
       TabOrder = 0
-      ClientRectBottom = 479
-      ClientRectRight = 769
+      Properties.ActivePage = tsMain
+      LookAndFeel.Kind = lfOffice11
+      ExplicitLeft = 2
+      ExplicitTop = 42
+      ExplicitWidth = 769
+      ExplicitHeight = 479
+      ClientRectBottom = 471
+      ClientRectLeft = 4
+      ClientRectRight = 761
       ClientRectTop = 24
       object tsMain: TcxTabSheet
         Caption = #1054#1073#1097#1080#1077
         ImageIndex = 0
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object grMain: TcxDBVerticalGrid
           Left = 0
           Top = 0
@@ -49,6 +59,10 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
       object tsData: TcxTabSheet
         Caption = #1054#1089#1085#1086#1074#1072#1085#1080#1077
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object grData: TcxDBVerticalGrid
           Left = 0
           Top = 0
@@ -79,7 +93,6 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
           TabOrder = 1
           LookAndFeel.Kind = lfOffice11
           object grDataRecViewDef: TcxGridDBTableView
-            NavigatorButtons.ConfirmDelete = False
             DataController.DataSource = DataRecDataSource
             DataController.Summary.DefaultGroupSummaryItems = <>
             DataController.Summary.FooterSummaryItems = <>
@@ -107,6 +120,10 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
       object tsTaskLinks: TcxTabSheet
         Caption = #1057#1074#1103#1079#1072#1085#1085#1099#1077' '#1079#1072#1076#1072#1095#1080
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object grLinks: TcxGrid
           Left = 0
           Top = 0
@@ -116,7 +133,6 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
           TabOrder = 0
           LookAndFeel.Kind = lfOffice11
           object grLinksViewDef: TcxGridDBBandedTableView
-            NavigatorButtons.ConfirmDelete = False
             FilterBox.Position = fpTop
             OnCellDblClick = grLinksViewDefCellDblClick
             DataController.DataSource = LinksDataSource
@@ -174,6 +190,10 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
       object tsUpdates: TcxTabSheet
         Caption = #1054#1073#1085#1086#1074#1083#1077#1085#1080#1103
         ImageIndex = 3
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object grUpdates: TcxGrid
           Left = 0
           Top = 0
@@ -183,7 +203,6 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
           TabOrder = 0
           LookAndFeel.Kind = lfOffice11
           object grUpdatesViewDef: TcxGridDBBandedTableView
-            NavigatorButtons.ConfirmDelete = False
             FilterBox.Position = fpTop
             OnCellDblClick = grLinksViewDefCellDblClick
             OnCustomDrawCell = grUpdatesViewDefCustomDrawCell

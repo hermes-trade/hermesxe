@@ -11,7 +11,7 @@ uses
   cxClasses, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridBandedTableView, cxGridDBBandedTableView, cxGrid, cxButtonEdit,
   cxSplitter, cxGridDBTableView, BPMConst, cxLookAndFeels, CustomTaskItemPresenter,
-  CustomContentView;
+  CustomContentView, cxPCdxBarPopupMenu;
 
 type
   TfrCustomTaskItemView = class(TfrCustomContentView, ICustomTaskItemView)
@@ -51,7 +51,6 @@ type
       Sender: TObject; AButtonIndex: Integer);
   private
   protected
-    procedure OnLinkDataSet(const AName: string; ADataSet: TDataSet); override;
     procedure OnGetValue(const AName: string; var AValue: Variant); override;
     procedure OnInitialize; override;
     //
@@ -64,22 +63,6 @@ type
 implementation
 
 {$R *.dfm}
-
-procedure TfrCustomTaskItemView.OnLinkDataSet(const AName: string;
-  ADataSet: TDataSet);
-var
-  I: integer;
-begin
-  inherited;
-
-  for I := 0 to grLinksViewDef.ColumnCount - 1 do
-    grLinksViewDef.Columns[I].Options.Editing := false;
-  grLinksViewDefButtonOpenTask.Options.Editing := true;
-
-  for I := 0 to grUpdatesViewDef.ColumnCount - 1 do
-    grUpdatesViewDef.Columns[I].Options.Editing := false;
-  grUpdatesViewDefButtonProcess.Options.Editing := true;
-end;
 
 procedure TfrCustomTaskItemView.grLinksViewDefButtonOpenTaskPropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
@@ -146,12 +129,24 @@ end;
 
 procedure TfrCustomTaskItemView.LinkData(Task, Data, DataRec, Links,
   Updates: TDataSet);
+var
+  I: integer;
+
 begin
   LinkDataSet(MainDataSource, Task);
   LinkDataSet(DataDataSource, Data);
   LinkDataSet(DataRecDataSource, DataRec);
   LinkDataSet(LinksDataSource, Links);
   LinkDataSet(UpdatesDataSource, Updates);
+
+  for I := 0 to grLinksViewDef.ColumnCount - 1 do
+    grLinksViewDef.Columns[I].Options.Editing := false;
+  grLinksViewDefButtonOpenTask.Options.Editing := true;
+
+  for I := 0 to grUpdatesViewDef.ColumnCount - 1 do
+    grUpdatesViewDef.Columns[I].Options.Editing := false;
+  grUpdatesViewDefButtonProcess.Options.Editing := true;
+
 end;
 
 end.

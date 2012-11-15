@@ -41,7 +41,7 @@ type
     procedure CmdAddExecutor(Sender: TObject);
     procedure CmdRemoveExecutor(Sender: TObject);
     procedure CmdStageSet(Sender: TObject);
-    procedure BarCodeHandler(EventData: Variant);
+    procedure BarCodeHandler(Context: TWorkItem; EventData: Variant);
     procedure ViewActivateHandler;
     procedure ViewDeactivateHandler;
   protected
@@ -52,7 +52,7 @@ implementation
 
 { TSalTaskDeskPresenterWh }
 
-procedure TSalTaskDeskPresenterWh.BarCodeHandler(EventData: Variant);
+procedure TSalTaskDeskPresenterWh.BarCodeHandler(Context: TWorkItem; EventData: Variant);
 var
   _barcode: string;
   gid_tablename: string;
