@@ -10,3 +10,4 @@
 *.dsk
 *.tvsconfig
 *.skincfg
+/Source/Release
