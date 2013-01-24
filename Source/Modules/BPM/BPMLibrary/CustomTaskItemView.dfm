@@ -2,6 +2,8 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
   Left = 712
   Top = 442
   Caption = 'frCustomTaskItemView'
+  ExplicitWidth = 320
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
@@ -24,6 +26,10 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
       object tsMain: TcxTabSheet
         Caption = #1054#1073#1097#1080#1077
         ImageIndex = 0
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object grMain: TcxDBVerticalGrid
           Left = 0
           Top = 0

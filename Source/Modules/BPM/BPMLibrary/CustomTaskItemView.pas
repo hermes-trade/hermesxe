@@ -51,7 +51,6 @@ type
       Sender: TObject; AButtonIndex: Integer);
   private
   protected
-    procedure OnInitialize; override;
     //
     procedure LinkData(Task, Data, DataRec, Links, Updates: TDataSet);
     function TaskLinkedSelected: Variant;
@@ -103,12 +102,6 @@ procedure TfrCustomTaskItemView.grUpdatesViewDefButtonProcessPropertiesButtonCli
 begin
   if grUpdatesViewDef.Controller.SelectedRowCount > 0 then
     WorkItem.Commands[Command_ProcessTaskUpdate].Execute;
-end;
-
-procedure TfrCustomTaskItemView.OnInitialize;
-begin
-
-
 end;
 
 function TfrCustomTaskItemView.TaskLinkedSelected: Variant;

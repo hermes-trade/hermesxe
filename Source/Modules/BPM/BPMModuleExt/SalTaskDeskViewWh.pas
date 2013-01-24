@@ -67,7 +67,7 @@ type
     procedure SetTaskExecutorsDataSet(ADataSet: TDataSet);
     procedure SetExecutorsDataSet(ADataSet: TDataSet);
     //
-    procedure OnInitialize; override;
+    procedure Initialize; override;
 
   end;
 
@@ -146,7 +146,7 @@ begin
   TASK_ID.Text := AText;
 end;
 
-procedure TfrSalTaskDeskViewWh.OnInitialize;
+procedure TfrSalTaskDeskViewWh.Initialize;
 begin
   WorkItem.Commands[Command_CLOSE].AddInvoker(acClose);
   WorkItem.Commands[Command_AddExecutor].AddInvoker(acAddExecutor);
