@@ -16,8 +16,8 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
     Width = 851
     inherited pnButtons: TcxGroupBox
       TabOrder = 1
-      ExplicitWidth = 847
-      Width = 847
+      ExplicitWidth = 851
+      Width = 851
       object btAddExecutor: TcxButton
         Left = 94
         Top = 8
@@ -83,8 +83,8 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
       end
     end
     object cxGroupBox3: TcxGroupBox
-      Left = 2
-      Top = 42
+      Left = 0
+      Top = 40
       Align = alLeft
       Caption = #1050#1086#1084#1087#1083#1077#1082#1090#1086#1074#1097#1080#1082#1080
       Style.BorderStyle = ebsNone
@@ -95,18 +95,17 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
       StyleFocused.LookAndFeel.Kind = lfOffice11
       StyleHot.LookAndFeel.Kind = lfOffice11
       TabOrder = 0
-      Height = 613
+      Height = 617
       Width = 319
       object grExecutors: TcxGrid
         Left = 2
         Top = 18
         Width = 315
-        Height = 593
+        Height = 597
         Align = alClient
         TabOrder = 0
         LookAndFeel.Kind = lfOffice11
         object grExecutorsViewDef: TcxGridDBTableView
-          NavigatorButtons.ConfirmDelete = False
           OnCellDblClick = grExecutorsViewDefCellDblClick
           DataController.DataSource = ExecutorsDataSource
           DataController.Summary.DefaultGroupSummaryItems = <>
@@ -127,15 +126,15 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
       end
     end
     object cxSplitter1: TcxSplitter
-      Left = 321
-      Top = 42
+      Left = 319
+      Top = 40
       Width = 8
-      Height = 613
+      Height = 617
       Control = cxGroupBox3
     end
     object cxGroupBox1: TcxGroupBox
-      Left = 329
-      Top = 42
+      Left = 327
+      Top = 40
       Align = alClient
       PanelStyle.Active = True
       Style.BorderStyle = ebsNone
@@ -144,8 +143,8 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
       StyleFocused.LookAndFeel.Kind = lfOffice11
       StyleHot.LookAndFeel.Kind = lfOffice11
       TabOrder = 2
-      Height = 613
-      Width = 520
+      Height = 617
+      Width = 524
       object cxGroupBox6: TcxGroupBox
         Left = 2
         Top = 2
@@ -159,11 +158,11 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
         StyleHot.LookAndFeel.Kind = lfOffice11
         TabOrder = 0
         Height = 355
-        Width = 516
+        Width = 520
         object grData: TcxDBVerticalGrid
           Left = 2
           Top = 18
-          Width = 512
+          Width = 516
           Height = 335
           Align = alClient
           Font.Charset = DEFAULT_CHARSET
@@ -189,7 +188,7 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
       object cxSplitter2: TcxSplitter
         Left = 2
         Top = 357
-        Width = 516
+        Width = 520
         Height = 8
         AlignSplitter = salTop
         Control = cxGroupBox6
@@ -206,18 +205,17 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
         StyleFocused.LookAndFeel.Kind = lfOffice11
         StyleHot.LookAndFeel.Kind = lfOffice11
         TabOrder = 2
-        Height = 246
-        Width = 516
+        Height = 250
+        Width = 520
         object grTaskExecutors: TcxGrid
           Left = 2
           Top = 18
-          Width = 512
-          Height = 226
+          Width = 516
+          Height = 230
           Align = alClient
           TabOrder = 0
           LookAndFeel.Kind = lfOffice11
           object grTaskExecutorsViewDef: TcxGridDBTableView
-            NavigatorButtons.ConfirmDelete = False
             OnCellDblClick = grTaskExecutorsViewDefCellDblClick
             DataController.DataSource = TaskExecutorsDataSource
             DataController.Summary.DefaultGroupSummaryItems = <>
@@ -267,11 +265,11 @@ inherited frSalTaskDeskViewWh: TfrSalTaskDeskViewWh
     Top = 150
   end
   object TaskExecutorsDataSource: TDataSource
-    Left = 46
-    Top = 182
+    Left = 190
+    Top = 222
   end
   object TaskDataSource: TDataSource
-    Left = 46
-    Top = 216
+    Left = 70
+    Top = 312
   end
 end

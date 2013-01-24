@@ -58,8 +58,11 @@ type
       AShift: TShiftState; var AHandled: Boolean);
   private
   protected
-    procedure OnGetValue(const AName: string; var AValue: Variant); override;
     //
+    procedure SetTaskID(const AText: string);
+    function GetTaskID: string;
+    function GetExecutorID: variant;
+    function GetTaskExecutorID: variant;
     procedure SetTaskDataSet(ADataSet: TDataSet);
     procedure SetTaskExecutorsDataSet(ADataSet: TDataSet);
     procedure SetExecutorsDataSet(ADataSet: TDataSet);
@@ -76,23 +79,6 @@ implementation
 
 { TfrSalTaskDeskViewWh }
 
-procedure TfrSalTaskDeskViewWh.OnGetValue(const AName: string;
-  var AValue: Variant);
-begin
-  if AName = 'TASK_EXECUTOR_ID' then
-  begin
-    if grTaskExecutorsViewDef.Controller.SelectedRowCount > 0 then
-      AValue := grTaskExecutorsViewDef.Controller.SelectedRecords[0].
-        Values[grTaskExecutorsViewDef.GetColumnByFieldName(grTaskExecutorsViewDef.DataController.KeyFieldNames).Index];
-  end
-  else if AName = 'EXECUTOR_ID' then
-    if grExecutorsViewDef.Controller.SelectedRowCount > 0 then
-      AValue := grExecutorsViewDef.Controller.SelectedRecords[0].
-        Values[grExecutorsViewDef.GetColumnByFieldName(grExecutorsViewDef.DataController.KeyFieldNames).Index];
-
-  inherited;
-
-end;
 
 procedure TfrSalTaskDeskViewWh.TASK_IDPropertiesButtonClick(
   Sender: TObject; AButtonIndex: Integer);
@@ -101,6 +87,26 @@ begin
   WorkItem.Commands[Command_LoadTask].Execute;
 end;
 
+
+function TfrSalTaskDeskViewWh.GetExecutorID: variant;
+begin
+  if grExecutorsViewDef.Controller.SelectedRowCount > 0 then
+    Result := grExecutorsViewDef.Controller.SelectedRecords[0].
+      Values[grExecutorsViewDef.GetColumnByFieldName(grExecutorsViewDef.DataController.KeyFieldNames).Index];
+
+end;
+
+function TfrSalTaskDeskViewWh.GetTaskExecutorID: variant;
+begin
+  if grTaskExecutorsViewDef.Controller.SelectedRowCount > 0 then
+    Result := grTaskExecutorsViewDef.Controller.SelectedRecords[0].
+      Values[grTaskExecutorsViewDef.GetColumnByFieldName(grTaskExecutorsViewDef.DataController.KeyFieldNames).Index];
+end;
+
+function TfrSalTaskDeskViewWh.GetTaskID: string;
+begin
+  Result := TASK_ID.Text;
+end;
 
 procedure TfrSalTaskDeskViewWh.grExecutorsViewDefCellDblClick(
   Sender: TcxCustomGridTableView;
@@ -133,6 +139,11 @@ end;
 procedure TfrSalTaskDeskViewWh.SetTaskExecutorsDataSet(ADataSet: TDataSet);
 begin
   LinkDataSet(TaskExecutorsDataSource, ADataSet);
+end;
+
+procedure TfrSalTaskDeskViewWh.SetTaskID(const AText: string);
+begin
+  TASK_ID.Text := AText;
 end;
 
 procedure TfrSalTaskDeskViewWh.OnInitialize;

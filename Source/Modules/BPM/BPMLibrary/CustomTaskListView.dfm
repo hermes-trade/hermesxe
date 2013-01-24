@@ -4,18 +4,19 @@ inherited frCustomTaskListView: TfrCustomTaskListView
   Caption = 'frCustomTaskListView'
   ClientWidth = 1023
   ExplicitWidth = 1029
+  ExplicitHeight = 543
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
     ExplicitWidth = 1023
     Width = 1023
     inherited pnButtons: TcxGroupBox
-      ExplicitWidth = 1019
-      Width = 1019
+      ExplicitWidth = 1023
+      Width = 1023
     end
     object pnFilter: TcxGroupBox
-      Left = 2
-      Top = 42
+      Left = 0
+      Top = 40
       Align = alTop
       PanelStyle.Active = True
       Style.BorderStyle = ebsNone
@@ -25,7 +26,7 @@ inherited frCustomTaskListView: TfrCustomTaskListView
       StyleHot.LookAndFeel.Kind = lfOffice11
       TabOrder = 1
       Height = 40
-      Width = 1019
+      Width = 1023
       object cxGroupBox1: TcxGroupBox
         Left = 2
         Top = 2
@@ -53,41 +54,39 @@ inherited frCustomTaskListView: TfrCustomTaskListView
         object DBeg: TcxDateEdit
           Left = 39
           Top = 8
+          Properties.OnEditValueChanged = DBegPropertiesEditValueChanged
           TabOrder = 1
           Width = 121
         end
         object DEnd: TcxDateEdit
           Left = 165
           Top = 8
+          Properties.OnEditValueChanged = DBegPropertiesEditValueChanged
           TabOrder = 2
           Width = 121
         end
       end
     end
     object tcStates: TcxTabControl
-      Left = 2
-      Top = 82
-      Width = 1019
-      Height = 431
+      Left = 0
+      Top = 80
+      Width = 1023
+      Height = 435
       Align = alClient
       TabOrder = 2
       LookAndFeel.Kind = lfOffice11
-      ClientRectBottom = 427
+      ClientRectBottom = 431
       ClientRectLeft = 4
-      ClientRectRight = 1015
+      ClientRectRight = 1019
       ClientRectTop = 4
       object grMain: TcxGrid
         Left = 4
         Top = 4
-        Width = 1011
-        Height = 423
+        Width = 1015
+        Height = 427
         Align = alClient
         TabOrder = 0
         LookAndFeel.Kind = lfOffice11
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 1019
-        ExplicitHeight = 431
         object grMainViewDef: TcxGridDBBandedTableView
           FilterBox.Position = fpTop
           OnCellDblClick = grMainViewDefCellDblClick
@@ -122,38 +121,38 @@ inherited frCustomTaskListView: TfrCustomTaskListView
     end
   end
   object ppmCreate: TPopupMenu [1]
-    Left = 94
-    Top = 158
+    Left = 150
+    Top = 166
   end
   object ppmGrid: TPopupMenu [2]
-    Left = 124
-    Top = 203
+    Left = 116
+    Top = 267
     object N2: TMenuItem
       Caption = #1069#1082#1089#1087#1086#1088#1090' '#1074' Excel'
     end
   end
   object ppmPrint: TPopupMenu [3]
     Left = 182
-    Top = 158
+    Top = 110
   end
   object ppmActionExt: TPopupMenu [4]
-    Left = 238
-    Top = 158
+    Left = 430
+    Top = 134
   end
   object MainDataSource: TDataSource [5]
-    Left = 30
-    Top = 160
+    Left = 78
+    Top = 136
   end
   inherited ActionList: TActionList
-    Left = 20
-    Top = 186
+    Left = 52
+    Top = 218
   end
   object ppmOpen: TPopupMenu
-    Left = 126
-    Top = 158
+    Left = 222
+    Top = 246
   end
   object ppmChangeState: TPopupMenu
-    Left = 210
-    Top = 158
+    Left = 322
+    Top = 110
   end
 end

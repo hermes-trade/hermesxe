@@ -26,12 +26,17 @@ type
     procedure SetTaskDataSet(ADataSet: TDataSet);
     procedure SetTaskExecutorsDataSet(ADataSet: TDataSet);
     procedure SetExecutorsDataSet(ADataSet: TDataSet);
+    procedure SetTaskID(const AText: string);
+    function GetTaskID: string;
+    function GetExecutorID: variant;
+    function GetTaskExecutorID: variant;
   end;
 
   TSalTaskDeskPresenterWh = class(TCustomContentPresenter)
   private
     FTaskLoaded: boolean;
     FTaskID: Variant;
+    function View: ISalTaskDeskViewWh;
     function GetEVExecutors: IEntityView;
     function GetEVTaskExecutors: IEntityView;
     function GetEVTask: IEntityView;
@@ -45,6 +50,7 @@ type
     procedure ViewActivateHandler;
     procedure ViewDeactivateHandler;
   protected
+    function OnGetWorkItemState(const AName: string; var Done: boolean): Variant; override;
     procedure OnViewReady; override;
   end;
 
@@ -69,7 +75,7 @@ begin
 
   if gid_tablename = GID_BPM_TASK then
   begin
-    GetView.Value['TASK_ID'] := gid_data;
+    View.SetTaskID(IntToStr(gid_data));
     WorkItem.Commands[Command_LoadTask].Execute;
   end
   else if (gid_tablename = GID_BPM_EXECUTOR) and FTaskLoaded then
@@ -108,7 +114,7 @@ begin
   SetCommandStatus(Command_AddExecutor, false);
   SetCommandStatus(Command_RemoveExecutor, false);
 
-  vTaskID := GetView.Value['TASK_ID'];
+  vTaskID := View.GetTaskID;
   if Trim(VarToStr(vTaskID)) = '' then
   begin
     GetEVTask.Load([null]);
@@ -152,7 +158,7 @@ procedure TSalTaskDeskPresenterWh.CmdStageSet(Sender: TObject);
 begin
   App.Entities[ENT_BPM_TASK].GetOper(ENT_BPM_TASK_OPER_STAGE_SET, WorkItem).
     Execute([FTaskID, constTask_Stage_Issue]);
-  GetView.Value['TASK_ID'] := '';
+  View.SetTaskID('');
   GetEVTask.Load([null]);
   GetEVTaskExecutors.Load([null]);
   FTaskLoaded := false;
@@ -181,12 +187,22 @@ end;
 
 function TSalTaskDeskPresenterWh.GetExecutor: Variant;
 begin
-  Result := GetView.Value['EXECUTOR_ID'];
+  Result := View.GetExecutorID;
 end;
 
 function TSalTaskDeskPresenterWh.GetTaskExecutor: Variant;
 begin
-  Result := GetView.Value['TASK_EXECUTOR_ID'];
+  Result := View.GetTaskExecutorID;
+end;
+
+function TSalTaskDeskPresenterWh.OnGetWorkItemState(const AName: string;
+  var Done: boolean): Variant;
+begin
+  if SameText('TASK_ID', AName) then
+  begin
+    Result := View.GetTaskID;
+    Done := true;
+  end;
 end;
 
 procedure TSalTaskDeskPresenterWh.OnViewReady;
@@ -215,6 +231,11 @@ begin
   GetView.SetDeactivateHandler(ViewDeactivateHandler);
 
 
+end;
+
+function TSalTaskDeskPresenterWh.View: ISalTaskDeskViewWh;
+begin
+  Result := GetView as ISalTaskDeskViewWh;
 end;
 
 procedure TSalTaskDeskPresenterWh.ViewActivateHandler;

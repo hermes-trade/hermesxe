@@ -14,16 +14,25 @@ const
   Command_PrintTask = '{98E71B26-DE68-47AE-A35E-C8F6B007CFCC}';
   Command_ExecutorSet = '{5BF195D4-8B8B-4301-A912-6189AB1AB520}';
   Command_ExecutorClear = '{4446F39E-1BA8-4653-810E-7DB876D72107}';
-//  Command_OpenTask = '{73D6CFD5-E757-4453-9E64-E6ADFA7C7258}';
-//  Command_OpenTaskByID = '{1119D3A9-3CD5-421F-B782-61A21DA6BE7A}';
-//  Command_OpenTaskByDataNum = '{05216C4C-9F5D-4EAB-AC11-4D7A4E08DD01}';
+
+  COMMAND_DATERANGE_CHANGED = '{8D2EE4A0-A499-4B87-8E8F-48BC56D581B8}';
 
 type
+  TValueStatus = (vsEnabled, vsDisabled, vsUnavailable);
+
   ICustomTaskListView = interface(IContentView)
   ['{3258CF87-43D8-4150-BABC-FC093281D041}']
     procedure LinkData(AData: TDataSet);
     function Tabs: ITabs;
     function Selection: ISelection;
+    function GetDBEG: variant;
+    procedure SetDBEG(AValue: variant);
+    property DBEG: variant read GetDBEG write SetDBEG;
+    function GetDEND: variant;
+    procedure SetDEND(AValue: variant);
+    property DEND: variant read GetDEND write SetDEND;
+
+    procedure SetDateStatus(AStatus: TValueStatus);
   end;
 
   TCustomTaskListPresenter = class(TCustomContentPresenter)
@@ -39,7 +48,7 @@ type
     procedure CmdPrintTask(Sender: TObject);
     procedure CmdExecutorSet(Sender: TObject);
     procedure CmdExecutorClear(Sender: TObject);
-
+    procedure CmdDateRangeChanged(Sender: TObject);
   protected
     function OnGetWorkItemState(const AName: string; var Done: boolean): Variant; override;
     function GetSelectedIDList: Variant;
@@ -70,7 +79,6 @@ type
     procedure DoSelectionChanged;
     procedure OnSelectionChanged; virtual;
     procedure DoStateTabChanged;
-    procedure OnViewValueChanged(const AName: string); override;
 
     procedure OnAfterChangeState(OldState, NewState: Integer; ATaskIDList: Variant); virtual;
   end;
@@ -156,12 +164,12 @@ begin
     'Исключить исполнителя', '', 'Другие действия');
 
 
-  View.Value['DBEG'] := Date;
-  View.Value['DEND'] := Date;
+  View.DBEG := Date;
+  View.DEND := Date;
 
-  View.ValueStatus['DBEG'] := vsDisabled;
-  View.ValueStatus['DEND'] := vsDisabled;
+  View.SetDateStatus(vsDisabled);
 
+  WorkItem.Commands[COMMAND_DATERANGE_CHANGED].SetHandler(CmdDateRangeChanged);
 
  // View.LinkDataSet('Main', GetEVList.DataSet);
   (View as ICustomTaskListView).LinkData(GetEVList.DataSet);
@@ -177,13 +185,7 @@ end;
 
 procedure TCustomTaskListPresenter.TaskListReload;
 begin
-  GetEVList.Load([GetLaneID, GetStateID, View.Value['DBEG'], View.Value['DEND'], GetUseDateRange, GetOnlyUpdated]);
-end;
-
-procedure TCustomTaskListPresenter.OnViewValueChanged(const AName: string);
-begin
-  if SameText(AName, 'DBEG') or SameText(AName, 'DEND') then
-    TaskListReload;
+  GetEVList.Load([GetLaneID, GetStateID, View.DBEG, View.DEND, GetUseDateRange, GetOnlyUpdated]);
 end;
 
 procedure TCustomTaskListPresenter.DoSelectionChanged;
@@ -266,15 +268,9 @@ end;
 procedure TCustomTaskListPresenter.DoStateTabChanged;
 begin
   if GetUseDateRange = 1 then
-  begin
-    View.ValueStatus['DBEG'] := vsEnabled;
-    View.ValueStatus['DEND'] := vsEnabled;
-  end
+    View.SetDateStatus(vsEnabled)
   else
-  begin
-    View.ValueStatus['DBEG'] := vsDisabled;
-    View.ValueStatus['DEND'] := vsDisabled;
-  end;
+    View.SetDateStatus(vsDisabled);
 
   inherited;
 
@@ -408,6 +404,11 @@ begin
 
 end;
 
+
+procedure TCustomTaskListPresenter.CmdDateRangeChanged(Sender: TObject);
+begin
+  TaskListReload;
+end;
 
 procedure TCustomTaskListPresenter.CmdExecutorClear(Sender: TObject);
 var

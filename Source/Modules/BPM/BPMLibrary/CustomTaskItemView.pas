@@ -51,10 +51,11 @@ type
       Sender: TObject; AButtonIndex: Integer);
   private
   protected
-    procedure OnGetValue(const AName: string; var AValue: Variant); override;
     procedure OnInitialize; override;
     //
     procedure LinkData(Task, Data, DataRec, Links, Updates: TDataSet);
+    function TaskLinkedSelected: Variant;
+    function TaskUpdateSelected: Variant;
   public
 
   end;
@@ -69,23 +70,6 @@ procedure TfrCustomTaskItemView.grLinksViewDefButtonOpenTaskPropertiesButtonClic
 begin
   if grLinksViewDef.Controller.SelectedRowCount > 0 then
     WorkItem.Commands[Command_OpenTaskLinked].Execute;
-end;
-
-procedure TfrCustomTaskItemView.OnGetValue(const AName: string;
-  var AValue: Variant);
-begin
-  if AName = VAL_TASK_LINKED_SELECTED then
-  begin
-    if grLinksViewDef.Controller.SelectedRowCount > 0 then
-      AValue := grLinksViewDef.Controller.SelectedRecords[0].
-        Values[grLinksViewDef.GetColumnByFieldName(grLinksViewDef.DataController.KeyFieldNames).Index];
-  end
-  else if AName = VAL_TASK_UPDATE_SELECTED then
-    if grUpdatesViewDef.Controller.SelectedRowCount > 0 then
-      AValue := grUpdatesViewDef.Controller.SelectedRecords[0].
-        Values[grUpdatesViewDef.GetColumnByFieldName(grUpdatesViewDef.DataController.KeyFieldNames).Index];
-
-  inherited;
 end;
 
 procedure TfrCustomTaskItemView.grLinksViewDefCellDblClick(
@@ -124,6 +108,21 @@ end;
 procedure TfrCustomTaskItemView.OnInitialize;
 begin
 
+
+end;
+
+function TfrCustomTaskItemView.TaskLinkedSelected: Variant;
+begin
+  if grLinksViewDef.Controller.SelectedRowCount > 0 then
+    Result := grLinksViewDef.Controller.SelectedRecords[0].
+      Values[grLinksViewDef.GetColumnByFieldName(grLinksViewDef.DataController.KeyFieldNames).Index];
+end;
+
+function TfrCustomTaskItemView.TaskUpdateSelected: Variant;
+begin
+  if grUpdatesViewDef.Controller.SelectedRowCount > 0 then
+    Result := grUpdatesViewDef.Controller.SelectedRecords[0].
+      Values[grUpdatesViewDef.GetColumnByFieldName(grUpdatesViewDef.DataController.KeyFieldNames).Index];
 
 end;
 

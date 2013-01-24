@@ -50,11 +50,13 @@ type
   ['{13F8E6AF-CB7E-463D-A266-FD6670F826B6}']
     procedure SetViewMode(AValue: TViewMode);
     procedure SetDataSets(AHead, ARec, AGds2: TDataSet);
+    procedure SetFrwd(const AName: string);
   end;
 
   TSalRetDeskPresenter = class(TCustomContentPresenter)
   private
     FDocLoaded: boolean;
+    function View: ISalRetDeskView;
     function GetEVHead: IEntityView;
     function GetEVRec: IEntityView;
     function GetEVGds2: IEntityView;
@@ -111,7 +113,7 @@ begin
       GetEVHead.DataSet.Post;
       GetEVRec.Load([GetEVHead.DataSet['ID'], GetEVHead.DataSet['KIND_ID'], GetEVHead.DataSet['SAL_ID']]);
 
-      GetView.Value['FORWARDER_NAME'] := GetEVHead.DataSet['FORWARDER_NAME'];
+      View.SetFrwd(GetEVHead.DataSet['FORWARDER_NAME']);
       if GetEVHead.DataSet['STATE_ID'] = SALRET_STATE_POSTED then
       begin
         (GetView as ISalRetDeskView).SetViewMode(vmReview);
@@ -180,7 +182,7 @@ procedure TSalRetDeskPresenter.LoadEmptyDoc;
 begin
   GetEVHead.Load([null, null]);
   GetEVRec.Load([null, null]);
-  GetView.Value['FORWARDER_NAME'] := '';
+  View.SetFrwd('');
 end;
 
 procedure TSalRetDeskPresenter.OnViewReady;
@@ -221,6 +223,11 @@ begin
 
 end;
 
+function TSalRetDeskPresenter.View: ISalRetDeskView;
+begin
+  Result := GetView as ISalRetDeskView;
+end;
+
 procedure TSalRetDeskPresenter.CmdSelectForwarder(Sender: TObject);
 var
   forwarderID: Variant;
@@ -238,8 +245,8 @@ begin
       GetEVHead.DataSet.Edit;
       GetEVHead.DataSet['FORWARDER_ID'] := forwarderID;
       GetEVHead.DataSet.Post;
-      GetView.Value['FORWARDER_NAME'] :=
-        App.Entities[ENT_BDS_STAFF].GetView('Item', WorkItem).Load([forwarderID])['NAME'];
+      View.SetFrwd(
+        App.Entities[ENT_BDS_STAFF].GetView('Item', WorkItem).Load([forwarderID])['NAME']);
     end;
   end;
   GetEVHead.Save;
@@ -310,7 +317,7 @@ begin
 
   GetEVHead.DataSet.Edit;
   GetEVHead.DataSet['FORWARDER_ID'] := null;
-  GetView.Value['FORWARDER_NAME'] := '';
+  View.SetFrwd('');
   GetEVHead.DataSet.Post;
   GetEVHead.Save;
 end;

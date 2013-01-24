@@ -4,7 +4,7 @@ inherited frSalRetDeskView: TfrSalRetDeskView
   Caption = 'frSalRetDeskView'
   ClientWidth = 1049
   ExplicitWidth = 1055
-  ExplicitHeight = 551
+  ExplicitHeight = 543
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
@@ -12,12 +12,12 @@ inherited frSalRetDeskView: TfrSalRetDeskView
     Width = 1049
     inherited pnButtons: TcxGroupBox
       TabOrder = 2
-      ExplicitWidth = 1045
-      Width = 1045
+      ExplicitWidth = 1049
+      Width = 1049
     end
     object cxGroupBox1: TcxGroupBox
-      Left = 2
-      Top = 42
+      Left = 0
+      Top = 40
       TabStop = True
       Align = alTop
       PanelStyle.Active = True
@@ -28,7 +28,7 @@ inherited frSalRetDeskView: TfrSalRetDeskView
       StyleHot.LookAndFeel.Kind = lfOffice11
       TabOrder = 0
       Height = 40
-      Width = 1045
+      Width = 1049
       object DOC_NUM: TcxButtonEdit
         Left = 198
         Top = 10
@@ -104,9 +104,9 @@ inherited frSalRetDeskView: TfrSalRetDeskView
       end
     end
     object grData: TcxDBVerticalGrid
-      Left = 2
-      Top = 82
-      Width = 1045
+      Left = 0
+      Top = 80
+      Width = 1049
       Height = 261
       Align = alTop
       Font.Charset = DEFAULT_CHARSET
@@ -129,24 +129,23 @@ inherited frSalRetDeskView: TfrSalRetDeskView
       Version = 1
     end
     object cxSplitter1: TcxSplitter
-      Left = 2
-      Top = 343
-      Width = 1045
+      Left = 0
+      Top = 341
+      Width = 1049
       Height = 8
       AlignSplitter = salTop
       Control = grData
     end
     object grDataRec: TcxGrid
-      Left = 2
-      Top = 351
-      Width = 1045
-      Height = 162
+      Left = 0
+      Top = 349
+      Width = 1049
+      Height = 166
       Align = alClient
       TabOrder = 3
       LevelTabs.Style = 8
       LookAndFeel.Kind = lfOffice11
       object grDataRecView: TcxGridDBBandedTableView
-        NavigatorButtons.ConfirmDelete = False
         OnCustomDrawCell = grDataRecViewCustomDrawCell
         DataController.DataSource = RecDataSource
         DataController.Options = [dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding, dcoImmediatePost]

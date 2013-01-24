@@ -3,7 +3,7 @@ unit AcntJournalPresenter;
 interface
 uses  ShellIntf, EntityServiceIntf, CustomContentPresenter,
   sysutils, CustomPresenter, db, variants, UIClasses, CoreClasses,
-  CommonUtils, Controls, UIStr;
+  Controls, UIStr;
 
 const
   VIEW_ACNT_JRN = 'views.BDS_TRANS.JournalAcnt';
@@ -66,6 +66,24 @@ type
   end;
 
 implementation
+
+function FirstDayOfMonth(ADate: TDateTime): TDateTime;
+var
+  Year, Month, Day: Word;
+begin
+  DecodeDate(ADate, Year, Month, Day);
+  Result := EncodeDate(Year, Month, 1);
+end;
+
+function LastDayOfMonth(ADate: TDateTime): TDateTime;
+var
+  Year, Month, Day: Word;
+begin
+  DecodeDate(ADate, Year, Month, Day);
+  if Month < 12 then inc(Month)
+  else begin Month := 1; inc(Year) end;
+  Result := EncodeDate(Year, Month, 1) - 1;
+end;
 
 { TAcntJournalPresenter }
 

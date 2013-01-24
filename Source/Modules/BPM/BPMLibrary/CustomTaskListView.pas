@@ -28,10 +28,16 @@ type
     procedure grMainViewDefCellDblClick(Sender: TcxCustomGridTableView;
       ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
       AShift: TShiftState; var AHandled: Boolean);
+    procedure DBegPropertiesEditValueChanged(Sender: TObject);
   protected
     procedure LinkData(AData: TDataSet);
     function Tabs: ITabs;
     function Selection: ISelection;
+    function GetDBEG: variant;
+    procedure SetDBEG(AValue: variant);
+    function GetDEND: variant;
+    procedure SetDEND(AValue: variant);
+    procedure SetDateStatus(AStatus: TValueStatus);
   end;
 
 
@@ -52,9 +58,40 @@ begin
   Result := GetChildInterface(grMainViewDef.Name) as ISelection;
 end;
 
+procedure TfrCustomTaskListView.SetDateStatus(AStatus: TValueStatus);
+begin
+  DBEG.Enabled := AStatus <> vsDisabled;
+  DEND.Enabled := AStatus <> vsDisabled;
+end;
+
+procedure TfrCustomTaskListView.SetDBEG(AValue: variant);
+begin
+  DBeg.Date := AValue;
+end;
+
+procedure TfrCustomTaskListView.SetDEND(AValue: variant);
+begin
+  DEnd.Date := AValue;
+end;
+
 function TfrCustomTaskListView.Tabs: ITabs;
 begin
   Result := GetChildInterface(tcStates.Name) as ITabs;
+end;
+
+procedure TfrCustomTaskListView.DBegPropertiesEditValueChanged(Sender: TObject);
+begin
+  WorkItem.Commands[COMMAND_DATERANGE_CHANGED].Execute;
+end;
+
+function TfrCustomTaskListView.GetDBEG: variant;
+begin
+  Result := DBEG.Date;
+end;
+
+function TfrCustomTaskListView.GetDEND: variant;
+begin
+  Result := DEND.Date;
 end;
 
 procedure TfrCustomTaskListView.grMainViewDefCellDblClick(

@@ -2,7 +2,7 @@ unit BDSController;
 
 interface
 uses classes, CoreClasses, ShellIntf, Variants, UIClasses,
-  db, CommonUtils, sysutils, controls,
+  db, sysutils, controls,
   AcntJournalPresenter, AcntJournalView,
   SalRetDeskPresenter, SalRetDeskView;
 

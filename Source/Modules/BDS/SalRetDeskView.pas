@@ -58,6 +58,7 @@ type
   protected
     procedure SetViewMode(AValue: TViewMode);
     procedure SetDataSets(AHead, ARec, AGds2: TDataSet);
+    procedure SetFrwd(const AName: string);
   end;
 
 
@@ -134,6 +135,11 @@ begin
   LinkDataSet(HeadDataSource, AHead);
   LinkDataSet(RecDataSource, ARec);
   LinkDataSet(Gds2DataSource, AGds2);
+end;
+
+procedure TfrSalRetDeskView.SetFrwd(const AName: string);
+begin
+  FORWARDER_NAME.Text := AName;
 end;
 
 end.

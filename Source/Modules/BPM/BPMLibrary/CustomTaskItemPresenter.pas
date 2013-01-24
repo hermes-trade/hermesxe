@@ -17,10 +17,13 @@ type
   ICustomTaskItemView = interface(IContentView)
   ['{7CB3BE2F-DEA9-4483-99B3-AFA8F6649B52}']
     procedure LinkData(Task, Data, DataRec, Links, Updates: TDataSet);
+    function TaskLinkedSelected: Variant;
+    function TaskUpdateSelected: Variant;
   end;
 
   TCustomTaskItemPresenter = class(TCustomContentPresenter)
   private
+    function View: ICustomTaskItemView;
     procedure CmdTaskLinkedOpen(Sender: TObject);
     procedure CmdTaskUpdateProcess(Sender: TObject);
   protected
@@ -52,7 +55,7 @@ procedure TCustomTaskItemPresenter.CmdTaskLinkedOpen(Sender: TObject);
 var
   _taskID: Variant;
 begin
-  _taskID := GetView.Value[VAL_TASK_LINKED_SELECTED];
+  _taskID := View.TaskLinkedSelected;
   if not VarIsEmpty(_taskID) then
     with WorkItem.Activities[ACT_BPM_TASK_ITEM_OPEN] do
     begin
@@ -65,7 +68,7 @@ procedure TCustomTaskItemPresenter.CmdTaskUpdateProcess(Sender: TObject);
 var
   _taskID: Variant;
 begin
-  _taskID := GetView.Value[VAL_TASK_UPDATE_SELECTED];
+  _taskID := View.TaskUpdateSelected;
   if not VarIsEmpty(_taskID) then
   begin
     App.Entities[ENT_BPM_TASK].
@@ -97,6 +100,11 @@ begin
   WorkItem.Commands[Command_ProcessTaskUpdate].SetHandler(CmdTaskUpdateProcess);
 
   inherited;
+end;
+
+function TCustomTaskItemPresenter.View: ICustomTaskItemView;
+begin
+  Result := GetView as ICustomTaskItemView;
 end;
 
 function TCustomTaskItemPresenter.GetEntityDataRecViewName: string;
