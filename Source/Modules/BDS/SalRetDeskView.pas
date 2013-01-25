@@ -59,6 +59,10 @@ type
     procedure SetViewMode(AValue: TViewMode);
     procedure SetDataSets(AHead, ARec, AGds2: TDataSet);
     procedure SetFrwd(const AName: string);
+    function GetDOCNUM: string;
+    procedure SetDOCNUM(const AValue: string);
+    function GetDOCKIND: integer;
+    procedure SetDOCKIND(AValue: integer);
   end;
 
 
@@ -86,6 +90,16 @@ begin
   end;
 end;
 
+
+function TfrSalRetDeskView.GetDOCKIND: integer;
+begin
+  Result := DOC_KIND.ItemIndex;
+end;
+
+function TfrSalRetDeskView.GetDOCNUM: string;
+begin
+  Result := DOC_NUM.Text;
+end;
 
 procedure TfrSalRetDeskView.SetViewMode(AValue: TViewMode);
 var
@@ -135,6 +149,16 @@ begin
   LinkDataSet(HeadDataSource, AHead);
   LinkDataSet(RecDataSource, ARec);
   LinkDataSet(Gds2DataSource, AGds2);
+end;
+
+procedure TfrSalRetDeskView.SetDOCKIND(AValue: integer);
+begin
+  DOC_KIND.ItemIndex := AValue;
+end;
+
+procedure TfrSalRetDeskView.SetDOCNUM(const AValue: string);
+begin
+  DOC_NUM.Text := AValue;
 end;
 
 procedure TfrSalRetDeskView.SetFrwd(const AName: string);

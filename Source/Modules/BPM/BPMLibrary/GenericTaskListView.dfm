@@ -4,25 +4,35 @@ inherited frGenericTaskListView: TfrGenericTaskListView
   Caption = 'frGenericTaskListView'
   ClientHeight = 560
   ClientWidth = 886
+  ExplicitWidth = 892
+  ExplicitHeight = 588
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
+    ExplicitWidth = 886
+    ExplicitHeight = 560
     Height = 560
     Width = 886
     inherited pnButtons: TcxGroupBox
-      Width = 882
+      ExplicitWidth = 886
+      Width = 886
     end
     inherited pnFilter: TcxGroupBox
-      Width = 882
+      ExplicitWidth = 886
+      Width = 886
     end
     inherited tcStates: TcxTabControl
-      Width = 882
-      Height = 476
+      Width = 886
+      Height = 480
+      ExplicitWidth = 886
+      ExplicitHeight = 480
       ClientRectBottom = 476
       ClientRectRight = 882
       inherited grMain: TcxGrid
-        Width = 882
-        Height = 476
+        Width = 878
+        Height = 472
+        ExplicitWidth = 878
+        ExplicitHeight = 472
         inherited grMainViewDef: TcxGridDBBandedTableView
           OnCustomDrawCell = grMainViewDefCustomDrawCell
           OptionsView.FixedBandSeparatorWidth = 0

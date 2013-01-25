@@ -11,7 +11,7 @@ uses
   cxGridDBBandedTableView, cxGrid, cxPC, StdCtrls, cxButtons, cxContainer,
   cxGroupBox, CustomView, cxTextEdit, cxMaskEdit, cxDropDownEdit,
   cxCalendar, cxLabel,  BPMConst, cxVGrid,
-  cxInplaceContainer, cxCheckBox, cxLookAndFeels;
+  cxInplaceContainer, cxCheckBox, cxLookAndFeels, cxPCdxBarPopupMenu;
 
 
 type

@@ -171,7 +171,7 @@ begin
 
   WorkItem.Commands[COMMAND_DATERANGE_CHANGED].SetHandler(CmdDateRangeChanged);
 
- // View.LinkDataSet('Main', GetEVList.DataSet);
+  TaskListReload;
   (View as ICustomTaskListView).LinkData(GetEVList.DataSet);
   inherited;
 

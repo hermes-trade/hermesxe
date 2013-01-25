@@ -51,6 +51,12 @@ type
     procedure SetViewMode(AValue: TViewMode);
     procedure SetDataSets(AHead, ARec, AGds2: TDataSet);
     procedure SetFrwd(const AName: string);
+    function GetDOCNUM: string;
+    procedure SetDOCNUM(const AValue: string);
+    property DOCNUM: string read GetDOCNUM write SetDOCNUM;
+    function GetDOCKIND: integer;
+    procedure SetDOCKIND(AValue: integer);
+    property DOCKIND: integer read GetDOCKIND write SetDOCKIND;
   end;
 
   TSalRetDeskPresenter = class(TCustomContentPresenter)
@@ -100,7 +106,7 @@ begin
   SetCommandStatus(Command_PostDoc, false);
   SetCommandStatus(Command_RollbackDoc, false);
   FDocLoaded := false;
-
+  WorkItem.State[VIEW_VALUE_DOC_NUM] := View.DOCNUM;
   docNum := WorkItem.State[VIEW_VALUE_DOC_NUM];
   if not (Trim(VarToStr(docNum)) = '') then
   begin
@@ -113,7 +119,7 @@ begin
       GetEVHead.DataSet.Post;
       GetEVRec.Load([GetEVHead.DataSet['ID'], GetEVHead.DataSet['KIND_ID'], GetEVHead.DataSet['SAL_ID']]);
 
-      View.SetFrwd(GetEVHead.DataSet['FORWARDER_NAME']);
+      View.SetFrwd(VarToStr(GetEVHead.DataSet['FORWARDER_NAME']));
       if GetEVHead.DataSet['STATE_ID'] = SALRET_STATE_POSTED then
       begin
         (GetView as ISalRetDeskView).SetViewMode(vmReview);
@@ -150,6 +156,7 @@ begin
   SetCommandStatus(Command_RollbackDoc, false);
   LoadEmptyDoc;
   WorkItem.State[VIEW_VALUE_DOC_NUM] := '';
+  View.DOCNUM := '';
   FDocLoaded := false;
 
 end;
@@ -190,7 +197,7 @@ begin
   ViewTitle := VIEW_SALRET_DESK_CAPTION;
   FDocLoaded := false;
   WorkItem.State[VIEW_VALUE_DOC_KIND] := 0;
-
+  View.DOCKIND := 0;
   LoadEmptyDoc;
 
   (GetView as ISalRetDeskView).SetDataSets(GetEVHead.DataSet, GetEVRec.DataSet, GetEVGds2.DataSet);
@@ -245,8 +252,8 @@ begin
       GetEVHead.DataSet.Edit;
       GetEVHead.DataSet['FORWARDER_ID'] := forwarderID;
       GetEVHead.DataSet.Post;
-      View.SetFrwd(
-        App.Entities[ENT_BDS_STAFF].GetView('Item', WorkItem).Load([forwarderID])['NAME']);
+      View.SetFrwd(VarToStr(
+        App.Entities[ENT_BDS_STAFF].GetView('Item', WorkItem).Load([forwarderID])['NAME']));
     end;
   end;
   GetEVHead.Save;
@@ -254,6 +261,7 @@ end;
 
 function TSalRetDeskPresenter.GetDocKind: integer;
 begin
+  WorkItem.State[VIEW_VALUE_DOC_KIND] := View.DOCKIND;
   case WorkItem.State[VIEW_VALUE_DOC_KIND] of
     0: Result := DOC_KIND_RN;
     1: Result := DOC_KIND_REQ;
@@ -274,6 +282,7 @@ begin
   SetCommandStatus(Command_RollbackDoc, false);
   LoadEmptyDoc;
   WorkItem.State[VIEW_VALUE_DOC_NUM] := '';
+  View.DOCNUM := '';
   FDocLoaded := false;
 
 end;
