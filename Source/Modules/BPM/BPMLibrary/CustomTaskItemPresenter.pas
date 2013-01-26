@@ -2,7 +2,7 @@ unit CustomTaskItemPresenter;
 
 interface
 
-uses classes, CoreClasses, CustomContentPresenter, ShellIntf, UIClasses,
+uses classes, CoreClasses, CustomPresenter, ShellIntf, UIClasses,
   Variants, BPMConst, EntityServiceIntf, db, UIStr;
 
 const
@@ -14,14 +14,14 @@ const
   Command_ProcessTaskUpdate = '{19BE8A84-624C-4A26-A551-7CA9E7EE8501}';
 
 type
-  ICustomTaskItemView = interface(IContentView)
+  ICustomTaskItemView = interface(ICustomView)
   ['{7CB3BE2F-DEA9-4483-99B3-AFA8F6649B52}']
     procedure LinkData(Task, Data, DataRec, Links, Updates: TDataSet);
     function TaskLinkedSelected: Variant;
     function TaskUpdateSelected: Variant;
   end;
 
-  TCustomTaskItemPresenter = class(TCustomContentPresenter)
+  TCustomTaskItemPresenter = class(TCustomPresenter)
   private
     function View: ICustomTaskItemView;
     procedure CmdTaskLinkedOpen(Sender: TObject);
@@ -92,7 +92,7 @@ begin
     GetEVLinks.DataSet, GetEVUpdates.DataSet);
 
   WorkItem.Commands[COMMAND_CLOSE].SetHandler(CmdClose);
-  (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE,
+   GetView.CommandBar.AddCommand(COMMAND_CLOSE,
     GetLocaleString(@COMMAND_CLOSE_CAPTION), COMMAND_CLOSE_SHORTCUT);
 
 

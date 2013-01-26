@@ -13,15 +13,16 @@ inherited frCustomTaskItemView: TfrCustomTaskItemView
     object pcMain: TcxPageControl
       Left = 0
       Top = 40
-      Width = 765
+      Width = 670
       Height = 475
       Align = alClient
       TabOrder = 0
       Properties.ActivePage = tsMain
       LookAndFeel.Kind = lfOffice11
+      ExplicitWidth = 765
       ClientRectBottom = 471
       ClientRectLeft = 4
-      ClientRectRight = 761
+      ClientRectRight = 666
       ClientRectTop = 24
       object tsMain: TcxTabSheet
         Caption = #1054#1073#1097#1080#1077

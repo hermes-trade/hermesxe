@@ -10,11 +10,11 @@ uses
   cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridBandedTableView, cxGridDBBandedTableView, cxGrid,
   cxPC, StdCtrls, cxButtons, cxGroupBox, AcntJournalPresenter, cxVGrid,
-  cxDBVGrid, cxInplaceContainer, cxSplitter, CustomContentView, UIClasses,
-  cxGridDBTableView;
+  cxDBVGrid, cxInplaceContainer, cxSplitter, CustomView, UIClasses,
+  cxGridDBTableView, cxPCdxBarPopupMenu;
 
 type
-  TfrAcntJournalView = class(TfrCustomContentView, IAcntJournalView)
+  TfrAcntJournalView = class(TfrCustomView, IAcntJournalView)
     cxStyleRepository1: TcxStyleRepository;
     cxStyle1: TcxStyle;
     BSDataSource: TDataSource;

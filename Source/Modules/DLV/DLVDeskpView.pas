@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, CustomContentView, cxGraphics, cxControls, cxLookAndFeels,
+  Dialogs, CustomView, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, ActnList, cxGroupBox,
   DLVDeskpPresenter, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
   DB, cxDBData, cxSplitter, cxGridLevel, cxClasses, cxGridCustomView,
@@ -13,7 +13,7 @@ uses
   cxCalendar, cxPCdxBarPopupMenu, cxPC, UIClasses;
 
 type
-  TfrDLVDeskpView = class(TfrCustomContentView, IDLVTripDeskView)
+  TfrDLVDeskpView = class(TfrCustomView, IDLVTripDeskView)
     cxSplitter1: TcxSplitter;
     dsTrips: TDataSource;
     cxGroupBox1: TcxGroupBox;

@@ -3,22 +3,26 @@ inherited frAcntJournalView: TfrAcntJournalView
   Top = 289
   Caption = 'frAcntJournalView'
   ExplicitWidth = 320
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox
     object pcTotal: TcxPageControl
-      Left = 2
-      Top = 370
-      Width = 761
+      Left = 0
+      Top = 372
+      Width = 670
       Height = 143
-      ActivePage = cxTabSheet2
       Align = alBottom
-      LookAndFeel.Kind = lfOffice11
       TabOrder = 2
-      TabPosition = tpBottom
+      Properties.ActivePage = cxTabSheet2
+      Properties.TabPosition = tpBottom
+      LookAndFeel.Kind = lfOffice11
+      ExplicitLeft = 2
+      ExplicitTop = 370
+      ExplicitWidth = 761
       ClientRectBottom = 119
       ClientRectLeft = 4
-      ClientRectRight = 757
+      ClientRectRight = 666
       ClientRectTop = 4
       object cxTabSheet1: TcxTabSheet
         Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1089#1095#1077#1090#1072
@@ -109,18 +113,20 @@ inherited frAcntJournalView: TfrAcntJournalView
       end
     end
     object cxSplitter1: TcxSplitter
-      Left = 2
-      Top = 362
-      Width = 761
+      Left = 0
+      Top = 364
+      Width = 670
       Height = 8
       HotZoneClassName = 'TcxXPTaskBarStyle'
       AlignSplitter = salBottom
       Control = pcTotal
+      ExplicitLeft = 2
+      ExplicitTop = 362
       ExplicitWidth = 8
     end
     object pnInfo: TcxGroupBox
-      Left = 2
-      Top = 42
+      Left = 0
+      Top = 40
       Align = alTop
       PanelStyle.Active = True
       PanelStyle.CaptionIndent = 5
@@ -144,19 +150,25 @@ inherited frAcntJournalView: TfrAcntJournalView
       StyleHot.LookAndFeel.Kind = lfOffice11
       TabOrder = 3
       Visible = False
+      ExplicitLeft = 2
+      ExplicitTop = 42
+      ExplicitWidth = 765
       Height = 30
-      Width = 761
+      Width = 670
     end
     object grList: TcxGrid
-      Left = 2
-      Top = 72
-      Width = 761
-      Height = 290
+      Left = 0
+      Top = 70
+      Width = 670
+      Height = 294
       Align = alClient
       TabOrder = 4
       LookAndFeel.Kind = lfOffice11
+      ExplicitLeft = 2
+      ExplicitTop = 72
+      ExplicitWidth = 761
+      ExplicitHeight = 290
       object grJrnView: TcxGridDBTableView
-        NavigatorButtons.ConfirmDelete = False
         FilterBox.Position = fpTop
         OnCellDblClick = grJrnViewCellDblClick
         DataController.DataSource = JrnDataSource

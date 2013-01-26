@@ -4,7 +4,7 @@ inherited frCustomTaskListView: TfrCustomTaskListView
   Caption = 'frCustomTaskListView'
   ClientWidth = 1023
   ExplicitWidth = 1029
-  ExplicitHeight = 543
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
   inherited ViewControl: TcxGroupBox

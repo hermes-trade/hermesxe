@@ -1,7 +1,7 @@
 unit DLVDeskpPresenter;
 
 interface
-uses CustomContentPresenter, UIClasses, coreClasses, UIStr, EntityServiceIntf,
+uses CustomPresenter, UIClasses, coreClasses, UIStr, EntityServiceIntf,
   db, sysutils, ShellIntf, variants, strutils;
 
 const
@@ -26,7 +26,7 @@ const
 
   ENT = 'DLV_DESKP';
 type
-  IDLVTripDeskView = interface(IContentView)
+  IDLVTripDeskView = interface(ICustomView)
   ['{4BB31718-0C03-4E54-B1AF-E4A53AE9E62A}']
     procedure SetDate(AValue: TDateTime);
     function GetTasksKind: integer;
@@ -36,7 +36,7 @@ type
     procedure LinkData(Trips, Tasks, TripTasks: TDataSet);
   end;
 
-  TDLVDeskpPresenter = class(TCustomContentPresenter)
+  TDLVDeskpPresenter = class(TCustomPresenter)
   private
     function GetEVTrips: IEntityView;
     function GetEVTasks: IEntityView;

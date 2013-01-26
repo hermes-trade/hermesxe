@@ -13,12 +13,12 @@ uses
   cxTextEdit, cxMaskEdit, cxButtonEdit, cxDropDownEdit, cxLookAndFeels,
   dxSkinsCore, dxSkinsDefaultPainters, dxSkinscxPCPainter,
   cxGridBandedTableView, cxGridDBBandedTableView, cxDBLookupComboBox,
-  SalRetDeskPresenter, CustomContentView, UIClasses;
+  SalRetDeskPresenter, UIClasses;
 
 
 
 type
-  TfrSalRetDeskView = class(TfrCustomContentView, ISalRetDeskView)
+  TfrSalRetDeskView = class(TfrCustomView, ISalRetDeskView)
     HeadDataSource: TDataSource;
     RecDataSource: TDataSource;
     cxGroupBox1: TcxGroupBox;

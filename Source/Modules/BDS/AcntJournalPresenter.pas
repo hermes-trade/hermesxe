@@ -1,7 +1,7 @@
 unit AcntJournalPresenter;
 
 interface
-uses  ShellIntf, EntityServiceIntf, CustomContentPresenter,
+uses  ShellIntf, EntityServiceIntf,
   sysutils, CustomPresenter, db, variants, UIClasses, CoreClasses,
   Controls, UIStr;
 
@@ -29,7 +29,7 @@ const
 type
 
 
-  IAcntJournalView = interface(IContentView)
+  IAcntJournalView = interface(ICustomView)
   ['{1054F83F-3189-4CA3-B9CE-EDDBBACED665}']
     function GetCorrAcnt: Variant;
     procedure SetBSDateRangeInfo(Date1, Date2: TDateTime);
@@ -39,7 +39,7 @@ type
     procedure SetJournalDataSet(ADataSet: TDataSet);
   end;
 
-  TAcntJournalPresenter = class(TCustomContentPresenter)
+  TAcntJournalPresenter = class(TCustomPresenter)
   type
     TAcntJrnActivityParams = record
     const

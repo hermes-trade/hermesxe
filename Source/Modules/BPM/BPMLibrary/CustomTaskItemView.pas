@@ -11,10 +11,10 @@ uses
   cxClasses, cxGridCustomView, cxGridCustomTableView, cxGridTableView,
   cxGridBandedTableView, cxGridDBBandedTableView, cxGrid, cxButtonEdit,
   cxSplitter, cxGridDBTableView, BPMConst, cxLookAndFeels, CustomTaskItemPresenter,
-  CustomContentView, cxPCdxBarPopupMenu;
+  cxPCdxBarPopupMenu, CustomView;
 
 type
-  TfrCustomTaskItemView = class(TfrCustomContentView, ICustomTaskItemView)
+  TfrCustomTaskItemView = class(TfrCustomView, ICustomTaskItemView)
     DataDataSource: TDataSource;
     LinksDataSource: TDataSource;
     DataRecDataSource: TDataSource;

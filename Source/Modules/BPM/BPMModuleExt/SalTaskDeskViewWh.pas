@@ -11,13 +11,13 @@ uses
   cxGridTableView, cxGridBandedTableView, cxGridDBBandedTableView, cxGrid,
   cxSplitter, Menus, StdCtrls, cxButtons, cxGridDBTableView,
   cxInplaceContainer, cxVGrid, cxDBVGrid, ExtCtrls, cxTextEdit, cxMaskEdit,
-  cxButtonEdit, UIClasses, cxLookAndFeels, CustomContentView, cxLabel,
+  cxButtonEdit, UIClasses, cxLookAndFeels, cxLabel,
   SalTaskDeskPresenterWh;
 
 
 
 type
-  TfrSalTaskDeskViewWh = class(TfrCustomContentView, ISalTaskDeskViewWh)
+  TfrSalTaskDeskViewWh = class(TfrCustomView, ISalTaskDeskViewWh)
     acAddExecutor: TAction;
     acRemoveExecutor: TAction;
     acAddTask: TAction;

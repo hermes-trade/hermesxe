@@ -2,7 +2,7 @@ unit SalTaskDeskPresenterWh;
 
 interface
 uses classes, sysutils, CoreClasses, CustomTaskItemPresenter, ShellIntf, UIClasses,
-  Variants, BPMConst, BPMConstExt, EntityServiceIntf, CustomContentPresenter,
+  Variants, BPMConst, BPMConstExt, EntityServiceIntf, CustomPresenter,
   db;
 
 const
@@ -32,7 +32,7 @@ type
     function GetTaskExecutorID: variant;
   end;
 
-  TSalTaskDeskPresenterWh = class(TCustomContentPresenter)
+  TSalTaskDeskPresenterWh = class(TCustomPresenter)
   private
     FTaskLoaded: boolean;
     FTaskID: Variant;

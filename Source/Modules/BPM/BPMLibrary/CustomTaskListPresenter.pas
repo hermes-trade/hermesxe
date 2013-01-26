@@ -1,7 +1,7 @@
 unit CustomTaskListPresenter;
 
 interface
-uses CustomContentPresenter, classes, CoreClasses, ShellIntf, SysUtils, db,
+uses CustomPresenter, classes, CoreClasses, ShellIntf, SysUtils, db,
   UIClasses, Variants, EntityServiceIntf, BPMConst,
   Controls, CustomTaskItemPresenter, UIStr;
 
@@ -20,7 +20,7 @@ const
 type
   TValueStatus = (vsEnabled, vsDisabled, vsUnavailable);
 
-  ICustomTaskListView = interface(IContentView)
+  ICustomTaskListView = interface(ICustomView)
   ['{3258CF87-43D8-4150-BABC-FC093281D041}']
     procedure LinkData(AData: TDataSet);
     function Tabs: ITabs;
@@ -35,7 +35,7 @@ type
     procedure SetDateStatus(AStatus: TValueStatus);
   end;
 
-  TCustomTaskListPresenter = class(TCustomContentPresenter)
+  TCustomTaskListPresenter = class(TCustomPresenter)
   private
     FLaneCode: string;
     FAutoPrintTask: boolean;
@@ -124,43 +124,43 @@ begin
   View.Tabs.Active := 1;
 
   WorkItem.Commands[COMMAND_CLOSE].SetHandler(CmdClose);
-  (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE,
+   GetView.CommandBar.AddCommand(COMMAND_CLOSE,
     GetLocaleString(@COMMAND_CLOSE_CAPTION), COMMAND_CLOSE_SHORTCUT);
 
   WorkItem.Commands[COMMAND_RELOAD].SetHandler(CmdReload);
-  (GetView as IContentView).CommandBar.AddCommand(COMMAND_RELOAD,
+   GetView.CommandBar.AddCommand(COMMAND_RELOAD,
     GetLocaleString(@COMMAND_RELOAD_CAPTION), COMMAND_RELOAD_SHORTCUT);
 
   WorkItem.Commands[COMMAND_OPEN].SetHandler(CmdOpenTask);
-  (GetView as IContentView).CommandBar.AddCommand(COMMAND_OPEN,
+   GetView.CommandBar.AddCommand(COMMAND_OPEN,
     GetLocaleString(@COMMAND_OPEN_CAPTION), COMMAND_OPEN_SHORTCUT);
 
   WorkItem.Commands[Command_ChangeState_Auto].SetHandler(CmdChangeState);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Auto,
+   GetView.CommandBar.AddCommand(Command_ChangeState_Auto,
     'Сменить состояние (авто)', '', 'Сменить состояние', true);
 
   WorkItem.Commands[Command_ChangeState_Started].SetHandler(CmdChangeState);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Started,
+   GetView.CommandBar.AddCommand(Command_ChangeState_Started,
     'Сменить состояние (выполнение)', '', 'Сменить состояние');
 
   WorkItem.Commands[Command_ChangeState_Suspended].SetHandler(CmdChangeState);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Suspended,
+   GetView.CommandBar.AddCommand(Command_ChangeState_Suspended,
     'Сменить состояние (отложить)', '', 'Сменить состояние');
 
   WorkItem.Commands[Command_ChangeState_Finished].SetHandler(CmdChangeState);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ChangeState_Finished,
+   GetView.CommandBar.AddCommand(Command_ChangeState_Finished,
     'Сменить состояние (завершить)', '', 'Сменить состояние');
 
   WorkItem.Commands[Command_PrintTask].SetHandler(CmdPrintTask);
-  (GetView as IContentView).CommandBar.AddCommand(Command_PrintTask,
+   GetView.CommandBar.AddCommand(Command_PrintTask,
     'Печать задачи', '', 'Печать', true);
 
   WorkItem.Commands[Command_ExecutorSet].SetHandler(CmdExecutorSet);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ExecutorSet,
+   GetView.CommandBar.AddCommand(Command_ExecutorSet,
     'Назначить исполнителя', '', 'Другие действия');
 
   WorkItem.Commands[Command_ExecutorClear].SetHandler(CmdExecutorClear);
-  (GetView as IContentView).CommandBar.AddCommand(Command_ExecutorClear,
+   GetView.CommandBar.AddCommand(Command_ExecutorClear,
     'Исключить исполнителя', '', 'Другие действия');
 
 

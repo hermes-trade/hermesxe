@@ -40,7 +40,6 @@ inherited frDLVDeskpView: TfrDLVDeskpView
           SpeedButtonOptions.CanBeFocused = False
           TabOrder = 0
           OnClick = btDateIncClick
-          ExplicitLeft = 146
         end
         object btDateDec: TcxButton
           Left = 0
@@ -83,10 +82,7 @@ inherited frDLVDeskpView: TfrDLVDeskpView
           StyleFocused.LookAndFeel.Kind = lfOffice11
           StyleHot.LookAndFeel.Kind = lfOffice11
           TabOrder = 2
-          ExplicitLeft = 25
-          ExplicitTop = -4
-          ExplicitWidth = 121
-          ExplicitHeight = 36
+          ExplicitHeight = 21
           Width = 108
         end
       end

@@ -2,7 +2,7 @@ unit SalRetDeskPresenter;
 
 interface
 uses classes, sysutils, CoreClasses, ShellIntf, UIClasses,
-  Variants, EntityServiceIntf, CustomContentPresenter,
+  Variants, EntityServiceIntf, CustomPresenter,
    db, Controls, UIStr;
 
 const
@@ -59,7 +59,7 @@ type
     property DOCKIND: integer read GetDOCKIND write SetDOCKIND;
   end;
 
-  TSalRetDeskPresenter = class(TCustomContentPresenter)
+  TSalRetDeskPresenter = class(TCustomPresenter)
   private
     FDocLoaded: boolean;
     function View: ISalRetDeskView;
@@ -207,22 +207,22 @@ begin
   //WorkItem.Commands[COMMAND_CLOSE].Caption := GetLocaleString(@COMMAND_CLOSE_CAPTION);
   //WorkItem.Commands[COMMAND_CLOSE].ShortCut := COMMAND_CLOSE_SHORTCUT;
   WorkItem.Commands[COMMAND_CLOSE].SetHandler(CmdClose);
-  (GetView as IContentView).CommandBar.AddCommand(COMMAND_CLOSE,
+   GetView.CommandBar.AddCommand(COMMAND_CLOSE,
     GetLocaleString(@COMMAND_CLOSE_CAPTION), COMMAND_CLOSE_SHORTCUT);
 
   WorkItem.Commands[Command_PostDoc].SetHandler(CmdPostDoc);
-  (GetView as IContentView).CommandBar.AddCommand(Command_PostDoc, 'Провести');
+   GetView.CommandBar.AddCommand(Command_PostDoc, 'Провести');
   SetCommandStatus(Command_PostDoc, false);
 
   WorkItem.Commands[Command_RollbackDoc].SetHandler(CmdRollbackDoc);
-  (GetView as IContentView).CommandBar.AddCommand(Command_RollbackDoc, 'Отменить проведение');
+   GetView.CommandBar.AddCommand(Command_RollbackDoc, 'Отменить проведение');
   SetCommandStatus(Command_RollbackDoc, false);
 
   WorkItem.Commands[Command_CreateMove].SetHandler(CmdCreateMove);
-  (GetView as IContentView).CommandBar.AddCommand(Command_CreateMove, 'Переместить');
+   GetView.CommandBar.AddCommand(Command_CreateMove, 'Переместить');
 
   WorkItem.Commands[Command_PrintOrder].SetHandler(CmdPrintOrder);
-  (GetView as IContentView).CommandBar.AddCommand(Command_PrintOrder, 'Приходный ордер', '', 'Печать', true);
+   GetView.CommandBar.AddCommand(Command_PrintOrder, 'Приходный ордер', '', 'Печать', true);
 
   WorkItem.Commands[Command_LoadDoc].SetHandler(CmdLoadDoc);
   WorkItem.Commands[Command_SelectForwarder].SetHandler(CmdSelectForwarder);

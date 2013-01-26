@@ -32,7 +32,8 @@ requires
   bfwCore,
   bfwInterfaces,
   bfwUI,
-  dxSkinscxPCPainterRS16;
+  dxSkinscxPCPainterRS16,
+  cxPageControldxBarPopupMenuRS16;
 
 contains
   AcntJournalPresenter in 'AcntJournalPresenter.pas',

@@ -82,6 +82,7 @@
 			<DCCReference Include="bfwInterfaces.dcp"/>
 			<DCCReference Include="bfwUI.dcp"/>
 			<DCCReference Include="dxSkinscxPCPainterRS16.dcp"/>
+			<DCCReference Include="cxPageControldxBarPopupMenuRS16.dcp"/>
 			<DCCReference Include="AcntJournalPresenter.pas"/>
 			<DCCReference Include="AcntJournalView.pas">
 				<Form>frAcntJournalView</Form>

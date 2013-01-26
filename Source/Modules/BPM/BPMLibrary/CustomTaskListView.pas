@@ -11,10 +11,10 @@ uses
   cxGridDBBandedTableView, cxGrid, cxPC, StdCtrls, cxButtons, cxContainer,
   cxGroupBox, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar, cxLabel,
   cxVGrid, cxInplaceContainer, cxCheckBox, cxLookAndFeels,
-  CustomTaskListPresenter, CustomContentView, UIClasses, cxPCdxBarPopupMenu;
+  CustomTaskListPresenter, CustomView, UIClasses, cxPCdxBarPopupMenu;
 
 type
-  TfrCustomTaskListView = class(TfrCustomContentView, ICustomTaskListView)
+  TfrCustomTaskListView = class(TfrCustomView, ICustomTaskListView)
     cxGroupBox1: TcxGroupBox;
     cxLabel1: TcxLabel;
     DBeg: TcxDateEdit;
