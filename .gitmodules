@@ -4,3 +4,7 @@
 [submodule "Output"]
 	path = Output
 	url = https://bsf@bitbucket.org/hermessoft/hermes.git
+[submodule "Source/bfw"]
+  path = Source/bfw
+  url = https://bsf@bitbucket.org/bsf/bfw.git
+ 
