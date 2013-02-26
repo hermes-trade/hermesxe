@@ -6,10 +6,49 @@
 			<Projects Include="Hermes.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\External\Booster Framework\Packages\bfwUI.dproj">
+			<Projects Include="bfw\Packages\bfwCore.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\External\Booster Framework\Packages\bfwUITemplates.dproj">
+			<Projects Include="bfw\Packages\bfwInterfaces.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bfw\Packages\bfwShell.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bfw\Packages\bfwShellLayout.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bfw\Packages\bfwUI.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bfw\Packages\bfwUITmpl.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bfw\Packages\Modules\bfwAdminModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bfw\Packages\Modules\bfwEntityUIModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bfw\Packages\Modules\bfwReportingModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bfw\Packages\Modules\bfwServeModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Modules\BDS\BDSModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Modules\DLV\DLVModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Modules\BPM\BPMLibrary\BPMLibrary.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Modules\BPM\BPMModule\BPMModule.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj">
 				<Dependencies/>
 			</Projects>
 		</ItemGroup>
@@ -29,32 +68,149 @@
 		<Target Name="Hermes:Make">
 			<MSBuild Projects="Hermes.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="bfwCore">
+			<MSBuild Projects="bfw\Packages\bfwCore.dproj"/>
+		</Target>
+		<Target Name="bfwCore:Clean">
+			<MSBuild Projects="bfw\Packages\bfwCore.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwCore:Make">
+			<MSBuild Projects="bfw\Packages\bfwCore.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwInterfaces">
+			<MSBuild Projects="bfw\Packages\bfwInterfaces.dproj"/>
+		</Target>
+		<Target Name="bfwInterfaces:Clean">
+			<MSBuild Projects="bfw\Packages\bfwInterfaces.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwInterfaces:Make">
+			<MSBuild Projects="bfw\Packages\bfwInterfaces.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwShell">
+			<MSBuild Projects="bfw\Packages\bfwShell.dproj"/>
+		</Target>
+		<Target Name="bfwShell:Clean">
+			<MSBuild Projects="bfw\Packages\bfwShell.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwShell:Make">
+			<MSBuild Projects="bfw\Packages\bfwShell.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwShellLayout">
+			<MSBuild Projects="bfw\Packages\bfwShellLayout.dproj"/>
+		</Target>
+		<Target Name="bfwShellLayout:Clean">
+			<MSBuild Projects="bfw\Packages\bfwShellLayout.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwShellLayout:Make">
+			<MSBuild Projects="bfw\Packages\bfwShellLayout.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="bfwUI">
-			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUI.dproj"/>
+			<MSBuild Projects="bfw\Packages\bfwUI.dproj"/>
 		</Target>
 		<Target Name="bfwUI:Clean">
-			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUI.dproj" Targets="Clean"/>
+			<MSBuild Projects="bfw\Packages\bfwUI.dproj" Targets="Clean"/>
 		</Target>
 		<Target Name="bfwUI:Make">
-			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUI.dproj" Targets="Make"/>
+			<MSBuild Projects="bfw\Packages\bfwUI.dproj" Targets="Make"/>
 		</Target>
-		<Target Name="bfwUITemplates">
-			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUITemplates.dproj"/>
+		<Target Name="bfwUITmpl">
+			<MSBuild Projects="bfw\Packages\bfwUITmpl.dproj"/>
 		</Target>
-		<Target Name="bfwUITemplates:Clean">
-			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUITemplates.dproj" Targets="Clean"/>
+		<Target Name="bfwUITmpl:Clean">
+			<MSBuild Projects="bfw\Packages\bfwUITmpl.dproj" Targets="Clean"/>
 		</Target>
-		<Target Name="bfwUITemplates:Make">
-			<MSBuild Projects="..\External\Booster Framework\Packages\bfwUITemplates.dproj" Targets="Make"/>
+		<Target Name="bfwUITmpl:Make">
+			<MSBuild Projects="bfw\Packages\bfwUITmpl.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwAdminModule">
+			<MSBuild Projects="bfw\Packages\Modules\bfwAdminModule.dproj"/>
+		</Target>
+		<Target Name="bfwAdminModule:Clean">
+			<MSBuild Projects="bfw\Packages\Modules\bfwAdminModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwAdminModule:Make">
+			<MSBuild Projects="bfw\Packages\Modules\bfwAdminModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwEntityUIModule">
+			<MSBuild Projects="bfw\Packages\Modules\bfwEntityUIModule.dproj"/>
+		</Target>
+		<Target Name="bfwEntityUIModule:Clean">
+			<MSBuild Projects="bfw\Packages\Modules\bfwEntityUIModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwEntityUIModule:Make">
+			<MSBuild Projects="bfw\Packages\Modules\bfwEntityUIModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwReportingModule">
+			<MSBuild Projects="bfw\Packages\Modules\bfwReportingModule.dproj"/>
+		</Target>
+		<Target Name="bfwReportingModule:Clean">
+			<MSBuild Projects="bfw\Packages\Modules\bfwReportingModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwReportingModule:Make">
+			<MSBuild Projects="bfw\Packages\Modules\bfwReportingModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwServeModule">
+			<MSBuild Projects="bfw\Packages\Modules\bfwServeModule.dproj"/>
+		</Target>
+		<Target Name="bfwServeModule:Clean">
+			<MSBuild Projects="bfw\Packages\Modules\bfwServeModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwServeModule:Make">
+			<MSBuild Projects="bfw\Packages\Modules\bfwServeModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BDSModule">
+			<MSBuild Projects="Modules\BDS\BDSModule.dproj"/>
+		</Target>
+		<Target Name="BDSModule:Clean">
+			<MSBuild Projects="Modules\BDS\BDSModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BDSModule:Make">
+			<MSBuild Projects="Modules\BDS\BDSModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="DLVModule">
+			<MSBuild Projects="Modules\DLV\DLVModule.dproj"/>
+		</Target>
+		<Target Name="DLVModule:Clean">
+			<MSBuild Projects="Modules\DLV\DLVModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="DLVModule:Make">
+			<MSBuild Projects="Modules\DLV\DLVModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BPMLibrary">
+			<MSBuild Projects="Modules\BPM\BPMLibrary\BPMLibrary.dproj"/>
+		</Target>
+		<Target Name="BPMLibrary:Clean">
+			<MSBuild Projects="Modules\BPM\BPMLibrary\BPMLibrary.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BPMLibrary:Make">
+			<MSBuild Projects="Modules\BPM\BPMLibrary\BPMLibrary.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BPMModule">
+			<MSBuild Projects="Modules\BPM\BPMModule\BPMModule.dproj"/>
+		</Target>
+		<Target Name="BPMModule:Clean">
+			<MSBuild Projects="Modules\BPM\BPMModule\BPMModule.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BPMModule:Make">
+			<MSBuild Projects="Modules\BPM\BPMModule\BPMModule.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BPMModuleExt">
+			<MSBuild Projects="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj"/>
+		</Target>
+		<Target Name="BPMModuleExt:Clean">
+			<MSBuild Projects="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BPMModuleExt:Make">
+			<MSBuild Projects="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj" Targets="Make"/>
 		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="Hermes;bfwUI;bfwUITemplates"/>
+			<CallTarget Targets="Hermes;bfwCore;bfwInterfaces;bfwShell;bfwShellLayout;bfwUI;bfwUITmpl;bfwAdminModule;bfwEntityUIModule;bfwReportingModule;bfwServeModule;BDSModule;DLVModule;BPMLibrary;BPMModule;BPMModuleExt"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="Hermes:Clean;bfwUI:Clean;bfwUITemplates:Clean"/>
+			<CallTarget Targets="Hermes:Clean;bfwCore:Clean;bfwInterfaces:Clean;bfwShell:Clean;bfwShellLayout:Clean;bfwUI:Clean;bfwUITmpl:Clean;bfwAdminModule:Clean;bfwEntityUIModule:Clean;bfwReportingModule:Clean;bfwServeModule:Clean;BDSModule:Clean;DLVModule:Clean;BPMLibrary:Clean;BPMModule:Clean;BPMModuleExt:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="Hermes:Make;bfwUI:Make;bfwUITemplates:Make"/>
+			<CallTarget Targets="Hermes:Make;bfwCore:Make;bfwInterfaces:Make;bfwShell:Make;bfwShellLayout:Make;bfwUI:Make;bfwUITmpl:Make;bfwAdminModule:Make;bfwEntityUIModule:Make;bfwReportingModule:Make;bfwServeModule:Make;BDSModule:Make;DLVModule:Make;BPMLibrary:Make;BPMModule:Make;BPMModuleExt:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
