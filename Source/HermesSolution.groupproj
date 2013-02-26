@@ -12,16 +12,16 @@
 			<Projects Include="bfw\Packages\bfwInterfaces.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="bfw\Packages\bfwShell.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="bfw\Packages\bfwShellLayout.dproj">
-				<Dependencies/>
-			</Projects>
 			<Projects Include="bfw\Packages\bfwUI.dproj">
 				<Dependencies/>
 			</Projects>
 			<Projects Include="bfw\Packages\bfwUITmpl.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bfw\Packages\bfwShell.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bfw\Packages\bfwShellLayout.dproj">
 				<Dependencies/>
 			</Projects>
 			<Projects Include="bfw\Packages\Modules\bfwAdminModule.dproj">
@@ -86,24 +86,6 @@
 		<Target Name="bfwInterfaces:Make">
 			<MSBuild Projects="bfw\Packages\bfwInterfaces.dproj" Targets="Make"/>
 		</Target>
-		<Target Name="bfwShell">
-			<MSBuild Projects="bfw\Packages\bfwShell.dproj"/>
-		</Target>
-		<Target Name="bfwShell:Clean">
-			<MSBuild Projects="bfw\Packages\bfwShell.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="bfwShell:Make">
-			<MSBuild Projects="bfw\Packages\bfwShell.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="bfwShellLayout">
-			<MSBuild Projects="bfw\Packages\bfwShellLayout.dproj"/>
-		</Target>
-		<Target Name="bfwShellLayout:Clean">
-			<MSBuild Projects="bfw\Packages\bfwShellLayout.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="bfwShellLayout:Make">
-			<MSBuild Projects="bfw\Packages\bfwShellLayout.dproj" Targets="Make"/>
-		</Target>
 		<Target Name="bfwUI">
 			<MSBuild Projects="bfw\Packages\bfwUI.dproj"/>
 		</Target>
@@ -121,6 +103,24 @@
 		</Target>
 		<Target Name="bfwUITmpl:Make">
 			<MSBuild Projects="bfw\Packages\bfwUITmpl.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwShell">
+			<MSBuild Projects="bfw\Packages\bfwShell.dproj"/>
+		</Target>
+		<Target Name="bfwShell:Clean">
+			<MSBuild Projects="bfw\Packages\bfwShell.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwShell:Make">
+			<MSBuild Projects="bfw\Packages\bfwShell.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="bfwShellLayout">
+			<MSBuild Projects="bfw\Packages\bfwShellLayout.dproj"/>
+		</Target>
+		<Target Name="bfwShellLayout:Clean">
+			<MSBuild Projects="bfw\Packages\bfwShellLayout.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="bfwShellLayout:Make">
+			<MSBuild Projects="bfw\Packages\bfwShellLayout.dproj" Targets="Make"/>
 		</Target>
 		<Target Name="bfwAdminModule">
 			<MSBuild Projects="bfw\Packages\Modules\bfwAdminModule.dproj"/>
@@ -204,13 +204,13 @@
 			<MSBuild Projects="Modules\BPM\BPMModuleExt\BPMModuleExt.dproj" Targets="Make"/>
 		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="Hermes;bfwCore;bfwInterfaces;bfwShell;bfwShellLayout;bfwUI;bfwUITmpl;bfwAdminModule;bfwEntityUIModule;bfwReportingModule;bfwServeModule;BDSModule;DLVModule;BPMLibrary;BPMModule;BPMModuleExt"/>
+			<CallTarget Targets="Hermes;bfwCore;bfwInterfaces;bfwUI;bfwUITmpl;bfwShell;bfwShellLayout;bfwAdminModule;bfwEntityUIModule;bfwReportingModule;bfwServeModule;BDSModule;DLVModule;BPMLibrary;BPMModule;BPMModuleExt"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="Hermes:Clean;bfwCore:Clean;bfwInterfaces:Clean;bfwShell:Clean;bfwShellLayout:Clean;bfwUI:Clean;bfwUITmpl:Clean;bfwAdminModule:Clean;bfwEntityUIModule:Clean;bfwReportingModule:Clean;bfwServeModule:Clean;BDSModule:Clean;DLVModule:Clean;BPMLibrary:Clean;BPMModule:Clean;BPMModuleExt:Clean"/>
+			<CallTarget Targets="Hermes:Clean;bfwCore:Clean;bfwInterfaces:Clean;bfwUI:Clean;bfwUITmpl:Clean;bfwShell:Clean;bfwShellLayout:Clean;bfwAdminModule:Clean;bfwEntityUIModule:Clean;bfwReportingModule:Clean;bfwServeModule:Clean;BDSModule:Clean;DLVModule:Clean;BPMLibrary:Clean;BPMModule:Clean;BPMModuleExt:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="Hermes:Make;bfwCore:Make;bfwInterfaces:Make;bfwShell:Make;bfwShellLayout:Make;bfwUI:Make;bfwUITmpl:Make;bfwAdminModule:Make;bfwEntityUIModule:Make;bfwReportingModule:Make;bfwServeModule:Make;BDSModule:Make;DLVModule:Make;BPMLibrary:Make;BPMModule:Make;BPMModuleExt:Make"/>
+			<CallTarget Targets="Hermes:Make;bfwCore:Make;bfwInterfaces:Make;bfwUI:Make;bfwUITmpl:Make;bfwShell:Make;bfwShellLayout:Make;bfwAdminModule:Make;bfwEntityUIModule:Make;bfwReportingModule:Make;bfwServeModule:Make;BDSModule:Make;DLVModule:Make;BPMLibrary:Make;BPMModule:Make;BPMModuleExt:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

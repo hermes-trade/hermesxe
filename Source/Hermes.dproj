@@ -46,7 +46,7 @@
 			<VerInfo_Locale>1058</VerInfo_Locale>
 			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
 			<DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-			<DCC_UnitSearchPath>..\External\Boosterfw\Sources\Core;..\External\Boosterfw\Sources\Interfaces;..\External\Boosterfw\Sources\Shell;..\External\Boosterfw\Sources\Shell\Services;..\External\Boosterfw\Sources\UI;..\External\Boosterfw\Sources\ShellLayout;..\External\Boosterfw\Sources\DAL;..\External\Boosterfw\Sources\Modules\Admin;..\External\Boosterfw\Sources\Modules\Reporting;..\External\Boosterfw\Sources\Modules\Reporting\EngineFR;..\External\Boosterfw\Sources\Modules\Reporting\EngineXL;..\External\Boosterfw\Sources\Modules\Reporting\EngineXL\xlReportLibrary\Source;..\External\Boosterfw\Sources\Modules\EntityUI\;..\External\Boosterfw\Sources\Modules\Serve;..\Source\Modules\BDS;..\Source\Modules\DLV;..\Source\Modules\BPM\BPMLibrary;..\Source\Modules\BPM\BPMModule;..\Source\Modules\BPM\BPMModuleExt;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>.\bfw\Sources\Core;.\bfw\Sources\Interfaces;.\bfw\Sources\Shell;.\bfw\Sources\Shell\Services;.\bfw\Sources\UI;.\bfw\Sources\ShellLayout;.\bfw\Sources\DAL;.\bfw\Sources\Modules\Admin;.\bfw\Sources\Modules\Reporting;.\bfw\Sources\Modules\Reporting\EngineFR;.\bfw\Sources\Modules\Reporting\EngineXL;.\bfw\Sources\Modules\Reporting\EngineXL\xlReportLibrary\Source;.\bfw\Sources\Modules\EntityUI\;.\bfw\Sources\Modules\Serve;..\Source\Modules\BDS;..\Source\Modules\DLV;..\Source\Modules\BPM\BPMLibrary;..\Source\Modules\BPM\BPMModule;..\Source\Modules\BPM\BPMModuleExt;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_DcuOutput>.\$(Config)\$(Platform)</DCC_DcuOutput>
 			<DCC_ExeOutput>..\Output\Bin</DCC_ExeOutput>
@@ -78,7 +78,6 @@
 			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-			<Manifest_File>None</Manifest_File>
 			<VerInfo_Locale>1033</VerInfo_Locale>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
