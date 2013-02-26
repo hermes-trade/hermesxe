@@ -1,6 +1,3 @@
-[submodule "External/Boosterfw"]
-	path = External/Boosterfw
-	url = https://bsf@bitbucket.org/bsf/bfw.git
 [submodule "Output"]
 	path = Output
 	url = https://bsf@bitbucket.org/hermessoft/hermes.git
